@@ -62,7 +62,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1ha-dt-VEM"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-tA-gDT">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-tA-gDT">
                                 <rect key="frame" x="0.0" y="100" width="375" height="350"/>
                             </imageView>
                         </subviews>
@@ -74,6 +74,7 @@
                             <constraint firstItem="cCp-tA-gDT" firstAttribute="top" secondItem="POq-8j-gOJ" secondAttribute="bottom" id="Tv4-sH-Gef"/>
                             <constraint firstAttribute="trailing" secondItem="cCp-tA-gDT" secondAttribute="trailing" id="UKP-ZW-thL"/>
                             <constraint firstItem="POq-8j-gOJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cho-7Z-rGg"/>
+                            <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="cCp-tA-gDT" secondAttribute="bottom" constant="217" id="rcl-uZ-bKF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xYg-VP-pps">
