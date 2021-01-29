@@ -4,5 +4,5 @@ use_frameworks!
 pod 'GoogleMLKit/PoseDetection'
 pod 'GoogleMLKit/PoseDetectionAccurate'
 
-target 'VisionTrainer' do
+target 'VirtualTrainer' do
 end
