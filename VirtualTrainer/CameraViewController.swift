@@ -92,10 +92,6 @@ class CameraViewController: UIViewController {
 
   // MARK: - IBActions
 
-  @IBAction func selectDetector(_ sender: Any) {
-    presentDetectorsAlertController()
-  }
-
   @IBAction func switchCamera(_ sender: Any) {
     isUsingFrontCamera = !isUsingFrontCamera
     removeDetectionAnnotations()
@@ -250,27 +246,6 @@ class CameraViewController: UIViewController {
       return discoverySession.devices.first { $0.position == position }
     }
     return nil
-  }
-
-  private func presentDetectorsAlertController() {
-    let alertController = UIAlertController(
-      title: Constant.alertControllerTitle,
-      message: Constant.alertControllerMessage,
-      preferredStyle: .alert
-    )
-    detectors.forEach { detectorType in
-      let action = UIAlertAction(title: detectorType.rawValue, style: .default) {
-        [unowned self] (action) in
-        guard let value = action.title else { return }
-        guard let detector = Detector(rawValue: value) else { return }
-        self.currentDetector = detector
-        self.removeDetectionAnnotations()
-      }
-      if detectorType.rawValue == self.currentDetector.rawValue { action.isEnabled = false }
-      alertController.addAction(action)
-    }
-    alertController.addAction(UIAlertAction(title: Constant.cancelActionTitleText, style: .cancel))
-    present(alertController, animated: true)
   }
 
   private func removeDetectionAnnotations() {
