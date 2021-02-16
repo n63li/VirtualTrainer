@@ -1,0 +1,23 @@
+type UserWorkout @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  poseNetData: [Float!]
+  imuData: [Float!]
+  workoutType: String!
+  cameraAngle: Boolean!
+  startTimestamp: AWSTimestamp!
+  endTimestamp: AWSTimestamp!
+}
+
+type WorkoutResult @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  score: Int!
+  incorrectJoints: [AWSJSON!]
+  incorrectAccelerations: [Float]
+}
+
+type IdealWorkout @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  workoutType: String!
+  jointAngles: [AWSJSON!]
+  accelerations: [Float]
+}
