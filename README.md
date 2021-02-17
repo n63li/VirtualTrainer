@@ -1,42 +1,29 @@
-# ML Kit Vision Quickstart Sample App
+# Virtual Trainer
 
 ## Introduction
-
-This ML Kit Vision iOS Quickstart app demonstrates how to use and integrate various vision based ML Kit features into your app.
-
-## Feature List
-
-Features that are included in this demo app:
-* [Object Detection](https://developers.google.com/ml-kit/vision/object-detection/ios) - Detect, track, and classify objects in real time and static images
-* [Custom Object Detection (Birds)](https://developers.google.com/ml-kit/vision/object-detection/custom-models/ios) - Detect, track, and classify birds with a custom TensorFlow Lite model
-* [Face Detection](https://developers.google.com/ml-kit/vision/face-detection/ios) - Detect faces in real time and static images
-* [Text Recognition](https://developers.google.com/ml-kit/vision/text-recognition/ios) - Recognize text in real time and static images
-* [Barcode Scanning ](https://developers.google.com/ml-kit/vision/barcode-scanning/ios)- Scan barcodes in real time and static images
-* [Image Labeling](https://developers.google.com/ml-kit/vision/image-labeling/ios) - Label images in real time and static images
-* [Custom Image Labeling (Birds)](https://developers.google.com/ml-kit/vision/image-labeling/custom-models/ios) - Label images of birds with a custom TensorFlow Lite model
-* [Pose Detection](https://developers.google.com/ml-kit/vision/pose-detection/ios) - Detect the position of the human body in real time.
-<img src="../../screenshots/vision_quickstart_1.jpg" width="256"/> <img src="../../screenshots/vision_quickstart_2.jpg" width="256"/> <img src="../../screenshots/vision_quickstart_3.jpg" width="256"/>
+Welcome to the iOS app for our virtual trainer FYDP project. 
 
 ## Getting Started
-
-* Run the sample code on your iOS device or simulator
-* Try extending the code to add new features and functionality
-
-## How to use the app
-
-This app supports two usage scenarios: Live Camera mode and Static Image mode.
-
-### Static Image Scenario
-When the app is first opened, you will begin in Static Image mode. Use the carousel to select a specific API and hit “detect” to exercise the API on the preloaded images. In order to add your own images from the camera roll, select the camera roll icon on the top of the screen.
-
-### Live Camera Scenario
-This mode uses the camera preview as input instead of static images. In order to enter this mode, select the video camera icon in the top right corner of the screen.
-
-## Support
--------
-
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/google-mlkit)
-
+### Amplify
+Follow the following Amplify [link](https://sandbox.amplifyapp.com/test/fc466f4e-40ce-4cf8-b139-24bb7b5c9882). 
+In order to pull down the latest Amplify models, you must first download the Amplify CLI with the following code:
+```
+curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+```
+Next, run the following command from your project's root folder:
+```
+amplify pull --sandboxId fc466f4e-40ce-4cf8-b139-24bb7b5c9882
+```
+Amplify dependencies are installed through CocoaPods. Open a terminal window and navigate to the location of the Xcode project for your app.
+1. Initialize CocoaPods: 
+    ```
+    pod init
+    ```
+2. Install the Amplify pod into your project:
+    ```
+    pod install --repo-update
+    ```
+3. Follow these instructions in this StackOverflow [article](https://stackoverflow.com/questions/65261123/xcode-project-fails-to-find-the-amplifymodels-file-that-is-generated-for-ios-p) to add the Amplify files into your Xcode workspace.
 License
 -------
 

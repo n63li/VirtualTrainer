@@ -43,6 +43,7 @@
 		D83BA59625DDB329003F5562 /* parameters.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA58825DDB329003F5562 /* parameters.json */; };
 		D83BA59725DDB329003F5562 /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D83BA58925DDB329003F5562 /* schema.graphql */; };
 		D83BA59825DDB329003F5562 /* transform.conf.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA58A25DDB329003F5562 /* transform.conf.json */; };
+		D83BA59B25DDBEEB003F5562 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D83BA59A25DDBEEB003F5562 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		D83BA58825DDB329003F5562 /* parameters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parameters.json; sourceTree = "<group>"; };
 		D83BA58925DDB329003F5562 /* schema.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
 		D83BA58A25DDB329003F5562 /* transform.conf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transform.conf.json; sourceTree = "<group>"; };
+		D83BA59A25DDBEEB003F5562 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
+				D83BA59A25DDBEEB003F5562 /* README.md */,
 				D83BA57525DDB329003F5562 /* amplify */,
 				FA0C4A57F9B4467EA0DF3D6E /* AmplifyConfig */,
 				1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */,
@@ -336,6 +339,7 @@
 			files = (
 				10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */,
 				D83BA59425DDB329003F5562 /* backend-config.json in Resources */,
+				D83BA59B25DDBEEB003F5562 /* README.md in Resources */,
 				D83BA59625DDB329003F5562 /* parameters.json in Resources */,
 				D83BA59525DDB329003F5562 /* CustomResources.json in Resources */,
 				7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
