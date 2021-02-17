@@ -2,28 +2,31 @@
 import Amplify
 import Foundation
 
-public struct UserWorkout: Model {
+public struct WorkoutSessionModel: Model {
   public let id: String
   public var poseNetData: [Double]
   public var imuData: [Double]
-  public var workoutType: String
   public var cameraAngle: Bool
-  public var startTimestamp: Int
   public var endTimestamp: Int
+  public var startTimestamp: Int
+  public var result: WorkoutResultModel?
+  public var ideal: IdealWorkoutModel?
   
   public init(id: String = UUID().uuidString,
       poseNetData: [Double] = [],
       imuData: [Double] = [],
-      workoutType: String,
       cameraAngle: Bool,
+      endTimestamp: Int,
       startTimestamp: Int,
-      endTimestamp: Int) {
+      result: WorkoutResultModel? = nil,
+      ideal: IdealWorkoutModel? = nil) {
       self.id = id
       self.poseNetData = poseNetData
       self.imuData = imuData
-      self.workoutType = workoutType
       self.cameraAngle = cameraAngle
-      self.startTimestamp = startTimestamp
       self.endTimestamp = endTimestamp
+      self.startTimestamp = startTimestamp
+      self.result = result
+      self.ideal = ideal
   }
 }

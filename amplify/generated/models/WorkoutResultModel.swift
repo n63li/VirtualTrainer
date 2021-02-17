@@ -2,15 +2,15 @@
 import Amplify
 import Foundation
 
-public struct WorkoutResult: Model {
+public struct WorkoutResultModel: Model {
   public let id: String
   public var score: Int
-  public var incorrectJoints: [String]
+  public var incorrectJoints: [Double]
   public var incorrectAccelerations: [Double]?
   
   public init(id: String = UUID().uuidString,
       score: Int,
-      incorrectJoints: [String] = [],
+      incorrectJoints: [Double] = [],
       incorrectAccelerations: [Double]? = []) {
       self.id = id
       self.score = score
