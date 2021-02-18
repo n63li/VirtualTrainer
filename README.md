@@ -24,7 +24,8 @@ Amplify dependencies are installed through CocoaPods. Open a terminal window and
     pod install --repo-update
     ```
 3. Follow these instructions in this StackOverflow [article](https://stackoverflow.com/questions/65261123/xcode-project-fails-to-find-the-amplifymodels-file-that-is-generated-for-ios-p) to add the Amplify files into your Xcode workspace.
-License
+
+## License
 -------
 
 Copyright 2020 Google, Inc.
