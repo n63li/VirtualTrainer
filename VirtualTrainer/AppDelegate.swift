@@ -34,11 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           //try Amplify.add(plugin: apiPlugin) // UNCOMMENT this line once backend is deployed
           try Amplify.configure()
           print("Initialized Amplify");
-          let idealDeadlift = Deadlift(
+          let idealWorkout = IdealWorkout(
+            name: "deadlift",
             url: "https://www.youtube.com/watch?v=ytGaGIn3SjE"
           )
-          let workoutSession = WorkoutSession()
-          workoutSession.idealWorkout = idealDeadlift
+        let workoutSession = WorkoutSession(workoutType: "deadlift", cameraAngle: false)
           workoutSession.save()
       } catch {
           print("Could not initialize Amplify: \(error)")

@@ -7,26 +7,26 @@ public struct WorkoutSessionModel: Model {
   public var poseNetData: [Double]
   public var imuData: [Double]
   public var cameraAngle: Bool
-  public var endTimestamp: Int
+  public var workoutType: String?
   public var startTimestamp: Int
   public var result: WorkoutResultModel?
-  public var ideal: IdealWorkoutModel?
+  public var endTimestamp: Int
   
   public init(id: String = UUID().uuidString,
       poseNetData: [Double] = [],
       imuData: [Double] = [],
       cameraAngle: Bool,
-      endTimestamp: Int,
+      workoutType: String? = nil,
       startTimestamp: Int,
       result: WorkoutResultModel? = nil,
-      ideal: IdealWorkoutModel? = nil) {
+      endTimestamp: Int) {
       self.id = id
       self.poseNetData = poseNetData
       self.imuData = imuData
       self.cameraAngle = cameraAngle
-      self.endTimestamp = endTimestamp
+      self.workoutType = workoutType
       self.startTimestamp = startTimestamp
       self.result = result
-      self.ideal = ideal
+      self.endTimestamp = endTimestamp
   }
 }

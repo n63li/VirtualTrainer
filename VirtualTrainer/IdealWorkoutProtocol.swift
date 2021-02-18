@@ -3,29 +3,31 @@
 //  VirtualTrainer
 //
 //  Created by Nathan Li on 2021-02-16.
-//  Copyright © 2021 Google Inc. All rights reserved.
 //
+import Amplify
 
 protocol IdealWorkoutProtocol {
   var name: String {get}
   var jointAngles: Array<Float> {get}
   var accelerations: Array<Float> {get}
-  func uploadIdealWorkout(url: String) -> Bool
+  func analyzeIdealWorkout(url: String) -> Bool
   func calculateJointAngles() -> Void
   func calculateAccelerations() -> Void
+  func saveIdealWorkout()
 }
 
-class Deadlift: IdealWorkoutProtocol{
-  var name: String = "deadlift"
+class IdealWorkout: IdealWorkoutProtocol{
+  var name: String = ""
   var jointAngles: Array<Float> = [0]
   var accelerations: Array<Float> = [0]
   
-  init(url: String) {
-    uploadIdealWorkout(url: url)
+  init(name: String, url: String) {
+    self.name = name
+    analyzeIdealWorkout(url: url)
   }
   
-  func uploadIdealWorkout(url: String) -> Bool {
-    print("Uploaded video at url: " + url)
+  func analyzeIdealWorkout(url: String) -> Bool {
+    print("Analyze video at url: " + url)
     return true
   }
   
@@ -36,10 +38,19 @@ class Deadlift: IdealWorkoutProtocol{
   func calculateAccelerations() {
     print("Calculating accelerations")
   }
+  
+  func saveIdealWorkout() {
+    let idealWorkoutItem = IdealWorkoutModel(
+        workoutType: "Lorem ipsum dolor sit amet",
+        jointAngles: [],
+        accelerations: [])
+    Amplify.DataStore.save(idealWorkoutItem) { result in
+        switch(result) {
+        case .success(let savedItem):
+            print("Saved ideal workout: \(savedItem.id)")
+        case .failure(let error):
+            print("Could not save ideal workout to DataStore: \(error)")
+        }
+    }
+  }
 }
-
-//class Squat: IdealWorkoutProtocol {
-//  func saveWorkout() -> Bool {
-//
-//  }
-//}
