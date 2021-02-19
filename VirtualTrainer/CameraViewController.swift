@@ -121,19 +121,21 @@ class CameraViewController: UIViewController {
         poses.forEach { pose in
           for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
             let startLandmark = pose.landmark(ofType: startLandmarkType)
-            for endLandmarkType in endLandmarkTypesArray {
-              let endLandmark = pose.landmark(ofType: endLandmarkType)
-              let startLandmarkPoint = normalizedPoint(
-                fromVisionPoint: startLandmark.position, width: width, height: height)
-              let endLandmarkPoint = normalizedPoint(
-                fromVisionPoint: endLandmark.position, width: width, height: height)
-              UIUtilities.addLineSegment(
-                fromPoint: startLandmarkPoint,
-                toPoint: endLandmarkPoint,
-                inView: self.annotationOverlayView,
-                color: UIColor.green,
-                width: Constant.lineWidth
-              )
+            if (startLandmark.inFrameLikelihood > 0.7) {
+              for endLandmarkType in endLandmarkTypesArray {
+                let endLandmark = pose.landmark(ofType: endLandmarkType)
+                let startLandmarkPoint = normalizedPoint(
+                  fromVisionPoint: startLandmark.position, width: width, height: height)
+                let endLandmarkPoint = normalizedPoint(
+                  fromVisionPoint: endLandmark.position, width: width, height: height)
+                UIUtilities.addLineSegment(
+                  fromPoint: startLandmarkPoint,
+                  toPoint: endLandmarkPoint,
+                  inView: self.annotationOverlayView,
+                  color: UIColor.green,
+                  width: Constant.lineWidth
+                )
+              }
             }
           }
           for landmark in pose.landmarks {
@@ -146,9 +148,40 @@ class CameraViewController: UIViewController {
               radius: Constant.smallDotRadius
             )
           }
+          
+          var squatData: [SquatElement] = []
+          let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: .left)
+          squatData.append(squatElement)
+          displaySquatOverlay(pose: pose, to: self.annotationOverlayView, squatElement: squatElement, orientation: .left, width: width, height: height)
         }
       }
     }
+  }
+  
+  public func displaySquatOverlay(pose: Pose, to view: UIView, squatElement: SquatElement, orientation: SquatOrientation, width: CGFloat, height: CGFloat) {
+    var knee: CGPoint
+    var hip: CGPoint
+    var ankle: CGPoint
+    var shoulder: CGPoint
+    
+    
+    switch orientation {
+      case .left:
+        knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height)
+        hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height)
+        ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height)
+        shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height)
+      case .right:
+        knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightKnee).position, width: width, height: height)
+        hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightHip).position, width: width, height: height)
+        ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightAnkle).position, width: width, height: height)
+        shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height)
+    }
+    
+    UIUtilities.addLabel(atPoint: knee, to: view, label: String(Int(squatElement.KneeAngle)))
+    UIUtilities.addLabel(atPoint: hip, to: view, label: String(Int(squatElement.HipAngle)))
+    UIUtilities.addLabel(atPoint: ankle, to: view, label: String(Int(squatElement.ShankAngle)))
+    UIUtilities.addLabel(atPoint: shoulder, to: view, label: String(Int(squatElement.TrunkAngle)))
   }
 
   // MARK: - Private

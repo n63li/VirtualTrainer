@@ -14,6 +14,7 @@
 		10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
 		1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1077670D210FBBB6007A19A7 /* liberty.jpg */; };
 		34440938430B71824F58B021 /* Pods_VirtualTrainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */; };
+		48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA26BD25DFDE7700970748 /* PoseUtilities.swift */; };
 		4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* MLKitExtensions.swift */; };
 		7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
 		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
@@ -34,6 +35,7 @@
 		10224B5B2087E49F00A77316 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
 		10224B702087E5A900A77316 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grace_hopper.jpg; path = Resources/grace_hopper.jpg; sourceTree = "<group>"; };
 		1077670D210FBBB6007A19A7 /* liberty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = liberty.jpg; sourceTree = "<group>"; };
+		48BA26BD25DFDE7700970748 /* PoseUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseUtilities.swift; sourceTree = "<group>"; };
 		7202DC6420D0C1A300034C35 /* qr_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = qr_code.jpg; path = Resources/qr_code.jpg; sourceTree = "<group>"; };
 		7202DC6520D0C1A300034C35 /* image_has_text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_has_text.jpg; path = Resources/image_has_text.jpg; sourceTree = "<group>"; };
 		7202DC6620D0C1A300034C35 /* barcode_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barcode_128.png; path = Resources/barcode_128.png; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				BB287B4A2072A0200069707A /* Supporting Files */,
 				BB287B4420729CE90069707A /* Info.plist */,
 				91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */,
+				48BA26BD25DFDE7700970748 /* PoseUtilities.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */,
 				1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
+				48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */,
 				4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */,
 				1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */,
 			);
@@ -443,11 +447,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89Q59LP47M;
+				DEVELOPMENT_TEAM = G4F868BD8W;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainerjeremy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -463,11 +467,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89Q59LP47M;
+				DEVELOPMENT_TEAM = G4F868BD8W;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainerjeremy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
