@@ -121,7 +121,7 @@ class CameraViewController: UIViewController {
         poses.forEach { pose in
           for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
             let startLandmark = pose.landmark(ofType: startLandmarkType)
-            if (startLandmark.inFrameLikelihood > 0.7) {
+            if (startLandmark.inFrameLikelihood > 0.6) {
               for endLandmarkType in endLandmarkTypesArray {
                 let endLandmark = pose.landmark(ofType: endLandmarkType)
                 let startLandmarkPoint = normalizedPoint(
