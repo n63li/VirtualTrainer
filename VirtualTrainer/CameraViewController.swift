@@ -180,7 +180,7 @@ class CameraViewController: UIViewController {
     
     UIUtilities.addLabel(atPoint: knee, to: view, label: String(Int(squatElement.KneeAngle)))
     UIUtilities.addLabel(atPoint: hip, to: view, label: String(Int(squatElement.HipAngle)))
-    UIUtilities.addLabel(atPoint: ankle, to: view, label: String(Int(squatElement.ShankAngle)))
+    UIUtilities.addLabel(atPoint: ankle, to: view, label: String(Int(squatElement.AnkleAngle)))
     UIUtilities.addLabel(atPoint: shoulder, to: view, label: String(Int(squatElement.TrunkAngle)))
   }
 
