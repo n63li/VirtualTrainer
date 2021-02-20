@@ -1,36 +1,53 @@
 PODS:
-  - GoogleDataTransport (8.1.0):
-    - nanopb (~> 2.30906.0)
-  - GoogleMLKit/MLKitCore (1.0.0):
-    - MLKitCommon (~> 1.0.0)
-  - GoogleMLKit/PoseDetection (1.0.0):
+  - Amplify (1.6.0):
+    - Amplify/Default (= 1.6.0)
+  - Amplify/Default (1.6.0)
+  - AmplifyPlugins/AWSAPIPlugin (1.6.0):
+    - AppSyncRealTimeClient (~> 1.4.0)
+    - AWSCore (~> 2.22.0)
+    - AWSPluginsCore (= 1.6.0)
+  - AmplifyPlugins/AWSDataStorePlugin (1.6.0):
+    - AWSCore (~> 2.22.0)
+    - AWSPluginsCore (= 1.6.0)
+    - SQLite.swift (~> 0.12.0)
+  - AppSyncRealTimeClient (1.4.3):
+    - Starscream (~> 3.1.0)
+  - AWSCore (2.22.3)
+  - AWSPluginsCore (1.6.0):
+    - Amplify (= 1.6.0)
+    - AWSCore (~> 2.22.0)
+  - GoogleDataTransport (8.2.0):
+    - nanopb (~> 2.30907.0)
+  - GoogleMLKit/MLKitCore (2.0.0):
+    - MLKitCommon (~> 2.0.0)
+  - GoogleMLKit/PoseDetection (2.0.0):
     - GoogleMLKit/MLKitCore
-    - MLKitPoseDetection (~> 1.0.0-beta1)
-  - GoogleMLKit/PoseDetectionAccurate (1.0.0):
+    - MLKitPoseDetection (~> 1.0.0-beta2)
+  - GoogleMLKit/PoseDetectionAccurate (2.0.0):
     - GoogleMLKit/MLKitCore
-    - MLKitPoseDetectionAccurate (~> 1.0.0-beta1)
-  - GoogleToolboxForMac/DebugUtils (2.3.0):
-    - GoogleToolboxForMac/Defines (= 2.3.0)
-  - GoogleToolboxForMac/Defines (2.3.0)
-  - GoogleToolboxForMac/Logger (2.3.0):
-    - GoogleToolboxForMac/Defines (= 2.3.0)
-  - "GoogleToolboxForMac/NSData+zlib (2.3.0)":
-    - GoogleToolboxForMac/Defines (= 2.3.0)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.0)":
-    - GoogleToolboxForMac/DebugUtils (= 2.3.0)
-    - GoogleToolboxForMac/Defines (= 2.3.0)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.0)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.3.0)"
-  - GoogleUtilities/Environment (7.1.1):
+    - MLKitPoseDetectionAccurate (~> 1.0.0-beta2)
+  - GoogleToolboxForMac/DebugUtils (2.3.1):
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+  - GoogleToolboxForMac/Defines (2.3.1)
+  - GoogleToolboxForMac/Logger (2.3.1):
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.1)":
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.3.1)
+    - GoogleToolboxForMac/Defines (= 2.3.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.3.1)"
+  - GoogleUtilities/Environment (7.2.2):
     - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.1.1):
+  - GoogleUtilities/Logger (7.2.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/UserDefaults (7.1.1):
+  - GoogleUtilities/UserDefaults (7.2.2):
     - GoogleUtilities/Logger
   - GoogleUtilitiesComponents (1.0.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
-  - MLKitCommon (1.0.0):
+  - MLKitCommon (2.0.0):
     - GoogleDataTransport (~> 8.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
@@ -39,40 +56,52 @@ PODS:
     - GoogleUtilitiesComponents (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.12)
-  - MLKitPoseDetection (1.0.0-beta1):
-    - MLKitCommon (~> 1.0)
-    - MLKitPoseDetectionCommon (= 1.0.0-beta1)
-    - MLKitXenoCommon (= 1.0.0-beta1)
-  - MLKitPoseDetectionAccurate (1.0.0-beta1):
-    - MLKitCommon (~> 1.0)
-    - MLKitPoseDetectionCommon (= 1.0.0-beta1)
-    - MLKitXenoCommon (= 1.0.0-beta1)
-  - MLKitPoseDetectionCommon (1.0.0-beta1):
-    - MLKitCommon (~> 1.0)
-    - MLKitXenoCommon (= 1.0.0-beta1)
-  - MLKitVision (1.0.0):
+  - MLKitPoseDetection (1.0.0-beta2):
+    - MLKitCommon (~> 2.0)
+    - MLKitPoseDetectionCommon (= 1.0.0-beta2)
+    - MLKitXenoCommon (= 1.0.0-beta2)
+  - MLKitPoseDetectionAccurate (1.0.0-beta2):
+    - MLKitCommon (~> 2.0)
+    - MLKitPoseDetectionCommon (= 1.0.0-beta2)
+    - MLKitXenoCommon (= 1.0.0-beta2)
+  - MLKitPoseDetectionCommon (1.0.0-beta2):
+    - MLKitCommon (~> 2.0)
+    - MLKitXenoCommon (= 1.0.0-beta2)
+  - MLKitVision (1.1.0):
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-    - MLKitCommon (~> 1.0)
+    - MLKitCommon (~> 2.0)
     - Protobuf (~> 3.12)
-  - MLKitXenoCommon (1.0.0-beta1):
-    - MLKitCommon (~> 1.0)
-    - MLKitVision (~> 1.0)
-  - nanopb (2.30906.0):
-    - nanopb/decode (= 2.30906.0)
-    - nanopb/encode (= 2.30906.0)
-  - nanopb/decode (2.30906.0)
-  - nanopb/encode (2.30906.0)
+  - MLKitXenoCommon (1.0.0-beta2):
+    - MLKitCommon (~> 2.0)
+    - MLKitVision (~> 1.1)
+  - nanopb (2.30907.0):
+    - nanopb/decode (= 2.30907.0)
+    - nanopb/encode (= 2.30907.0)
+  - nanopb/decode (2.30907.0)
+  - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
   - Protobuf (3.14.0)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
+  - Starscream (3.1.1)
 
 DEPENDENCIES:
+  - Amplify
+  - AmplifyPlugins/AWSAPIPlugin
+  - AmplifyPlugins/AWSDataStorePlugin
   - GoogleMLKit/PoseDetection
   - GoogleMLKit/PoseDetectionAccurate
 
 SPEC REPOS:
   trunk:
+    - Amplify
+    - AmplifyPlugins
+    - AppSyncRealTimeClient
+    - AWSCore
+    - AWSPluginsCore
     - GoogleDataTransport
     - GoogleMLKit
     - GoogleToolboxForMac
@@ -88,24 +117,33 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - SQLite.swift
+    - Starscream
 
 SPEC CHECKSUMS:
-  GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
-  GoogleMLKit: 7f7c25e2be1388a51ef5ecbee5041a52a997e881
-  GoogleToolboxForMac: 1350d40e86a76f7863928d63bcb0b89c84c521c5
-  GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
+  Amplify: fe8cbe6fcd0e6468f537bd49e6c3d15437442576
+  AmplifyPlugins: 85fa4fa7d0eb78a4f4f44dcf107993a8c13fdf2a
+  AppSyncRealTimeClient: 04df4dffe57cfbd06da336d0bfcd5641ba9adcb5
+  AWSCore: c86b71ff60747c4058769af64ed871ebfae16ddb
+  AWSPluginsCore: d21990b54729e2a95620922ea83e123adaa678cd
+  GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
+  GoogleMLKit: 2a9032170872c4464d516700a04661d6e5b98a77
+  GoogleToolboxForMac: 471e0c05d39506e50e6398f46fa9a12ae0efeff9
+  GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
   GoogleUtilitiesComponents: a69c0b3b369ba443e988141e75ef49d9010b1c80
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  MLKitCommon: 5f19646949440e023eda7ca8bef47b71b58de9b8
-  MLKitPoseDetection: e3ea5cfe38d24f434b5bed8ecd12f2df82616d3f
-  MLKitPoseDetectionAccurate: d20a3fee7eb22efcfe7d808651b5ba2d9da9fef7
-  MLKitPoseDetectionCommon: 5896f9a326424ebefba114ec5b731d5e9ab41204
-  MLKitVision: b92bcd1ca283390287c92766ecc3d34585fa30d6
-  MLKitXenoCommon: 96f2492d78b7250ff89599b39cdb4c49e5fa9087
-  nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
+  MLKitCommon: 746a9b06e05a6a5dc9636a8ea376c3145f0a5338
+  MLKitPoseDetection: 44db709f135855c74219fd39863065dbcb73ca63
+  MLKitPoseDetectionAccurate: 224cb5b301717bbbdbd422ef938bd5319cde165b
+  MLKitPoseDetectionCommon: 2f12d551f1bcc2c4c0d2bebf8fe1d2249e876d30
+  MLKitVision: d8152c0ecdefb17ab680be0457f90ce9f3544f43
+  MLKitXenoCommon: b9d61d5feb0de0e4e64cbb6ad9e95a4bd97b23bf
+  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 0cde852566359049847168e51bd1c690e0f70056
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 124690c2742417b5b7e4424e3a72d12b6284be77
+PODFILE CHECKSUM: 4742ed2b608ca352e1f52fd3f8eb8d3b2f42e368
 
 COCOAPODS: 1.10.1

@@ -14,17 +14,35 @@
 //  limitations under the License.
 //
 
+import Amplify
+import AmplifyPlugins
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
 
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+      let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
+      //let apiPlugin = AWSAPIPlugin(modelRegistration: AmplifyModels()) // UNCOMMENT this line once backend is deployed
+
+      do {
+          try Amplify.add(plugin: dataStorePlugin)
+          //try Amplify.add(plugin: apiPlugin) // UNCOMMENT this line once backend is deployed
+          try Amplify.configure()
+          print("Initialized Amplify");
+          let idealWorkout = IdealWorkout(
+            name: "deadlift",
+            url: "https://www.youtube.com/watch?v=ytGaGIn3SjE"
+          )
+        let workoutSession = WorkoutSession(workoutType: "deadlift", cameraAngle: false)
+          workoutSession.save()
+      } catch {
+          print("Could not initialize Amplify: \(error)")
+      }
     return true
   }
 }

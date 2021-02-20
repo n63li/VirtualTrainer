@@ -13,9 +13,11 @@
 		10224B582087E43100A77316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B572087E43100A77316 /* ViewController.swift */; };
 		10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
 		1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1077670D210FBBB6007A19A7 /* liberty.jpg */; };
+		2FCFFDD410B7424589CF9288 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4951DA0BB402986AAD265 /* amplifyconfiguration.json */; };
 		34440938430B71824F58B021 /* Pods_VirtualTrainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */; };
 		48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA26BD25DFDE7700970748 /* PoseUtilities.swift */; };
 		4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* MLKitExtensions.swift */; };
+		5A95090677934162B119E72C /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = C9F7A6D4127342458DB4AD53 /* awsconfiguration.json */; };
 		7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
 		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
 		7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
@@ -25,6 +27,24 @@
 		A4F8929B243BB4BF00B58767 /* bird.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F89298243BB4BF00B58767 /* bird.jpg */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
+		D8000FB425DC501C00ED2C0C /* IdealWorkoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8000FB325DC501C00ED2C0C /* IdealWorkoutProtocol.swift */; };
+		D8000FB825DC578B00ED2C0C /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8000FB725DC578B00ED2C0C /* WorkoutSession.swift */; };
+		D8000FBC25DC5EFD00ED2C0C /* WorkoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8000FBB25DC5EFD00ED2C0C /* WorkoutResult.swift */; };
+		D83BA59B25DDBEEB003F5562 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D83BA59A25DDBEEB003F5562 /* README.md */; };
+		D83BA62825DF295E003F5562 /* WorkoutSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BA61525DF295E003F5562 /* WorkoutSessionModel.swift */; };
+		D83BA62925DF295E003F5562 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BA61625DF295E003F5562 /* AmplifyModels.swift */; };
+		D83BA62A25DF295E003F5562 /* IdealWorkoutModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BA61725DF295E003F5562 /* IdealWorkoutModel+Schema.swift */; };
+		D83BA62B25DF295E003F5562 /* WorkoutResultModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BA61825DF295E003F5562 /* WorkoutResultModel+Schema.swift */; };
+		D83BA62C25DF295E003F5562 /* WorkoutSessionModel+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BA61925DF295E003F5562 /* WorkoutSessionModel+Schema.swift */; };
+		D83BA62D25DF295E003F5562 /* WorkoutResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BA61A25DF295E003F5562 /* WorkoutResultModel.swift */; };
+		D83BA62E25DF295E003F5562 /* IdealWorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83BA61B25DF295E003F5562 /* IdealWorkoutModel.swift */; };
+		D83BA62F25DF295E003F5562 /* project-config.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA61D25DF295E003F5562 /* project-config.json */; };
+		D83BA63025DF295E003F5562 /* cli.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA61E25DF295E003F5562 /* cli.json */; };
+		D83BA63125DF295E003F5562 /* backend-config.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62025DF295E003F5562 /* backend-config.json */; };
+		D83BA63225DF295E003F5562 /* CustomResources.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62425DF295E003F5562 /* CustomResources.json */; };
+		D83BA63325DF295E003F5562 /* parameters.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62525DF295E003F5562 /* parameters.json */; };
+		D83BA63425DF295E003F5562 /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62625DF295E003F5562 /* schema.graphql */; };
+		D83BA63525DF295E003F5562 /* transform.conf.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62725DF295E003F5562 /* transform.conf.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,20 +56,42 @@
 		10224B702087E5A900A77316 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grace_hopper.jpg; path = Resources/grace_hopper.jpg; sourceTree = "<group>"; };
 		1077670D210FBBB6007A19A7 /* liberty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = liberty.jpg; sourceTree = "<group>"; };
 		48BA26BD25DFDE7700970748 /* PoseUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseUtilities.swift; sourceTree = "<group>"; };
+		4FE4951DA0BB402986AAD265 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		7202DC6420D0C1A300034C35 /* qr_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = qr_code.jpg; path = Resources/qr_code.jpg; sourceTree = "<group>"; };
 		7202DC6520D0C1A300034C35 /* image_has_text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_has_text.jpg; path = Resources/image_has_text.jpg; sourceTree = "<group>"; };
 		7202DC6620D0C1A300034C35 /* barcode_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barcode_128.png; path = Resources/barcode_128.png; sourceTree = "<group>"; };
 		7202DC6720D0C1A300034C35 /* beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = beach.jpg; path = Resources/beach.jpg; sourceTree = "<group>"; };
+		8E98A936E78D4C51810B1750 /* schema.graphql */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text; name = schema.graphql; path = amplify/backend/api/amplifyDatasource/schema.graphql; sourceTree = "<group>"; };
 		91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualTrainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8E2C9FA1709AB4D6E13D79 /* Pods-VirtualTrainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualTrainer.debug.xcconfig"; path = "Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer.debug.xcconfig"; sourceTree = "<group>"; };
 		A4F89297243BB4BE00B58767 /* bird.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = bird.tflite; path = Resources/bird.tflite; sourceTree = "<group>"; };
 		A4F89298243BB4BF00B58767 /* bird.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bird.jpg; path = Resources/bird.jpg; sourceTree = "<group>"; };
+		A74384A83B0341EEA6431D45 /* amplifytools.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = amplifytools.xcconfig; sourceTree = "<group>"; };
 		BB287B3520729CE90069707A /* VirtualTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB287B3820729CE90069707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB287B3D20729CE90069707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB287B4420729CE90069707A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9F7A6D4127342458DB4AD53 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
 		D471CC151BE16E0BBDB87C1C /* Pods-VirtualTrainer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualTrainer.release.xcconfig"; path = "Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer.release.xcconfig"; sourceTree = "<group>"; };
+		D8000FB325DC501C00ED2C0C /* IdealWorkoutProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdealWorkoutProtocol.swift; sourceTree = "<group>"; };
+		D8000FB725DC578B00ED2C0C /* WorkoutSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
+		D8000FBB25DC5EFD00ED2C0C /* WorkoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutResult.swift; sourceTree = "<group>"; };
+		D83BA59A25DDBEEB003F5562 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D83BA61525DF295E003F5562 /* WorkoutSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSessionModel.swift; sourceTree = "<group>"; };
+		D83BA61625DF295E003F5562 /* AmplifyModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
+		D83BA61725DF295E003F5562 /* IdealWorkoutModel+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IdealWorkoutModel+Schema.swift"; sourceTree = "<group>"; };
+		D83BA61825DF295E003F5562 /* WorkoutResultModel+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WorkoutResultModel+Schema.swift"; sourceTree = "<group>"; };
+		D83BA61925DF295E003F5562 /* WorkoutSessionModel+Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WorkoutSessionModel+Schema.swift"; sourceTree = "<group>"; };
+		D83BA61A25DF295E003F5562 /* WorkoutResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutResultModel.swift; sourceTree = "<group>"; };
+		D83BA61B25DF295E003F5562 /* IdealWorkoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdealWorkoutModel.swift; sourceTree = "<group>"; };
+		D83BA61D25DF295E003F5562 /* project-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "project-config.json"; sourceTree = "<group>"; };
+		D83BA61E25DF295E003F5562 /* cli.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cli.json; sourceTree = "<group>"; };
+		D83BA62025DF295E003F5562 /* backend-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "backend-config.json"; sourceTree = "<group>"; };
+		D83BA62425DF295E003F5562 /* CustomResources.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomResources.json; sourceTree = "<group>"; };
+		D83BA62525DF295E003F5562 /* parameters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parameters.json; sourceTree = "<group>"; };
+		D83BA62625DF295E003F5562 /* schema.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
+		D83BA62725DF295E003F5562 /* transform.conf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transform.conf.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +132,9 @@
 		BB287B2C20729CE90069707A = {
 			isa = PBXGroup;
 			children = (
+				D83BA61225DF295E003F5562 /* amplify */,
+				D83BA59A25DDBEEB003F5562 /* README.md */,
+				FA0C4A57F9B4467EA0DF3D6E /* AmplifyConfig */,
 				1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */,
 				10224B642087E52600A77316 /* Resources */,
 				BB287B3720729CE90069707A /* VirtualTrainer */,
@@ -119,6 +164,9 @@
 				BB287B4420729CE90069707A /* Info.plist */,
 				91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */,
 				48BA26BD25DFDE7700970748 /* PoseUtilities.swift */,
+				D8000FB325DC501C00ED2C0C /* IdealWorkoutProtocol.swift */,
+				D8000FB725DC578B00ED2C0C /* WorkoutSession.swift */,
+				D8000FBB25DC5EFD00ED2C0C /* WorkoutResult.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -131,6 +179,83 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D83BA61225DF295E003F5562 /* amplify */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA61325DF295E003F5562 /* generated */,
+				D83BA61C25DF295E003F5562 /* .config */,
+				D83BA61E25DF295E003F5562 /* cli.json */,
+				D83BA61F25DF295E003F5562 /* backend */,
+			);
+			path = amplify;
+			sourceTree = "<group>";
+		};
+		D83BA61325DF295E003F5562 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA61425DF295E003F5562 /* models */,
+			);
+			path = generated;
+			sourceTree = "<group>";
+		};
+		D83BA61425DF295E003F5562 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA61525DF295E003F5562 /* WorkoutSessionModel.swift */,
+				D83BA61625DF295E003F5562 /* AmplifyModels.swift */,
+				D83BA61725DF295E003F5562 /* IdealWorkoutModel+Schema.swift */,
+				D83BA61825DF295E003F5562 /* WorkoutResultModel+Schema.swift */,
+				D83BA61925DF295E003F5562 /* WorkoutSessionModel+Schema.swift */,
+				D83BA61A25DF295E003F5562 /* WorkoutResultModel.swift */,
+				D83BA61B25DF295E003F5562 /* IdealWorkoutModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		D83BA61C25DF295E003F5562 /* .config */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA61D25DF295E003F5562 /* project-config.json */,
+			);
+			path = .config;
+			sourceTree = "<group>";
+		};
+		D83BA61F25DF295E003F5562 /* backend */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA62025DF295E003F5562 /* backend-config.json */,
+				D83BA62125DF295E003F5562 /* api */,
+			);
+			path = backend;
+			sourceTree = "<group>";
+		};
+		D83BA62125DF295E003F5562 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA62225DF295E003F5562 /* amplifyDatasource */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		D83BA62225DF295E003F5562 /* amplifyDatasource */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA62325DF295E003F5562 /* stacks */,
+				D83BA62525DF295E003F5562 /* parameters.json */,
+				D83BA62625DF295E003F5562 /* schema.graphql */,
+				D83BA62725DF295E003F5562 /* transform.conf.json */,
+			);
+			path = amplifyDatasource;
+			sourceTree = "<group>";
+		};
+		D83BA62325DF295E003F5562 /* stacks */ = {
+			isa = PBXGroup;
+			children = (
+				D83BA62425DF295E003F5562 /* CustomResources.json */,
+			);
+			path = stacks;
+			sourceTree = "<group>";
+		};
 		F2A1AEA39EE249FA831E6059 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +263,18 @@
 				D471CC151BE16E0BBDB87C1C /* Pods-VirtualTrainer.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FA0C4A57F9B4467EA0DF3D6E /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				A74384A83B0341EEA6431D45 /* amplifytools.xcconfig */,
+				4FE4951DA0BB402986AAD265 /* amplifyconfiguration.json */,
+				C9F7A6D4127342458DB4AD53 /* awsconfiguration.json */,
+				8E98A936E78D4C51810B1750 /* schema.graphql */,
+			);
+			name = AmplifyConfig;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,7 +306,7 @@
 		BB287B2D20729CE90069707A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 930;
 				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
@@ -203,16 +340,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D83BA63225DF295E003F5562 /* CustomResources.json in Resources */,
 				10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */,
+				D83BA59B25DDBEEB003F5562 /* README.md in Resources */,
 				7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
 				7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */,
 				7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */,
+				D83BA63425DF295E003F5562 /* schema.graphql in Resources */,
 				7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */,
+				D83BA63125DF295E003F5562 /* backend-config.json in Resources */,
 				BB287B3E20729CE90069707A /* Main.storyboard in Resources */,
+				D83BA62F25DF295E003F5562 /* project-config.json in Resources */,
+				D83BA63025DF295E003F5562 /* cli.json in Resources */,
 				A4F8929B243BB4BF00B58767 /* bird.jpg in Resources */,
 				1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */,
 				A4F89299243BB4BF00B58767 /* bird.tflite in Resources */,
 				1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */,
+				D83BA63325DF295E003F5562 /* parameters.json in Resources */,
+				2FCFFDD410B7424589CF9288 /* amplifyconfiguration.json in Resources */,
+				5A95090677934162B119E72C /* awsconfiguration.json in Resources */,
+				D83BA63525DF295E003F5562 /* transform.conf.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,22 +373,36 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSPluginsCore/AWSPluginsCore.framework",
+				"${BUILT_PRODUCTS_DIR}/Amplify/Amplify.framework",
+				"${BUILT_PRODUCTS_DIR}/AmplifyPlugins/AmplifyPlugins.framework",
+				"${BUILT_PRODUCTS_DIR}/AppSyncRealTimeClient/AppSyncRealTimeClient.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSPluginsCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Amplify.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AmplifyPlugins.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppSyncRealTimeClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,11 +463,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D83BA62A25DF295E003F5562 /* IdealWorkoutModel+Schema.swift in Sources */,
+				D83BA62825DF295E003F5562 /* WorkoutSessionModel.swift in Sources */,
+				D8000FB825DC578B00ED2C0C /* WorkoutSession.swift in Sources */,
 				10224B582087E43100A77316 /* ViewController.swift in Sources */,
+				D8000FB425DC501C00ED2C0C /* IdealWorkoutProtocol.swift in Sources */,
 				91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */,
+				D83BA62D25DF295E003F5562 /* WorkoutResultModel.swift in Sources */,
+				D83BA62C25DF295E003F5562 /* WorkoutSessionModel+Schema.swift in Sources */,
 				1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */,
+				D83BA62B25DF295E003F5562 /* WorkoutResultModel+Schema.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
 				48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */,
+				D83BA62925DF295E003F5562 /* AmplifyModels.swift in Sources */,
+				D8000FBC25DC5EFD00ED2C0C /* WorkoutResult.swift in Sources */,
+				D83BA62E25DF295E003F5562 /* IdealWorkoutModel.swift in Sources */,
 				4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */,
 				1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */,
 			);
