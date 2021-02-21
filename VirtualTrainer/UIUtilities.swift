@@ -39,6 +39,20 @@ public class UIUtilities {
     circleView.backgroundColor = color
     view.addSubview(circleView)
   }
+    
+  public static func addLabel(atPoint point: CGPoint, to view: UIView, label: String) {
+    let xCoord = point.x
+    let yCoord = point.y
+    let rect = CGRect(x: xCoord, y: yCoord, width: 150, height: 20)
+    let circleLabel = UILabel(frame: rect)
+    
+    circleLabel.textColor = UIColor.white
+    circleLabel.backgroundColor = UIColor.clear
+//    circleLabel.text = "x: \(Int(xCoord)) - y: \(Int(yCoord))"
+    circleLabel.text = label
+
+    view.addSubview(circleLabel)
+  }
 
   public static func addLineSegment(
     fromPoint: CGPoint, toPoint: CGPoint, inView: UIView, color: UIColor, width: CGFloat
