@@ -19,16 +19,20 @@ import UIKit
 
 /// Main view controller class.
 @objc(ViewController)
-class ViewController: UIViewController, UINavigationControllerDelegate {
-
+class ViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+    
   /// An image picker for accessing the photo library or camera.
   var imagePicker = UIImagePickerController()
 
   // Image counter.
   var currentImage = 0
     
+    
+  let cellReuseIdentifier = "WorkoutTableViewCell"
+    
   // MARK: - IBOutlets
   @IBOutlet fileprivate weak var videoCameraButton: UIBarButtonItem!
+  @IBOutlet weak var tableView: UITableView!
 
   // MARK: - UIViewController
 
@@ -45,6 +49,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         videoCameraButton.isEnabled = true
       }
     }
+    
+    
+    
+    tableView.register(UINib(nibName: "WorkoutTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+    
+    tableView.delegate = self
+    tableView.dataSource = self
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -58,5 +69,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
   @IBAction func openPhotoLibrary(_ sender: Any) {
     imagePicker.sourceType = .photoLibrary
     present(imagePicker, animated: true)
+  }
+    
+  // MARK: - UITableViewController
+    
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 5;
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell: WorkoutTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! WorkoutTableViewCell
+
+    let workoutSession = WorkoutSession(workoutType: "Squat", cameraAngle: false)
+    workoutSession.startTimestamp = 1613974813
+    workoutSession.workoutResult = WorkoutResultModel(score: 90)
+    
+    cell.set(session: workoutSession)
+    return cell
+    
   }
 }

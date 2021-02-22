@@ -22,6 +22,9 @@
 		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
 		7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
 		7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
+		914F84E925E375F2005BB3DE /* PreCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84E825E375F2005BB3DE /* PreCameraViewController.swift */; };
+		914F84EC25E37640005BB3DE /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */; };
+		914F84EF25E3813E005BB3DE /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */; };
 		91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */; };
 		A4F89299243BB4BF00B58767 /* bird.tflite in Resources */ = {isa = PBXBuildFile; fileRef = A4F89297243BB4BE00B58767 /* bird.tflite */; };
 		A4F8929B243BB4BF00B58767 /* bird.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F89298243BB4BF00B58767 /* bird.jpg */; };
@@ -62,6 +65,9 @@
 		7202DC6620D0C1A300034C35 /* barcode_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barcode_128.png; path = Resources/barcode_128.png; sourceTree = "<group>"; };
 		7202DC6720D0C1A300034C35 /* beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = beach.jpg; path = Resources/beach.jpg; sourceTree = "<group>"; };
 		8E98A936E78D4C51810B1750 /* schema.graphql */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text; name = schema.graphql; path = amplify/backend/api/amplifyDatasource/schema.graphql; sourceTree = "<group>"; };
+		914F84E825E375F2005BB3DE /* PreCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreCameraViewController.swift; sourceTree = "<group>"; };
+		914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
+		914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualTrainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8E2C9FA1709AB4D6E13D79 /* Pods-VirtualTrainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualTrainer.debug.xcconfig"; path = "Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +173,8 @@
 				D8000FB325DC501C00ED2C0C /* IdealWorkoutProtocol.swift */,
 				D8000FB725DC578B00ED2C0C /* WorkoutSession.swift */,
 				D8000FBB25DC5EFD00ED2C0C /* WorkoutResult.swift */,
+				914F84E825E375F2005BB3DE /* PreCameraViewController.swift */,
+				914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -175,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				BB287B3C20729CE90069707A /* Main.storyboard */,
+				914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -357,6 +366,7 @@
 				A4F89299243BB4BF00B58767 /* bird.tflite in Resources */,
 				1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */,
 				D83BA63325DF295E003F5562 /* parameters.json in Resources */,
+				914F84EC25E37640005BB3DE /* WorkoutTableViewCell.xib in Resources */,
 				2FCFFDD410B7424589CF9288 /* amplifyconfiguration.json in Resources */,
 				5A95090677934162B119E72C /* awsconfiguration.json in Resources */,
 				D83BA63525DF295E003F5562 /* transform.conf.json in Resources */,
@@ -476,8 +486,10 @@
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
 				48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */,
 				D83BA62925DF295E003F5562 /* AmplifyModels.swift in Sources */,
+				914F84E925E375F2005BB3DE /* PreCameraViewController.swift in Sources */,
 				D8000FBC25DC5EFD00ED2C0C /* WorkoutResult.swift in Sources */,
 				D83BA62E25DF295E003F5562 /* IdealWorkoutModel.swift in Sources */,
+				914F84EF25E3813E005BB3DE /* WorkoutTableViewCell.swift in Sources */,
 				4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */,
 				1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */,
 			);
@@ -618,11 +630,12 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4F868BD8W;
+				DEVELOPMENT_TEAM = 89Q59LP47M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainerjeremy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -638,11 +651,12 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4F868BD8W;
+				DEVELOPMENT_TEAM = 89Q59LP47M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainerjeremy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
