@@ -116,7 +116,10 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="foV-B8-qK0">
                                                 <rect key="frame" x="0.0" y="32" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="workoutTypeChanged:" destination="o24-vI-ApZ" eventType="editingDidEnd" id="J9u-2z-1Nw"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -135,14 +138,23 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vd-vN-za2">
                                                         <rect key="frame" x="0.0" y="0.0" width="114.5" height="30"/>
                                                         <state key="normal" title="Left"/>
+                                                        <connections>
+                                                            <action selector="onLeftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="rPC-js-118"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m11-BP-4Wt">
                                                         <rect key="frame" x="114.5" y="0.0" width="114" height="30"/>
                                                         <state key="normal" title="Front"/>
+                                                        <connections>
+                                                            <action selector="onFrontSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="TEN-fw-YG9"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S90-Sf-G2a">
                                                         <rect key="frame" x="228.5" y="0.0" width="114.5" height="30"/>
                                                         <state key="normal" title="Right"/>
+                                                        <connections>
+                                                            <action selector="onRightSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="AIJ-F7-pgs"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -159,7 +171,8 @@
                                 <rect key="frame" x="139.5" y="613" width="96" height="30"/>
                                 <state key="normal" title="Start Workout"/>
                                 <connections>
-                                    <segue destination="YXl-5B-mBF" kind="show" id="T5U-qa-KZ2"/>
+                                    <action selector="startWorkout:" destination="o24-vI-ApZ" eventType="touchUpInside" id="8ym-4l-ivp"/>
+                                    <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="T5U-qa-KZ2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -174,6 +187,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8j9-N5-cU0"/>
+                    <connections>
+                        <outlet property="frontCameraAngle" destination="m11-BP-4Wt" id="FmG-BF-izX"/>
+                        <outlet property="leftCameraAngle" destination="6vd-vN-za2" id="GIU-Q6-sPa"/>
+                        <outlet property="rightCameraAngle" destination="S90-Sf-G2a" id="lJD-gg-ctJ"/>
+                        <outlet property="workoutTypeTextField" destination="foV-B8-qK0" id="ASK-e9-Q2x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ex-aJ-F8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,7 +228,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Process" id="l4h-My-vGv">
                                 <connections>
-                                    <segue destination="jry-iJ-a0X" kind="show" id="wST-wt-oDM"/>
+                                    <segue destination="jry-iJ-a0X" kind="show" identifier="processWorkoutSegue" id="wST-wt-oDM"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="switch_camera" id="kXj-bT-GY0" userLabel="Switch Camera Button">

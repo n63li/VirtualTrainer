@@ -50,8 +50,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
       }
     }
     
-    
-    
     tableView.register(UINib(nibName: "WorkoutTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
     
     tableView.delegate = self
