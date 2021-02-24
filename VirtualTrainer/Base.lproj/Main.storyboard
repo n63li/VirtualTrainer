@@ -68,12 +68,12 @@
                                     <segue destination="o24-vI-ApZ" kind="show" id="eT9-7J-9O0"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem enabled="NO" image="video_camera" id="M1D-Qg-lKI" userLabel="Video Camera Button">
+                            <barButtonItem enabled="NO" image="camera.fill" catalog="system" id="M1D-Qg-lKI" userLabel="Video Camera Button">
                                 <connections>
                                     <segue destination="YXl-5B-mBF" kind="show" identifier="showCameraViewController" id="M0h-0G-c32"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="photo_library" id="cQ8-BV-rH6" userLabel="Photo Library Button">
+                            <barButtonItem image="photo.fill.on.rectangle.fill" catalog="system" id="cQ8-BV-rH6" userLabel="Photo Library Button">
                                 <connections>
                                     <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" id="1Jr-zi-I6V"/>
                                 </connections>
@@ -243,7 +243,7 @@
                                     <segue destination="jry-iJ-a0X" kind="show" identifier="processWorkoutSegue" id="wST-wt-oDM"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="switch_camera" id="kXj-bT-GY0" userLabel="Switch Camera Button">
+                            <barButtonItem image="camera.rotate.fill" catalog="system" id="kXj-bT-GY0" userLabel="Switch Camera Button">
                                 <connections>
                                     <action selector="switchCamera:" destination="YXl-5B-mBF" id="sFo-ar-LIv"/>
                                 </connections>
@@ -297,15 +297,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T5U-qa-KZ2"/>
+        <segue reference="M0h-0G-c32"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
+        <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <image name="photo_library" width="36" height="36"/>
+        <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="switch_camera" width="36" height="36"/>
-        <image name="video_camera" width="36" height="36"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
