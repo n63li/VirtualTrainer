@@ -8,18 +8,19 @@
 
 import UIKit
 
-class PreCameraViewController: UIViewController, UITextFieldDelegate {
+class PreCameraViewController: UIViewController {
     private var workoutType: String = ""
     private var cameraAngle: SquatOrientation = SquatOrientation.left
+    
+    @IBOutlet weak var deadliftWorkoutType: UIButton!
+    @IBOutlet weak var squatWorkoutType: UIButton!
     
     @IBOutlet weak var leftCameraAngle: UIButton!
     @IBOutlet weak var frontCameraAngle: UIButton!
     @IBOutlet weak var rightCameraAngle: UIButton!
-    @IBOutlet weak var workoutTypeTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.workoutTypeTextField.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -29,35 +30,39 @@ class PreCameraViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func workoutTypeChanged(_ sender: Any) {
-        workoutType = workoutTypeTextField.text ?? ""
-    }
-    
     @IBAction func startWorkout(_ sender: Any) {
     }
     
+    @IBAction func onSquatSelected(_ sender: Any) {
+        squatWorkoutType.backgroundColor = .yellow
+        deadliftWorkoutType.backgroundColor = .systemBackground
+    }
+    
+    @IBAction func onDeadliftSelected(_ sender: Any) {
+        
+        workoutType = "Deadlift"
+        deadliftWorkoutType.backgroundColor = .yellow
+        squatWorkoutType.backgroundColor = .systemBackground
+    }
+    
+    
     @IBAction func onLeftSelected(_ sender: Any) {
         cameraAngle = SquatOrientation.left
-        leftCameraAngle.backgroundColor = .gray
+        leftCameraAngle.backgroundColor = .yellow
         rightCameraAngle.backgroundColor = .systemBackground
         frontCameraAngle.backgroundColor = .systemBackground
     }
 
     @IBAction func onFrontSelected(_ sender: Any) {
-        frontCameraAngle.backgroundColor = .gray
+        frontCameraAngle.backgroundColor = .yellow
         leftCameraAngle.backgroundColor = .systemBackground
         rightCameraAngle.backgroundColor = .systemBackground
     }
     
     @IBAction func onRightSelected(_ sender: Any) {
         cameraAngle = SquatOrientation.right
-        rightCameraAngle.backgroundColor = .gray
+        rightCameraAngle.backgroundColor = .yellow
         leftCameraAngle.backgroundColor = .systemBackground
         frontCameraAngle.backgroundColor = .systemBackground
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
     }
 }

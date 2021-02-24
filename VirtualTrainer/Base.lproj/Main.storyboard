@@ -105,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="569"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
-                                        <rect key="frame" x="16" y="16" width="343" height="66"/>
+                                        <rect key="frame" x="16" y="16" width="343" height="62"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCI-bt-pIi">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -113,18 +113,29 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="foV-B8-qK0">
-                                                <rect key="frame" x="0.0" y="32" width="343" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                <connections>
-                                                    <action selector="workoutTypeChanged:" destination="o24-vI-ApZ" eventType="editingDidEnd" id="J9u-2z-1Nw"/>
-                                                </connections>
-                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2AT-OS-Vce">
+                                                <rect key="frame" x="0.0" y="32" width="343" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8IK-Ft-fK5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                                        <state key="normal" title="Squat"/>
+                                                        <connections>
+                                                            <action selector="onSquatSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="w52-7d-NGW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFp-WL-RdS">
+                                                        <rect key="frame" x="171.5" y="0.0" width="171.5" height="30"/>
+                                                        <state key="normal" title="Deadlift"/>
+                                                        <connections>
+                                                            <action selector="onDeadliftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="UFt-5T-WyQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cJ2-pJ-Ffl">
-                                        <rect key="frame" x="16" y="98" width="343" height="62"/>
+                                        <rect key="frame" x="16" y="94" width="343" height="62"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Angle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7k-Xt-M43">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -161,7 +172,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
-                                        <rect key="frame" x="16" y="176" width="343" height="377"/>
+                                        <rect key="frame" x="16" y="172" width="343" height="381"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -188,10 +199,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="8j9-N5-cU0"/>
                     <connections>
+                        <outlet property="deadliftWorkoutType" destination="jFp-WL-RdS" id="d8S-J0-XnW"/>
                         <outlet property="frontCameraAngle" destination="m11-BP-4Wt" id="FmG-BF-izX"/>
-                        <outlet property="leftCameraAngle" destination="6vd-vN-za2" id="GIU-Q6-sPa"/>
+                        <outlet property="leftCameraAngle" destination="6vd-vN-za2" id="4RH-vE-dls"/>
                         <outlet property="rightCameraAngle" destination="S90-Sf-G2a" id="lJD-gg-ctJ"/>
-                        <outlet property="workoutTypeTextField" destination="foV-B8-qK0" id="ASK-e9-Q2x"/>
+                        <outlet property="squatWorkoutType" destination="8IK-Ft-fK5" id="4Sh-kc-fDj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ex-aJ-F8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
