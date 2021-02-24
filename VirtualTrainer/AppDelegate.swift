@@ -38,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             name: "deadlift",
             url: "https://www.youtube.com/watch?v=ytGaGIn3SjE"
           )
-        let workoutSession = WorkoutSession(workoutType: "deadlift", cameraAngle: false)
-          workoutSession.save()
       } catch {
           print("Could not initialize Amplify: \(error)")
       }

@@ -7,7 +7,7 @@ public struct WorkoutSessionModel: Model {
   public var poseNetData: [Double]
   public var imuData: [Double]
   public var cameraAngle: Bool
-  public var workoutType: String?
+  public var workoutType: String
   public var startTimestamp: Int
   public var result: WorkoutResultModel?
   public var endTimestamp: Int
@@ -16,7 +16,7 @@ public struct WorkoutSessionModel: Model {
       poseNetData: [Double] = [],
       imuData: [Double] = [],
       cameraAngle: Bool,
-      workoutType: String? = nil,
+      workoutType: String,
       startTimestamp: Int,
       result: WorkoutResultModel? = nil,
       endTimestamp: Int) {

@@ -13,7 +13,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
+import Amplify
 import MLKit
 import UIKit
 
@@ -27,6 +27,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
   // Image counter.
   var currentImage = 0
     
+  // Workout sessions
+  var workoutSessions = [] as [WorkoutSession]
     
   let cellReuseIdentifier = "WorkoutTableViewCell"
     
@@ -49,7 +51,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
         videoCameraButton.isEnabled = true
       }
     }
+      
+    Amplify.DataStore.query(WorkoutSessionModel.self) { result in
+      switch(result) {
+      case .success(let items):
+        for item in items {
+          print("WorkoutSessionModel ID: \(item.id)")
+        }
+        workoutSessions = convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
+      case .failure(let error):
+        print("Could not query DataStore: \(error)")
+      }
+    }
     
+    tableView.reloadData()
     tableView.register(UINib(nibName: "WorkoutTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
     
     tableView.delegate = self
@@ -72,18 +87,33 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
   // MARK: - UITableViewController
     
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5;
+    return workoutSessions.count;
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: WorkoutTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! WorkoutTableViewCell
+    let cell: WorkoutTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! WorkoutTableViewCell
 
-    let workoutSession = WorkoutSession(workoutType: "Squat", cameraAngle: false)
-    workoutSession.startTimestamp = 1613974813
-    workoutSession.workoutResult = WorkoutResultModel(score: 90)
+    let workoutSession = workoutSessions[indexPath.row]
     
     cell.set(session: workoutSession)
     return cell
     
+  }
+  
+  func convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: [WorkoutSessionModel]) -> [WorkoutSession]{
+    var workoutSessionsList = [] as [WorkoutSession]
+    
+    for model in workoutSessionModels {
+      let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: model.cameraAngle)
+      workoutSession.poseNetData = model.poseNetData
+      workoutSession.imuData = model.imuData
+//      workoutSession.workoutResult
+      workoutSession.startTimestamp = Double(model.startTimestamp)
+      workoutSession.endTimestamp = Double(model.endTimestamp)
+     
+      workoutSessionsList.append(workoutSession)
+    }
+    
+    return workoutSessionsList
   }
 }

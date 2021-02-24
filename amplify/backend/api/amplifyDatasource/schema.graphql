@@ -3,7 +3,7 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   poseNetData: [Float!]
   imuData: [Float!]
   cameraAngle: Boolean!
-  workoutType: String
+  workoutType: String!
   startTimestamp: AWSTimestamp!
   result: WorkoutResultModel @connection
   endTimestamp: AWSTimestamp!

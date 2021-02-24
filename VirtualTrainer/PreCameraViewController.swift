@@ -26,7 +26,10 @@ class PreCameraViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "startWorkoutSegue") {
             let vc = segue.destination as! CameraViewController
-            vc.workoutSession = WorkoutSession(workoutType: workoutType, cameraAngle: cameraAngle != nil)
+            vc.workoutSession = WorkoutSession(
+              workoutType: workoutType,
+              cameraAngle: cameraAngle != nil
+            )
         }
     }
     

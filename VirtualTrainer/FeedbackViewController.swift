@@ -19,5 +19,6 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
+        workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
     }
 }

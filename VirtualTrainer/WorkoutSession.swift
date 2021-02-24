@@ -8,19 +8,18 @@ import Amplify
 
 class WorkoutSession {
   var workoutType: String = ""
-  var poseNetData: Array<Float> = []
-  var imuData: Array<Float> = []
+  var poseNetData: [Double] = []
+  var imuData: [Double] = []
   var cameraAngle: Bool
   var workoutResult: WorkoutResultModel
-  var startTimestamp: Float = 0
-  var endTimestamp: Float = 0
+  var startTimestamp: Double = 0
+  var endTimestamp: Double = 0
   
   init(workoutType: String, cameraAngle: Bool) {
     self.workoutType = workoutType
     self.cameraAngle = cameraAngle
     self.workoutResult = WorkoutResultModel(score: 0, incorrectJoints: [0], incorrectAccelerations: [0])
-    
-    self.compare()
+    self.startTimestamp = NSDate().timeIntervalSince1970
   }
   
   func compare() -> WorkoutResultModel {
