@@ -10,6 +10,7 @@ import UIKit
 
 @objc(FeedbackViewController)
 class FeedbackViewController: UIViewController {
+    var workoutSession: WorkoutSession? = nil
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {

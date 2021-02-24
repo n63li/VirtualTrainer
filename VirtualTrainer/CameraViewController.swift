@@ -20,6 +20,8 @@ import MLKit
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
+    
+  var workoutSession: WorkoutSession? = nil
   private let detectors: [Detector] = [
     .pose,
     .poseAccurate,
@@ -89,6 +91,13 @@ class CameraViewController: UIViewController {
 
     previewLayer.frame = cameraView.frame
   }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "processWorkoutSegue") {
+            let vc = segue.destination as! FeedbackViewController
+            vc.workoutSession = workoutSession
+        }
+    }
 
   // MARK: - IBActions
 

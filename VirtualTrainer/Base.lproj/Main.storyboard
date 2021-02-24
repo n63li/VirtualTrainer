@@ -41,23 +41,39 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Woh-3Q-YsH">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Workouts" image="heart.fill" catalog="system" id="6Qa-gO-vJh"/>
+                                    <tabBarItem title="Trends" image="calendar" catalog="system" id="FDe-yc-hwP"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Woh-3Q-YsH" secondAttribute="trailing" id="9I5-Mb-hgr"/>
                             <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="OSH-tg-cZr" secondAttribute="bottom" id="HYM-Nm-IF6"/>
+                            <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="Woh-3Q-YsH" secondAttribute="bottom" id="LVf-U5-lE6"/>
                             <constraint firstItem="OSH-tg-cZr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Nq2-BO-6HF"/>
+                            <constraint firstItem="Woh-3Q-YsH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aqa-R1-x1K"/>
                             <constraint firstItem="OSH-tg-cZr" firstAttribute="top" secondItem="LHw-b6-B2a" secondAttribute="bottom" id="dup-0l-izE"/>
                             <constraint firstAttribute="trailing" secondItem="OSH-tg-cZr" secondAttribute="trailing" id="if6-Ts-6FJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xYg-VP-pps">
                         <rightBarButtonItems>
-                            <barButtonItem enabled="NO" image="video_camera" id="M1D-Qg-lKI" userLabel="Video Camera Button">
+                            <barButtonItem image="plus" catalog="system" id="lIn-3F-zfZ">
+                                <connections>
+                                    <segue destination="o24-vI-ApZ" kind="show" id="eT9-7J-9O0"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem enabled="NO" image="camera.fill" catalog="system" id="M1D-Qg-lKI" userLabel="Video Camera Button">
                                 <connections>
                                     <segue destination="YXl-5B-mBF" kind="show" identifier="showCameraViewController" id="M0h-0G-c32"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="photo_library" id="cQ8-BV-rH6" userLabel="Photo Library Button">
+                            <barButtonItem image="photo.fill.on.rectangle.fill" catalog="system" id="cQ8-BV-rH6" userLabel="Photo Library Button">
                                 <connections>
                                     <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" id="1Jr-zi-I6V"/>
                                 </connections>
@@ -65,12 +81,134 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="OSH-tg-cZr" id="DDu-Dp-pUA"/>
                         <outlet property="videoCameraButton" destination="M1D-Qg-lKI" id="3Cr-4e-JCG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="133.5832083958021"/>
+        </scene>
+        <!--Pre Camera View Controller-->
+        <scene sceneID="C9o-3v-CAu">
+            <objects>
+                <viewController id="o24-vI-ApZ" customClass="PreCameraViewController" customModule="VirtualTrainer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6x4-CH-ZmV"/>
+                        <viewControllerLayoutGuide type="bottom" id="3b1-aU-1fK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mHu-Is-dN4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-pP-gYC">
+                                <rect key="frame" x="0.0" y="44" width="375" height="569"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
+                                        <rect key="frame" x="16" y="16" width="343" height="62"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCI-bt-pIi">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2AT-OS-Vce">
+                                                <rect key="frame" x="0.0" y="32" width="343" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8IK-Ft-fK5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                                        <state key="normal" title="Squat"/>
+                                                        <connections>
+                                                            <action selector="onSquatSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="w52-7d-NGW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFp-WL-RdS">
+                                                        <rect key="frame" x="171.5" y="0.0" width="171.5" height="30"/>
+                                                        <state key="normal" title="Deadlift"/>
+                                                        <connections>
+                                                            <action selector="onDeadliftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="UFt-5T-WyQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cJ2-pJ-Ffl">
+                                        <rect key="frame" x="16" y="94" width="343" height="62"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Angle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7k-Xt-M43">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="v6w-Fg-DmP">
+                                                <rect key="frame" x="0.0" y="32" width="343" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vd-vN-za2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="30"/>
+                                                        <state key="normal" title="Left"/>
+                                                        <connections>
+                                                            <action selector="onLeftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="rPC-js-118"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m11-BP-4Wt">
+                                                        <rect key="frame" x="114.5" y="0.0" width="114" height="30"/>
+                                                        <state key="normal" title="Front"/>
+                                                        <connections>
+                                                            <action selector="onFrontSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="TEN-fw-YG9"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S90-Sf-G2a">
+                                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="30"/>
+                                                        <state key="normal" title="Right"/>
+                                                        <connections>
+                                                            <action selector="onRightSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="AIJ-F7-pgs"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
+                                        <rect key="frame" x="16" y="172" width="343" height="381"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ln-JF-Ec6">
+                                <rect key="frame" x="139.5" y="613" width="96" height="30"/>
+                                <state key="normal" title="Start Workout"/>
+                                <connections>
+                                    <action selector="startWorkout:" destination="o24-vI-ApZ" eventType="touchUpInside" id="8ym-4l-ivp"/>
+                                    <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="T5U-qa-KZ2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0KZ-pP-gYC" secondAttribute="trailing" id="0vF-1h-kpt"/>
+                            <constraint firstItem="0KZ-pP-gYC" firstAttribute="leading" secondItem="mHu-Is-dN4" secondAttribute="leading" id="OTc-1F-KIq"/>
+                            <constraint firstItem="0KZ-pP-gYC" firstAttribute="top" secondItem="6x4-CH-ZmV" secondAttribute="bottom" id="SjY-pI-UJ5"/>
+                            <constraint firstItem="7Ln-JF-Ec6" firstAttribute="centerX" secondItem="mHu-Is-dN4" secondAttribute="centerX" id="eGK-i3-vDx"/>
+                            <constraint firstItem="7Ln-JF-Ec6" firstAttribute="top" secondItem="0KZ-pP-gYC" secondAttribute="bottom" id="g1G-Xk-syw"/>
+                            <constraint firstItem="3b1-aU-1fK" firstAttribute="top" secondItem="7Ln-JF-Ec6" secondAttribute="bottom" constant="24" id="sou-LG-NBz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8j9-N5-cU0"/>
+                    <connections>
+                        <outlet property="deadliftWorkoutType" destination="jFp-WL-RdS" id="d8S-J0-XnW"/>
+                        <outlet property="frontCameraAngle" destination="m11-BP-4Wt" id="FmG-BF-izX"/>
+                        <outlet property="leftCameraAngle" destination="6vd-vN-za2" id="4RH-vE-dls"/>
+                        <outlet property="rightCameraAngle" destination="S90-Sf-G2a" id="lJD-gg-ctJ"/>
+                        <outlet property="squatWorkoutType" destination="8IK-Ft-fK5" id="4Sh-kc-fDj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ex-aJ-F8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="106.40000000000001" y="887.40629685157433"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="kPU-gK-lh6">
@@ -86,7 +224,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -102,10 +240,10 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Process" id="l4h-My-vGv">
                                 <connections>
-                                    <segue destination="jry-iJ-a0X" kind="show" id="wST-wt-oDM"/>
+                                    <segue destination="jry-iJ-a0X" kind="show" identifier="processWorkoutSegue" id="wST-wt-oDM"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="switch_camera" id="kXj-bT-GY0" userLabel="Switch Camera Button">
+                            <barButtonItem image="camera.rotate.fill" catalog="system" id="kXj-bT-GY0" userLabel="Switch Camera Button">
                                 <connections>
                                     <action selector="switchCamera:" destination="YXl-5B-mBF" id="sFo-ar-LIv"/>
                                 </connections>
@@ -158,10 +296,16 @@
             <point key="canvasLocation" x="1775" y="134"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="M0h-0G-c32"/>
+    </inferredMetricsTieBreakers>
     <resources>
-        <image name="photo_library" width="36" height="36"/>
-        <image name="switch_camera" width="36" height="36"/>
-        <image name="video_camera" width="36" height="36"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
+        <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="96"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
