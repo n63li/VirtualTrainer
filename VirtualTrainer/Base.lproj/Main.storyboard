@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Q6-lG-sCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pN6-Jk-RYM">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,27 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="rAH-gT-x68">
-            <objects>
-                <navigationController id="0Q6-lG-sCk" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="VKU-pZ-0S4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JoS-YE-9OV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fdA-VU-1vi"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6gn-Xt-3Nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-607" y="134"/>
-        </scene>
-        <!--View Controller-->
+        <!--History-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="viewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewController" id="BYZ-38-t0r" customClass="HistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LHw-b6-B2a"/>
                         <viewControllerLayoutGuide type="bottom" id="Ydg-C1-MLG"/>
@@ -38,45 +21,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OSH-tg-cZr">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Woh-3Q-YsH">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem title="History" image="calendar.badge.clock" catalog="system" id="6Qa-gO-vJh"/>
-                                    <tabBarItem title="Trends" image="chart.bar.fill" catalog="system" id="FDe-yc-hwP"/>
-                                </items>
-                            </tabBar>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Woh-3Q-YsH" secondAttribute="trailing" id="9I5-Mb-hgr"/>
                             <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="OSH-tg-cZr" secondAttribute="bottom" id="HYM-Nm-IF6"/>
-                            <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="Woh-3Q-YsH" secondAttribute="bottom" id="LVf-U5-lE6"/>
                             <constraint firstItem="OSH-tg-cZr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Nq2-BO-6HF"/>
-                            <constraint firstItem="Woh-3Q-YsH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aqa-R1-x1K"/>
                             <constraint firstItem="OSH-tg-cZr" firstAttribute="top" secondItem="LHw-b6-B2a" secondAttribute="bottom" id="dup-0l-izE"/>
                             <constraint firstAttribute="trailing" secondItem="OSH-tg-cZr" secondAttribute="trailing" id="if6-Ts-6FJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xYg-VP-pps">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="lIn-3F-zfZ">
-                            <connections>
-                                <segue destination="o24-vI-ApZ" kind="show" id="eT9-7J-9O0"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="History" id="xYg-VP-pps"/>
                     <connections>
                         <outlet property="tableView" destination="OSH-tg-cZr" id="DDu-Dp-pUA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125.59999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-607" y="27"/>
         </scene>
-        <!--Pre Camera View Controller-->
+        <!--Start Workout-->
         <scene sceneID="C9o-3v-CAu">
             <objects>
                 <viewController id="o24-vI-ApZ" customClass="PreCameraViewController" customModule="VirtualTrainer" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,10 +55,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-pP-gYC">
-                                <rect key="frame" x="0.0" y="44" width="375" height="523"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="460"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
-                                        <rect key="frame" x="16" y="16" width="343" height="62"/>
+                                        <rect key="frame" x="16" y="16" width="343" height="63"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCI-bt-pIi">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -101,28 +67,24 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2AT-OS-Vce">
-                                                <rect key="frame" x="0.0" y="32" width="343" height="30"/>
+                                                <rect key="frame" x="0.0" y="32" width="343" height="31"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8IK-Ft-fK5">
-                                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
-                                                        <state key="normal" title="Squat"/>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xoD-RC-WJu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                                        <segments>
+                                                            <segment title="Squat"/>
+                                                            <segment title="Deadlift"/>
+                                                        </segments>
                                                         <connections>
-                                                            <action selector="onSquatSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="w52-7d-NGW"/>
+                                                            <action selector="onWorkoutTypeChanged:" destination="o24-vI-ApZ" eventType="valueChanged" id="IFV-PC-UAd"/>
                                                         </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFp-WL-RdS">
-                                                        <rect key="frame" x="171.5" y="0.0" width="171.5" height="30"/>
-                                                        <state key="normal" title="Deadlift"/>
-                                                        <connections>
-                                                            <action selector="onDeadliftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="UFt-5T-WyQ"/>
-                                                        </connections>
-                                                    </button>
+                                                    </segmentedControl>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cJ2-pJ-Ffl">
-                                        <rect key="frame" x="16" y="94" width="343" height="62"/>
+                                        <rect key="frame" x="16" y="95" width="343" height="63"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Angle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7k-Xt-M43">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -131,56 +93,38 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="v6w-Fg-DmP">
-                                                <rect key="frame" x="0.0" y="32" width="343" height="30"/>
+                                                <rect key="frame" x="0.0" y="32" width="343" height="31"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vd-vN-za2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="30"/>
-                                                        <state key="normal" title="Left"/>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="suO-fw-gja">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                                        <segments>
+                                                            <segment title="Left"/>
+                                                            <segment title="Front"/>
+                                                            <segment title="Right"/>
+                                                        </segments>
                                                         <connections>
-                                                            <action selector="onLeftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="rPC-js-118"/>
+                                                            <action selector="onCameraAngleChanged:" destination="o24-vI-ApZ" eventType="valueChanged" id="TX2-QB-IfQ"/>
                                                         </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m11-BP-4Wt">
-                                                        <rect key="frame" x="114.5" y="0.0" width="114" height="30"/>
-                                                        <state key="normal" title="Front"/>
-                                                        <connections>
-                                                            <action selector="onFrontSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="TEN-fw-YG9"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S90-Sf-G2a">
-                                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="30"/>
-                                                        <state key="normal" title="Right"/>
-                                                        <connections>
-                                                            <action selector="onRightSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="AIJ-F7-pgs"/>
-                                                        </connections>
-                                                    </button>
+                                                    </segmentedControl>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
-                                        <rect key="frame" x="16" y="172" width="343" height="335"/>
+                                        <rect key="frame" x="16" y="174" width="343" height="270"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8rd-ga-RjL">
-                                <rect key="frame" x="0.0" y="575" width="375" height="68"/>
+                                <rect key="frame" x="0.0" y="564" width="375" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBd-GJ-j8n">
-                                        <rect key="frame" x="126" y="0.0" width="123" height="30"/>
-                                        <state key="normal" title="Upload Recording"/>
-                                        <connections>
-                                            <action selector="uploadRecording:" destination="o24-vI-ApZ" eventType="touchUpInside" id="AQr-8Q-DYO"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ln-JF-Ec6">
-                                        <rect key="frame" x="139.5" y="38" width="96" height="30"/>
+                                        <rect key="frame" x="139.5" y="0.0" width="96" height="30"/>
                                         <state key="normal" title="Start Workout"/>
                                         <connections>
                                             <action selector="startWorkout:" destination="o24-vI-ApZ" eventType="touchUpInside" id="8ym-4l-ivp"/>
-                                            <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="T5U-qa-KZ2"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -197,24 +141,20 @@
                             <constraint firstAttribute="trailing" secondItem="8rd-ga-RjL" secondAttribute="trailing" id="yJy-S1-r1W"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="8j9-N5-cU0"/>
+                    <navigationItem key="navigationItem" title="Start Workout" id="8j9-N5-cU0"/>
                     <connections>
-                        <outlet property="deadliftWorkoutType" destination="jFp-WL-RdS" id="d8S-J0-XnW"/>
-                        <outlet property="frontCameraAngle" destination="m11-BP-4Wt" id="FmG-BF-izX"/>
-                        <outlet property="leftCameraAngle" destination="6vd-vN-za2" id="4RH-vE-dls"/>
-                        <outlet property="rightCameraAngle" destination="S90-Sf-G2a" id="lJD-gg-ctJ"/>
-                        <outlet property="squatWorkoutType" destination="8IK-Ft-fK5" id="4Sh-kc-fDj"/>
                         <segue destination="jry-iJ-a0X" kind="show" identifier="feedbackSegue" id="oML-Om-WaV"/>
+                        <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="SWg-ZJ-VpE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ex-aJ-F8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="106.40000000000001" y="887.40629685157433"/>
+            <point key="canvasLocation" x="126" y="27"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="kPU-gK-lh6">
             <objects>
-                <viewController id="YXl-5B-mBF" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="YXl-5B-mBF" customClass="CameraViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qO2-JB-Jc4"/>
                         <viewControllerLayoutGuide type="bottom" id="7NG-lt-hPa"/>
@@ -223,12 +163,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
+                                <rect key="frame" x="0.0" y="45" width="375" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="top" secondItem="bWY-Sx-TCF" secondAttribute="topMargin" id="GtM-D5-MQE"/>
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="leading" secondItem="bWY-Sx-TCF" secondAttribute="leading" id="bTr-O6-WSG"/>
@@ -236,7 +176,7 @@
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="bottom" secondItem="7NG-lt-hPa" secondAttribute="top" id="ja0-Ki-fxw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="8dJ-Hr-2St">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8dJ-Hr-2St">
                         <nil key="title"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Process" id="l4h-My-vGv">
@@ -257,12 +197,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853.60000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-330.39999999999998" y="886.50674662668678"/>
         </scene>
         <!--Feedback-->
         <scene sceneID="NpE-Da-ezc">
             <objects>
-                <viewController id="jry-iJ-a0X" customClass="FeedbackViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="jry-iJ-a0X" customClass="FeedbackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hwp-a6-DYp"/>
                         <viewControllerLayoutGuide type="bottom" id="fXK-yI-mU9"/>
@@ -294,7 +234,101 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Hm-aw-bGt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1775" y="134"/>
+            <point key="canvasLocation" x="618" y="887"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="CaH-Of-d5W">
+            <objects>
+                <tabBarController id="pN6-Jk-RYM" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LLZ-nr-6Sd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="3Uo-0e-tcH" kind="relationship" relationship="viewControllers" id="2uv-uI-BhV"/>
+                        <segue destination="pPk-IM-bRr" kind="relationship" relationship="viewControllers" id="dBo-F6-bIa"/>
+                        <segue destination="9YS-xa-eUQ" kind="relationship" relationship="viewControllers" id="meE-fr-Ijj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lZG-bS-6wa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="126" y="-1402"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="ybh-nc-NhW">
+            <objects>
+                <navigationController id="3Uo-0e-tcH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" image="calendar.badge.clock" catalog="system" id="ZIT-Xh-6dc"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8JJ-ML-N2o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qnz-10-Cgk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mzO-fc-0Wi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-607" y="-702"/>
+        </scene>
+        <!--Start Workout-->
+        <scene sceneID="GcL-9T-S8H">
+            <objects>
+                <navigationController id="pPk-IM-bRr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Start Workout" image="plus.app.fill" catalog="system" id="hZC-vY-lPU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="pdz-G8-eSy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="o24-vI-ApZ" kind="relationship" relationship="rootViewController" id="NX8-2h-gdA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b26-uU-FBo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="126" y="-702"/>
+        </scene>
+        <!--Trends-->
+        <scene sceneID="VFe-p8-KH5">
+            <objects>
+                <navigationController id="9YS-xa-eUQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Trends" image="chart.bar.fill" catalog="system" id="3uD-7h-Jkv"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aab-8E-Scw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bx0-BJ-guY" kind="relationship" relationship="rootViewController" id="lNo-sn-j8w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KT0-6R-gva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="-702"/>
+        </scene>
+        <!--Trends-->
+        <scene sceneID="LFS-4r-XxG">
+            <objects>
+                <viewController id="bx0-BJ-guY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lse-ME-Qcn"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Rs-4U-pbB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VGG-Qv-qzp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Trends" id="kMj-Ks-CU4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Qo-kx-rRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="27"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -304,7 +338,7 @@
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -31,7 +31,7 @@ public struct SquatElement {
 public enum SquatOrientation: String {
   case left = "left"
   case right = "right"
-//  case front = "front"
+  // front = "front"
 //  case back = "back"
 }
 

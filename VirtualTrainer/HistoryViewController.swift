@@ -18,8 +18,8 @@ import MLKit
 import UIKit
 
 /// Main view controller class.
-@objc(ViewController)
-class ViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+@objc(HistoryViewController)
+class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
   /// An image picker for accessing the photo library or camera.
   var imagePicker = UIImagePickerController()
@@ -32,7 +32,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     
   var refreshControl = UIRefreshControl()
 
-    
   let cellReuseIdentifier = "WorkoutTableViewCell"
     
   // MARK: - IBOutlets
@@ -85,7 +84,31 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     return cell
     
   }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     
+    if editingStyle == .delete {
+
+      let workoutSession = workoutSessions[indexPath.row]
+      
+      // remove the item from the data model
+      workoutSessions.remove(at: indexPath.row)
+
+      // delete the table view row
+      tableView.deleteRows(at: [indexPath], with: .fade)
+
+      // Delete from Amplify datastore
+      Amplify.DataStore.delete(WorkoutSessionModel.self, withId: workoutSession.id) { result in
+        switch(result) {
+        case .success:
+            print("Deleted item: \(workoutSession.id)")
+        case .failure(let error):
+            print("Could not update data in Datastore: \(error)")
+        }
+      }
+    }
+  }
+  
   func queryWorkoutSessions() {
       Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
         switch(result) {
@@ -105,13 +128,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     
     for model in workoutSessionModels {
       let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: model.cameraAngle)
+      workoutSession.id = model.id
       workoutSession.poseNetData = model.poseNetData
       workoutSession.imuData = model.imuData
-//      workoutSession.workoutResult = WorkoutResult(
-//        score: model.result?.score,
-//        incorrectJoints: model.result?.incorrectJoints,
-//        incorrectAccelerations: model.result?.incorrectAccelerations
-//      )
+      workoutSession.workoutResult = model.result ?? WorkoutResultModel(
+        score: 0,
+        incorrectJoints: [0],
+        incorrectAccelerations: [0]
+      )
       workoutSession.startTimestamp = Double(model.startTimestamp)
       workoutSession.endTimestamp = Double(model.endTimestamp)
      

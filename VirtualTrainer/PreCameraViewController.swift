@@ -13,13 +13,6 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     private var workoutType: String = ""
     private var cameraAngle: SquatOrientation = SquatOrientation.left
     
-    @IBOutlet weak var deadliftWorkoutType: UIButton!
-    @IBOutlet weak var squatWorkoutType: UIButton!
-    
-    @IBOutlet weak var leftCameraAngle: UIButton!
-    @IBOutlet weak var frontCameraAngle: UIButton!
-    @IBOutlet weak var rightCameraAngle: UIButton!
-    
     let imagePickerController = UIImagePickerController()
     
     
@@ -60,9 +53,20 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: Actions
     
     @IBAction func startWorkout(_ sender: Any) {
+        let alert = UIAlertController(title: "Select Workout Source", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Photo Library", comment: "Default action"), style: .default, handler: { _ in
+            self.upload()
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Default action 2"), style: .default, handler: { _ in
+            self.performSegue(withIdentifier: "startWorkoutSegue", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func uploadRecording(_ sender: Any) {
+    func upload() {
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         imagePickerController.mediaTypes = ["public.movie"]
@@ -70,37 +74,12 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    // MARK: Workout Type Selection
-    @IBAction func onSquatSelected(_ sender: Any) {
-        workoutType = "squat"
-        squatWorkoutType.backgroundColor = .yellow
-        deadliftWorkoutType.backgroundColor = .systemBackground
+    @IBAction func onWorkoutTypeChanged(_ sender: UISegmentedControl) {
+        self.workoutType = sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()
     }
     
-    @IBAction func onDeadliftSelected(_ sender: Any) {
-        workoutType = "deadlift"
-        deadliftWorkoutType.backgroundColor = .yellow
-        squatWorkoutType.backgroundColor = .systemBackground
-    }
     
-    // MARK: Select Camera Angle
-    @IBAction func onLeftSelected(_ sender: Any) {
-        cameraAngle = SquatOrientation.left
-        leftCameraAngle.backgroundColor = .yellow
-        rightCameraAngle.backgroundColor = .systemBackground
-        frontCameraAngle.backgroundColor = .systemBackground
-    }
-
-    @IBAction func onFrontSelected(_ sender: Any) {
-        frontCameraAngle.backgroundColor = .yellow
-        leftCameraAngle.backgroundColor = .systemBackground
-        rightCameraAngle.backgroundColor = .systemBackground
-    }
-    
-    @IBAction func onRightSelected(_ sender: Any) {
-        cameraAngle = SquatOrientation.right
-        rightCameraAngle.backgroundColor = .yellow
-        leftCameraAngle.backgroundColor = .systemBackground
-        frontCameraAngle.backgroundColor = .systemBackground
+    @IBAction func onCameraAngleChanged(_ sender: UISegmentedControl) {
+        self.cameraAngle = SquatOrientation(rawValue: sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()) ?? SquatOrientation.left
     }
 }
