@@ -22,17 +22,14 @@ import MLKit
 class CameraViewController: UIViewController {
     
   var workoutSession: WorkoutSession? = nil
-  private let detectors: [Detector] = [
-    .pose,
-    .poseAccurate,
-  ]
 
-  private var currentDetector: Detector = .pose
   private var isUsingFrontCamera = true
   private var previewLayer: AVCaptureVideoPreviewLayer!
   private lazy var captureSession = AVCaptureSession()
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private var lastFrame: CMSampleBuffer?
+    
+    private var poseDetectorHelper: PoseDetectorHelper = PoseDetectorHelper()
 
   private lazy var previewOverlayView: UIImageView = {
 
@@ -49,14 +46,6 @@ class CameraViewController: UIViewController {
     annotationOverlayView.translatesAutoresizingMaskIntoConstraints = false
     return annotationOverlayView
   }()
-
-  /// Initialized when one of the pose detector rows are chosen. Reset to `nil` when neither are.
-  private var poseDetector: PoseDetector? = nil
-
-  /// The detector mode with which detection was most recently run. Only used on the video output
-  /// queue. Useful for inferring when to reset detector instances which use a conventional
-  /// lifecyle paradigm.
-  private var lastDetector: Detector?
 
   // MARK: - IBOutlets
 
@@ -109,14 +98,7 @@ class CameraViewController: UIViewController {
 
   // MARK: On-Device Detections
   private func detectPose(in image: VisionImage, width: CGFloat, height: CGFloat) {
-    if let poseDetector = self.poseDetector {
-      var poses: [Pose]
-      do {
-        poses = try poseDetector.results(in: image)
-      } catch let error {
-        print("Failed to detect poses with error: \(error.localizedDescription).")
-        return
-      }
+    let poses = self.poseDetectorHelper.detectPose(in: image)
       DispatchQueue.main.sync {
         self.updatePreviewOverlayView()
         self.removeDetectionAnnotations()
@@ -164,34 +146,33 @@ class CameraViewController: UIViewController {
           displaySquatOverlay(pose: pose, to: self.annotationOverlayView, squatElement: squatElement, orientation: .left, width: width, height: height)
         }
       }
-    }
   }
-  
-  public func displaySquatOverlay(pose: Pose, to view: UIView, squatElement: SquatElement, orientation: SquatOrientation, width: CGFloat, height: CGFloat) {
-    var knee: CGPoint
-    var hip: CGPoint
-    var ankle: CGPoint
-    var shoulder: CGPoint
     
-    
-    switch orientation {
-      case .left:
-        knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height)
-        hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height)
-        ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height)
-        shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height)
-      case .right:
-        knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightKnee).position, width: width, height: height)
-        hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightHip).position, width: width, height: height)
-        ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightAnkle).position, width: width, height: height)
-        shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height)
+    private func displaySquatOverlay(pose: Pose, to view: UIView, squatElement: SquatElement, orientation: SquatOrientation, width: CGFloat, height: CGFloat) {
+      var knee: CGPoint
+      var hip: CGPoint
+      var ankle: CGPoint
+      var shoulder: CGPoint
+      
+      
+      switch orientation {
+        case .left:
+          knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height)
+          hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height)
+          ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height)
+          shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height)
+        case .right:
+          knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightKnee).position, width: width, height: height)
+          hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightHip).position, width: width, height: height)
+          ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightAnkle).position, width: width, height: height)
+          shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height)
+      }
+      
+      UIUtilities.addLabel(atPoint: knee, to: view, label: String(Int(squatElement.KneeAngle)))
+      UIUtilities.addLabel(atPoint: hip, to: view, label: String(Int(squatElement.HipAngle)))
+      UIUtilities.addLabel(atPoint: ankle, to: view, label: String(Int(squatElement.AnkleAngle)))
+      UIUtilities.addLabel(atPoint: shoulder, to: view, label: String(Int(squatElement.TrunkAngle)))
     }
-    
-    UIUtilities.addLabel(atPoint: knee, to: view, label: String(Int(squatElement.KneeAngle)))
-    UIUtilities.addLabel(atPoint: hip, to: view, label: String(Int(squatElement.HipAngle)))
-    UIUtilities.addLabel(atPoint: ankle, to: view, label: String(Int(squatElement.AnkleAngle)))
-    UIUtilities.addLabel(atPoint: shoulder, to: view, label: String(Int(squatElement.TrunkAngle)))
-  }
 
   // MARK: - Private
 
@@ -344,33 +325,6 @@ class CameraViewController: UIViewController {
     normalizedPoint = previewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
     return normalizedPoint
   }
-
-  /// Resets any detector instances which use a conventional lifecycle paradigm. This method is
-  /// expected to be invoked on the AVCaptureOutput queue - the same queue on which detection is
-  /// run.
-  private func resetManagedLifecycleDetectors(activeDetector: Detector) {
-    if activeDetector == self.lastDetector {
-      // Same row as before, no need to reset any detectors.
-      return;
-    }
-    // Clear the old detector, if applicable.
-    switch (self.lastDetector) {
-    case .pose, .poseAccurate:
-      self.poseDetector = nil
-      break
-    default:
-      break
-    }
-    // Initialize the new detector, if applicable.
-    switch (activeDetector) {
-    case .pose, .poseAccurate:
-      let options = activeDetector == .pose ? PoseDetectorOptions() : AccuratePoseDetectorOptions()
-      options.detectorMode = .stream
-      self.poseDetector = PoseDetector.poseDetector(options: options)
-      break
-    }
-    self.lastDetector = activeDetector
-  }
 }
 
 // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
@@ -386,10 +340,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       print("Failed to get image buffer from sample buffer.")
       return
     }
-    // Evaluate `self.currentDetector` once to ensure consistency throughout this method since it
-    // can be concurrently modified from the main thread.
-    let activeDetector = self.currentDetector;
-    resetManagedLifecycleDetectors(activeDetector: activeDetector)
+    self.poseDetectorHelper.resetManagedLifecycleDetectors()
 
     lastFrame = sampleBuffer
     let visionImage = VisionImage(buffer: sampleBuffer)
@@ -401,10 +352,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     let imageWidth = CGFloat(CVPixelBufferGetWidth(imageBuffer))
     let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))
 
-    switch activeDetector {
-    case .pose, .poseAccurate:
-      detectPose(in: visionImage, width: imageWidth, height: imageHeight)
-    }
+    detectPose(in: visionImage, width: imageWidth, height: imageHeight)
+
   }
 }
 
