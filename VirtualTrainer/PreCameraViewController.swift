@@ -38,13 +38,13 @@ class PreCameraViewController: UIViewController {
     }
     
     @IBAction func onSquatSelected(_ sender: Any) {
+        workoutType = "squat"
         squatWorkoutType.backgroundColor = .yellow
         deadliftWorkoutType.backgroundColor = .systemBackground
     }
     
     @IBAction func onDeadliftSelected(_ sender: Any) {
-        
-        workoutType = "Deadlift"
+        workoutType = "deadlift"
         deadliftWorkoutType.backgroundColor = .yellow
         squatWorkoutType.backgroundColor = .systemBackground
     }

@@ -30,6 +30,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
   // Workout sessions
   var workoutSessions = [] as [WorkoutSession]
     
+  var refreshControl = UIRefreshControl()
+
+    
   let cellReuseIdentifier = "WorkoutTableViewCell"
     
   // MARK: - IBOutlets
@@ -67,9 +70,31 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     tableView.reloadData()
     tableView.register(UINib(nibName: "WorkoutTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
     
+    refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+    tableView.addSubview(refreshControl) // not required when using UITableViewController
+
+    
     tableView.delegate = self
     tableView.dataSource = self
   }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
+          switch(result) {
+          case .success(let items):
+            for item in items {
+              print("WorkoutSessionModel ID: \(item.id)")
+            }
+            workoutSessions = convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
+          case .failure(let error):
+            print("Could not query DataStore: \(error)")
+          }
+        }
+        
+        refreshControl.endRefreshing()
+        tableView.reloadData()
+    }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
