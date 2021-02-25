@@ -161,7 +161,7 @@
         <!--Camera View Controller-->
         <scene sceneID="kPU-gK-lh6">
             <objects>
-                <viewController id="YXl-5B-mBF" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="YXl-5B-mBF" customClass="CameraViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qO2-JB-Jc4"/>
                         <viewControllerLayoutGuide type="bottom" id="7NG-lt-hPa"/>
@@ -209,7 +209,7 @@
         <!--Feedback-->
         <scene sceneID="NpE-Da-ezc">
             <objects>
-                <viewController id="jry-iJ-a0X" customClass="FeedbackViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="jry-iJ-a0X" customClass="FeedbackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hwp-a6-DYp"/>
                         <viewControllerLayoutGuide type="bottom" id="fXK-yI-mU9"/>
@@ -339,7 +339,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oML-Om-WaV"/>
+        <segue reference="wST-wt-oDM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
