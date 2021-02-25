@@ -65,20 +65,11 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     @IBAction func onWorkoutTypeChanged(_ sender: UISegmentedControl) {
-        workoutType = sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()
+        self.workoutType = sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()
     }
     
     
     @IBAction func onCameraAngleChanged(_ sender: UISegmentedControl) {
-        switch(sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()) {
-        case "left":
-            cameraAngle = SquatOrientation.left
-        case "front":
-            cameraAngle = SquatOrientation.right
-        case "right":
-            cameraAngle = SquatOrientation.left
-        default:
-            cameraAngle = SquatOrientation.left
-        }
+        self.cameraAngle = SquatOrientation(rawValue: sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()) ?? SquatOrientation.left
     }
 }
