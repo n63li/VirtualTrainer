@@ -34,13 +34,7 @@
                             <constraint firstAttribute="trailing" secondItem="OSH-tg-cZr" secondAttribute="trailing" id="if6-Ts-6FJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="History" id="xYg-VP-pps">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="lIn-3F-zfZ">
-                            <connections>
-                                <segue destination="o24-vI-ApZ" kind="show" id="eT9-7J-9O0"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="History" id="xYg-VP-pps"/>
                     <connections>
                         <outlet property="tableView" destination="OSH-tg-cZr" id="DDu-Dp-pUA"/>
                     </connections>
@@ -48,7 +42,7 @@
             </objects>
             <point key="canvasLocation" x="-607" y="27"/>
         </scene>
-        <!--Pre Camera View Controller-->
+        <!--Start Workout-->
         <scene sceneID="C9o-3v-CAu">
             <objects>
                 <viewController id="o24-vI-ApZ" customClass="PreCameraViewController" customModule="VirtualTrainer" customModuleProvider="target" sceneMemberID="viewController">
@@ -169,7 +163,7 @@
                             <constraint firstAttribute="trailing" secondItem="8rd-ga-RjL" secondAttribute="trailing" id="yJy-S1-r1W"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="8j9-N5-cU0"/>
+                    <navigationItem key="navigationItem" title="Start Workout" id="8j9-N5-cU0"/>
                     <connections>
                         <outlet property="deadliftWorkoutType" destination="jFp-WL-RdS" id="d8S-J0-XnW"/>
                         <outlet property="frontCameraAngle" destination="m11-BP-4Wt" id="FmG-BF-izX"/>
@@ -359,14 +353,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wST-wt-oDM"/>
-        <segue reference="eT9-7J-9O0"/>
+        <segue reference="oML-Om-WaV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
