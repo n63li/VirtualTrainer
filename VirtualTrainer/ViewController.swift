@@ -36,24 +36,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
   let cellReuseIdentifier = "WorkoutTableViewCell"
     
   // MARK: - IBOutlets
-  @IBOutlet fileprivate weak var videoCameraButton: UIBarButtonItem!
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - UIViewController
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    let isCameraAvailable =
-      UIImagePickerController.isCameraDeviceAvailable(.front)
-      || UIImagePickerController.isCameraDeviceAvailable(.rear)
-    if isCameraAvailable {
-      // `CameraViewController` uses `AVCaptureDevice.DiscoverySession` which is only supported for
-      // iOS 10 or newer.
-      if #available(iOS 10.0, *) {
-        videoCameraButton.isEnabled = true
-      }
-    }
       
     queryWorkoutSessions()
     tableView.reloadData()
@@ -80,11 +68,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-  }
-
-  @IBAction func openPhotoLibrary(_ sender: Any) {
-    imagePicker.sourceType = .photoLibrary
-    present(imagePicker, animated: true)
   }
     
   // MARK: - UITableViewController

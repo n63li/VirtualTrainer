@@ -62,27 +62,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xYg-VP-pps">
-                        <rightBarButtonItems>
-                            <barButtonItem image="plus" catalog="system" id="lIn-3F-zfZ">
-                                <connections>
-                                    <segue destination="o24-vI-ApZ" kind="show" id="eT9-7J-9O0"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem enabled="NO" image="camera.fill" catalog="system" id="M1D-Qg-lKI" userLabel="Video Camera Button">
-                                <connections>
-                                    <segue destination="YXl-5B-mBF" kind="show" identifier="showCameraViewController" id="M0h-0G-c32"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="photo.fill.on.rectangle.fill" catalog="system" id="cQ8-BV-rH6" userLabel="Photo Library Button">
-                                <connections>
-                                    <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" id="1Jr-zi-I6V"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="lIn-3F-zfZ">
+                            <connections>
+                                <segue destination="o24-vI-ApZ" kind="show" id="eT9-7J-9O0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="OSH-tg-cZr" id="DDu-Dp-pUA"/>
-                        <outlet property="videoCameraButton" destination="M1D-Qg-lKI" id="3Cr-4e-JCG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -312,14 +299,11 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="oML-Om-WaV"/>
-        <segue reference="T5U-qa-KZ2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
-        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
-        <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

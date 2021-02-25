@@ -34,20 +34,17 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
                 workoutType: workoutType,
                 cameraAngle: cameraAngle != nil
             )
-          print("workout initialized \(vc.workoutSession?.workoutType)")
         } else if (segue.identifier == "feedbackSegue") {
             let vc = segue.destination as! FeedbackViewController
             vc.workoutSession = WorkoutSession(
                 workoutType: workoutType,
                 cameraAngle: cameraAngle != nil
             )
-          print("workout initialized \(vc.workoutSession?.workoutType)")
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
-        print(videoURL)
         imagePickerController.dismiss(animated: true, completion: nil)
         let frames = UIUtilities.getAllFrames(videoURL: videoURL)
         DispatchQueue.global(qos: .background).async {
