@@ -12,7 +12,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="viewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewController" id="BYZ-38-t0r" customClass="HistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LHw-b6-B2a"/>
                         <viewControllerLayoutGuide type="bottom" id="Ydg-C1-MLG"/>
@@ -229,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="906" y="887"/>
+            <point key="canvasLocation" x="-330" y="887"/>
         </scene>
         <!--Feedback-->
         <scene sceneID="NpE-Da-ezc">
@@ -266,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Hm-aw-bGt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711" y="887"/>
+            <point key="canvasLocation" x="618" y="887"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CaH-Of-d5W">
@@ -309,10 +309,13 @@
             <objects>
                 <navigationController id="pPk-IM-bRr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Start Workout" image="plus.app.fill" catalog="system" id="hZC-vY-lPU"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pdz-G8-eSy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="pdz-G8-eSy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="o24-vI-ApZ" kind="relationship" relationship="rootViewController" id="NX8-2h-gdA"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b26-uU-FBo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -356,7 +359,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oML-Om-WaV"/>
+        <segue reference="wST-wt-oDM"/>
+        <segue reference="eT9-7J-9O0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>

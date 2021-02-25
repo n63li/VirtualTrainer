@@ -18,8 +18,8 @@ import MLKit
 import UIKit
 
 /// Main view controller class.
-@objc(ViewController)
-class ViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+@objc(HistoryViewController)
+class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
   /// An image picker for accessing the photo library or camera.
   var imagePicker = UIImagePickerController()
