@@ -98,21 +98,18 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
       // delete the table view row
       tableView.deleteRows(at: [indexPath], with: .fade)
 
-//      // Delete from Amplify datastore
-//      Amplify.DataStore.delete(workoutSession) { result in
-//          switch(result) {
-//          case .success:
-//              print("Deleted item: \(workoutSession.id)")
-//          case .failure(let error):
-//              print("Could not update data in Datastore: \(error)")
-//          }
-//      }
-
-    } else if editingStyle == .insert {
-        // Not used in our example, but if you were adding a new row, this is where you would do it.
+      // Delete from Amplify datastore
+      Amplify.DataStore.delete(WorkoutSessionModel.self, withId: workoutSession.id) { result in
+        switch(result) {
+        case .success:
+            print("Deleted item: \(workoutSession.id)")
+        case .failure(let error):
+            print("Could not update data in Datastore: \(error)")
+        }
+      }
     }
   }
-    
+  
   func queryWorkoutSessions() {
       Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
         switch(result) {
@@ -132,13 +129,10 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
     
     for model in workoutSessionModels {
       let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: model.cameraAngle)
+      workoutSession.id = model.id
       workoutSession.poseNetData = model.poseNetData
       workoutSession.imuData = model.imuData
-//      workoutSession.workoutResult = WorkoutResult(
-//        score: model.result?.score,
-//        incorrectJoints: model.result?.incorrectJoints,
-//        incorrectAccelerations: model.result?.incorrectAccelerations
-//      )
+//      workoutSession.workoutResult = model.result
       workoutSession.startTimestamp = Double(model.startTimestamp)
       workoutSession.endTimestamp = Double(model.endTimestamp)
      

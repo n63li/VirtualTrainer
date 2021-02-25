@@ -7,6 +7,7 @@
 import Amplify
 
 class WorkoutSession {
+  var id: String = ""
   var workoutType: String = ""
   var poseNetData: [Double] = []
   var imuData: [Double] = []
