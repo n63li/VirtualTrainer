@@ -60,9 +60,9 @@ class WorkoutSession {
       imuData: [],
       cameraAngle: self.cameraAngle,
       workoutType: self.workoutType,
-      startTimestamp: 100,
+      startTimestamp: Int(self.startTimestamp),
       result: self.workoutResult,
-      endTimestamp: 100)
+      endTimestamp: Int(self.endTimestamp))
     Amplify.DataStore.save(workoutSessionItem) { result in
       switch(result) {
       case .success(let savedItem):

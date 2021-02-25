@@ -27,9 +27,10 @@ class PreCameraViewController: UIViewController {
         if (segue.identifier == "startWorkoutSegue") {
             let vc = segue.destination as! CameraViewController
             vc.workoutSession = WorkoutSession(
-              workoutType: workoutType,
-              cameraAngle: cameraAngle != nil
+                workoutType: workoutType,
+                cameraAngle: cameraAngle != nil
             )
+          print("workout initialized \(vc.workoutSession?.workoutType)")
         }
     }
     

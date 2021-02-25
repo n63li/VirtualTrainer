@@ -52,7 +52,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
       }
     }
       
-    Amplify.DataStore.query(WorkoutSessionModel.self) { result in
+    Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
       switch(result) {
       case .success(let items):
         for item in items {
@@ -107,7 +107,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
       let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: model.cameraAngle)
       workoutSession.poseNetData = model.poseNetData
       workoutSession.imuData = model.imuData
-//      workoutSession.workoutResult
+//      workoutSession.workoutResult = WorkoutResult(
+//        score: model.result?.score,
+//        incorrectJoints: model.result?.incorrectJoints,
+//        incorrectAccelerations: model.result?.incorrectAccelerations
+//      )
       workoutSession.startTimestamp = Double(model.startTimestamp)
       workoutSession.endTimestamp = Double(model.endTimestamp)
      
