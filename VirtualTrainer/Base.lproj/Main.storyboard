@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Q6-lG-sCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pN6-Jk-RYM">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,26 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="rAH-gT-x68">
-            <objects>
-                <navigationController id="0Q6-lG-sCk" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="VKU-pZ-0S4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JoS-YE-9OV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fdA-VU-1vi"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6gn-Xt-3Nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-607" y="134"/>
-        </scene>
-        <!--View Controller-->
+        <!--History-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="viewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LHw-b6-B2a"/>
@@ -38,16 +22,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OSH-tg-cZr">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Woh-3Q-YsH">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="569" width="375" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem title="History" image="calendar.badge.clock" catalog="system" id="6Qa-gO-vJh"/>
-                                    <tabBarItem title="Trends" image="chart.bar.fill" catalog="system" id="FDe-yc-hwP"/>
-                                </items>
+                                <items/>
                             </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,7 +42,7 @@
                             <constraint firstAttribute="trailing" secondItem="OSH-tg-cZr" secondAttribute="trailing" id="if6-Ts-6FJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xYg-VP-pps">
+                    <navigationItem key="navigationItem" title="History" id="xYg-VP-pps">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="lIn-3F-zfZ">
                             <connections>
                                 <segue destination="o24-vI-ApZ" kind="show" id="eT9-7J-9O0"/>
@@ -72,9 +53,8 @@
                         <outlet property="tableView" destination="OSH-tg-cZr" id="DDu-Dp-pUA"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125.59999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="126" y="27"/>
         </scene>
         <!--Pre Camera View Controller-->
         <scene sceneID="C9o-3v-CAu">
@@ -89,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-pP-gYC">
-                                <rect key="frame" x="0.0" y="44" width="375" height="523"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="474"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
                                         <rect key="frame" x="16" y="16" width="343" height="62"/>
@@ -159,14 +139,14 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
-                                        <rect key="frame" x="16" y="172" width="343" height="335"/>
+                                        <rect key="frame" x="16" y="172" width="343" height="286"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8rd-ga-RjL">
-                                <rect key="frame" x="0.0" y="575" width="375" height="68"/>
+                                <rect key="frame" x="0.0" y="526" width="375" height="68"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBd-GJ-j8n">
                                         <rect key="frame" x="126" y="0.0" width="123" height="30"/>
@@ -224,7 +204,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -296,15 +276,80 @@
             </objects>
             <point key="canvasLocation" x="1775" y="134"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="CaH-Of-d5W">
+            <objects>
+                <tabBarController id="pN6-Jk-RYM" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LLZ-nr-6Sd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="3Uo-0e-tcH" kind="relationship" relationship="viewControllers" id="2uv-uI-BhV"/>
+                        <segue destination="pPk-IM-bRr" kind="relationship" relationship="viewControllers" id="dBo-F6-bIa"/>
+                        <segue destination="9YS-xa-eUQ" kind="relationship" relationship="viewControllers" id="meE-fr-Ijj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lZG-bS-6wa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="126" y="-1402"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="ybh-nc-NhW">
+            <objects>
+                <navigationController id="3Uo-0e-tcH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" image="calendar.badge.clock" catalog="system" id="ZIT-Xh-6dc"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8JJ-ML-N2o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mzO-fc-0Wi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-607" y="-702"/>
+        </scene>
+        <!--Start Workout-->
+        <scene sceneID="GcL-9T-S8H">
+            <objects>
+                <navigationController id="pPk-IM-bRr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Start Workout" image="plus.app.fill" catalog="system" id="hZC-vY-lPU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pdz-G8-eSy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lND-GM-Krq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b26-uU-FBo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="126" y="-702"/>
+        </scene>
+        <!--Trends-->
+        <scene sceneID="VFe-p8-KH5">
+            <objects>
+                <navigationController id="9YS-xa-eUQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Trends" image="chart.bar.fill" catalog="system" id="3uD-7h-Jkv"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aab-8E-Scw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KT0-6R-gva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="-702"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oML-Om-WaV"/>
+        <segue reference="wST-wt-oDM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
