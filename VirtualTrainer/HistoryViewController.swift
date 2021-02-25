@@ -32,7 +32,6 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
     
   var refreshControl = UIRefreshControl()
 
-    
   let cellReuseIdentifier = "WorkoutTableViewCell"
     
   // MARK: - IBOutlets
@@ -132,7 +131,11 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
       workoutSession.id = model.id
       workoutSession.poseNetData = model.poseNetData
       workoutSession.imuData = model.imuData
-//      workoutSession.workoutResult = model.result
+      workoutSession.workoutResult = model.result ?? WorkoutResultModel(
+        score: 0,
+        incorrectJoints: [0],
+        incorrectAccelerations: [0]
+      )
       workoutSession.startTimestamp = Double(model.startTimestamp)
       workoutSession.endTimestamp = Double(model.endTimestamp)
      
