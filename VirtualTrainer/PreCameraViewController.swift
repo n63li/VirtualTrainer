@@ -54,10 +54,10 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func startWorkout(_ sender: Any) {
         let alert = UIAlertController(title: "Select Workout Source", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Recording", comment: "Default action"), style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Photo Library", comment: "Default action"), style: .default, handler: { _ in
             self.upload()
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Live", comment: "Default action 2"), style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Default action 2"), style: .default, handler: { _ in
             self.performSegue(withIdentifier: "startWorkoutSegue", sender: self)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
