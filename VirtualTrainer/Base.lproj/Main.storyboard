@@ -11,7 +11,6 @@
         <!--History-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="viewController" id="BYZ-38-t0r" customClass="HistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LHw-b6-B2a"/>
@@ -39,6 +38,7 @@
                         <outlet property="tableView" destination="OSH-tg-cZr" id="DDu-Dp-pUA"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-607" y="27"/>
         </scene>
@@ -58,7 +58,7 @@
                                 <rect key="frame" x="0.0" y="96" width="375" height="422"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
-                                        <rect key="frame" x="16" y="16" width="343" height="62"/>
+                                        <rect key="frame" x="16" y="16" width="343" height="63"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCI-bt-pIi">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -67,28 +67,24 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2AT-OS-Vce">
-                                                <rect key="frame" x="0.0" y="32" width="343" height="30"/>
+                                                <rect key="frame" x="0.0" y="32" width="343" height="31"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8IK-Ft-fK5">
-                                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
-                                                        <state key="normal" title="Squat"/>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xoD-RC-WJu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                                        <segments>
+                                                            <segment title="Squat"/>
+                                                            <segment title="Deadlift"/>
+                                                        </segments>
                                                         <connections>
-                                                            <action selector="onSquatSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="w52-7d-NGW"/>
+                                                            <action selector="onWorkoutTypeChanged:" destination="o24-vI-ApZ" eventType="valueChanged" id="IFV-PC-UAd"/>
                                                         </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFp-WL-RdS">
-                                                        <rect key="frame" x="171.5" y="0.0" width="171.5" height="30"/>
-                                                        <state key="normal" title="Deadlift"/>
-                                                        <connections>
-                                                            <action selector="onDeadliftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="UFt-5T-WyQ"/>
-                                                        </connections>
-                                                    </button>
+                                                    </segmentedControl>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cJ2-pJ-Ffl">
-                                        <rect key="frame" x="16" y="94" width="343" height="62"/>
+                                        <rect key="frame" x="16" y="95" width="343" height="63"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Angle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7k-Xt-M43">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -97,35 +93,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="v6w-Fg-DmP">
-                                                <rect key="frame" x="0.0" y="32" width="343" height="30"/>
+                                                <rect key="frame" x="0.0" y="32" width="343" height="31"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vd-vN-za2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="30"/>
-                                                        <state key="normal" title="Left"/>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="suO-fw-gja">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="32"/>
+                                                        <segments>
+                                                            <segment title="Left"/>
+                                                            <segment title="Front"/>
+                                                            <segment title="Right"/>
+                                                        </segments>
                                                         <connections>
-                                                            <action selector="onLeftSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="rPC-js-118"/>
+                                                            <action selector="onCameraAngleChanged:" destination="o24-vI-ApZ" eventType="valueChanged" id="TX2-QB-IfQ"/>
                                                         </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m11-BP-4Wt">
-                                                        <rect key="frame" x="114.5" y="0.0" width="114" height="30"/>
-                                                        <state key="normal" title="Front"/>
-                                                        <connections>
-                                                            <action selector="onFrontSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="TEN-fw-YG9"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S90-Sf-G2a">
-                                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="30"/>
-                                                        <state key="normal" title="Right"/>
-                                                        <connections>
-                                                            <action selector="onRightSelected:" destination="o24-vI-ApZ" eventType="touchUpInside" id="AIJ-F7-pgs"/>
-                                                        </connections>
-                                                    </button>
+                                                    </segmentedControl>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
-                                        <rect key="frame" x="16" y="172" width="343" height="234"/>
+                                        <rect key="frame" x="16" y="174" width="343" height="232"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -165,11 +151,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Start Workout" id="8j9-N5-cU0"/>
                     <connections>
-                        <outlet property="deadliftWorkoutType" destination="jFp-WL-RdS" id="d8S-J0-XnW"/>
-                        <outlet property="frontCameraAngle" destination="m11-BP-4Wt" id="FmG-BF-izX"/>
-                        <outlet property="leftCameraAngle" destination="6vd-vN-za2" id="4RH-vE-dls"/>
-                        <outlet property="rightCameraAngle" destination="S90-Sf-G2a" id="lJD-gg-ctJ"/>
-                        <outlet property="squatWorkoutType" destination="8IK-Ft-fK5" id="4Sh-kc-fDj"/>
                         <segue destination="jry-iJ-a0X" kind="show" identifier="feedbackSegue" id="oML-Om-WaV"/>
                     </connections>
                 </viewController>

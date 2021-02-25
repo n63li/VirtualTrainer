@@ -13,13 +13,6 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     private var workoutType: String = ""
     private var cameraAngle: SquatOrientation = SquatOrientation.left
     
-    @IBOutlet weak var deadliftWorkoutType: UIButton!
-    @IBOutlet weak var squatWorkoutType: UIButton!
-    
-    @IBOutlet weak var leftCameraAngle: UIButton!
-    @IBOutlet weak var frontCameraAngle: UIButton!
-    @IBOutlet weak var rightCameraAngle: UIButton!
-    
     let imagePickerController = UIImagePickerController()
     
     
@@ -70,37 +63,22 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    // MARK: Workout Type Selection
-    @IBAction func onSquatSelected(_ sender: Any) {
-        workoutType = "squat"
-        squatWorkoutType.backgroundColor = .yellow
-        deadliftWorkoutType.backgroundColor = .systemBackground
+    
+    @IBAction func onWorkoutTypeChanged(_ sender: UISegmentedControl) {
+        workoutType = sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()
     }
     
-    @IBAction func onDeadliftSelected(_ sender: Any) {
-        workoutType = "deadlift"
-        deadliftWorkoutType.backgroundColor = .yellow
-        squatWorkoutType.backgroundColor = .systemBackground
-    }
     
-    // MARK: Select Camera Angle
-    @IBAction func onLeftSelected(_ sender: Any) {
-        cameraAngle = SquatOrientation.left
-        leftCameraAngle.backgroundColor = .yellow
-        rightCameraAngle.backgroundColor = .systemBackground
-        frontCameraAngle.backgroundColor = .systemBackground
-    }
-
-    @IBAction func onFrontSelected(_ sender: Any) {
-        frontCameraAngle.backgroundColor = .yellow
-        leftCameraAngle.backgroundColor = .systemBackground
-        rightCameraAngle.backgroundColor = .systemBackground
-    }
-    
-    @IBAction func onRightSelected(_ sender: Any) {
-        cameraAngle = SquatOrientation.right
-        rightCameraAngle.backgroundColor = .yellow
-        leftCameraAngle.backgroundColor = .systemBackground
-        frontCameraAngle.backgroundColor = .systemBackground
+    @IBAction func onCameraAngleChanged(_ sender: UISegmentedControl) {
+        switch(sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()) {
+        case "left":
+            cameraAngle = SquatOrientation.left
+        case "front":
+            cameraAngle = SquatOrientation.right
+        case "right":
+            cameraAngle = SquatOrientation.left
+        default:
+            cameraAngle = SquatOrientation.left
+        }
     }
 }
