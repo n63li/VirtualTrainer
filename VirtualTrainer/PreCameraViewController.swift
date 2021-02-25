@@ -26,7 +26,11 @@ class PreCameraViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "startWorkoutSegue") {
             let vc = segue.destination as! CameraViewController
-            vc.workoutSession = WorkoutSession(workoutType: workoutType, cameraAngle: cameraAngle != nil)
+            vc.workoutSession = WorkoutSession(
+                workoutType: workoutType,
+                cameraAngle: cameraAngle != nil
+            )
+          print("workout initialized \(vc.workoutSession?.workoutType)")
         }
     }
     
@@ -34,13 +38,13 @@ class PreCameraViewController: UIViewController {
     }
     
     @IBAction func onSquatSelected(_ sender: Any) {
+        workoutType = "squat"
         squatWorkoutType.backgroundColor = .yellow
         deadliftWorkoutType.backgroundColor = .systemBackground
     }
     
     @IBAction func onDeadliftSelected(_ sender: Any) {
-        
-        workoutType = "Deadlift"
+        workoutType = "deadlift"
         deadliftWorkoutType.backgroundColor = .yellow
         squatWorkoutType.backgroundColor = .systemBackground
     }
