@@ -22,22 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OSH-tg-cZr">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Woh-3Q-YsH">
-                                <rect key="frame" x="0.0" y="569" width="375" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items/>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Woh-3Q-YsH" secondAttribute="trailing" id="9I5-Mb-hgr"/>
                             <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="OSH-tg-cZr" secondAttribute="bottom" id="HYM-Nm-IF6"/>
-                            <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="Woh-3Q-YsH" secondAttribute="bottom" id="LVf-U5-lE6"/>
                             <constraint firstItem="OSH-tg-cZr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Nq2-BO-6HF"/>
-                            <constraint firstItem="Woh-3Q-YsH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aqa-R1-x1K"/>
                             <constraint firstItem="OSH-tg-cZr" firstAttribute="top" secondItem="LHw-b6-B2a" secondAttribute="bottom" id="dup-0l-izE"/>
                             <constraint firstAttribute="trailing" secondItem="OSH-tg-cZr" secondAttribute="trailing" id="if6-Ts-6FJ"/>
                         </constraints>
@@ -54,7 +46,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="126" y="27"/>
+            <point key="canvasLocation" x="-607" y="27"/>
         </scene>
         <!--Pre Camera View Controller-->
         <scene sceneID="C9o-3v-CAu">
@@ -69,7 +61,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-pP-gYC">
-                                <rect key="frame" x="0.0" y="44" width="375" height="474"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="422"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
                                         <rect key="frame" x="16" y="16" width="343" height="62"/>
@@ -139,7 +131,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
-                                        <rect key="frame" x="16" y="172" width="343" height="286"/>
+                                        <rect key="frame" x="16" y="172" width="343" height="234"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -189,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ex-aJ-F8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="106.40000000000001" y="887.40629685157433"/>
+            <point key="canvasLocation" x="126" y="27"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="kPU-gK-lh6">
@@ -204,7 +196,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -237,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853.60000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="906" y="887"/>
         </scene>
         <!--Feedback-->
         <scene sceneID="NpE-Da-ezc">
@@ -274,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Hm-aw-bGt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1775" y="134"/>
+            <point key="canvasLocation" x="1711" y="887"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CaH-Of-d5W">
@@ -300,10 +292,13 @@
             <objects>
                 <navigationController id="3Uo-0e-tcH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="History" image="calendar.badge.clock" catalog="system" id="ZIT-Xh-6dc"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8JJ-ML-N2o">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8JJ-ML-N2o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qnz-10-Cgk"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzO-fc-0Wi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -318,9 +313,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lND-GM-Krq"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b26-uU-FBo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -331,18 +323,40 @@
             <objects>
                 <navigationController id="9YS-xa-eUQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Trends" image="chart.bar.fill" catalog="system" id="3uD-7h-Jkv"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aab-8E-Scw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aab-8E-Scw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="bx0-BJ-guY" kind="relationship" relationship="rootViewController" id="lNo-sn-j8w"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KT0-6R-gva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="854" y="-702"/>
         </scene>
+        <!--Trends-->
+        <scene sceneID="LFS-4r-XxG">
+            <objects>
+                <viewController id="bx0-BJ-guY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lse-ME-Qcn"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Rs-4U-pbB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VGG-Qv-qzp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Trends" id="kMj-Ks-CU4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Qo-kx-rRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="27"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wST-wt-oDM"/>
+        <segue reference="oML-Om-WaV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
