@@ -60,6 +60,9 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         alert.addAction(UIAlertAction(title: NSLocalizedString("Live", comment: "Default action 2"), style: .default, handler: { _ in
             self.performSegue(withIdentifier: "startWorkoutSegue", sender: self)
         }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     
