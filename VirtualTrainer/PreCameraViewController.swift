@@ -53,7 +53,7 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: Actions
     
     @IBAction func startWorkout(_ sender: Any) {
-        let alert = UIAlertController(title: "Workout Source", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Select Workout Source", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Recording", comment: "Default action"), style: .default, handler: { _ in
             self.upload()
         }))
