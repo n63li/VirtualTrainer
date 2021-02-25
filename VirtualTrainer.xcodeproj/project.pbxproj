@@ -11,23 +11,15 @@
 		1001E6F920CF021E00445CB3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001E6F820CF021E00445CB3 /* CameraViewController.swift */; };
 		1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */; };
 		10224B582087E43100A77316 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B572087E43100A77316 /* ViewController.swift */; };
-		10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 10224B702087E5A900A77316 /* grace_hopper.jpg */; };
-		1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1077670D210FBBB6007A19A7 /* liberty.jpg */; };
 		2FCFFDD410B7424589CF9288 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4951DA0BB402986AAD265 /* amplifyconfiguration.json */; };
 		34440938430B71824F58B021 /* Pods_VirtualTrainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */; };
 		48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA26BD25DFDE7700970748 /* PoseUtilities.swift */; };
 		4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* MLKitExtensions.swift */; };
 		5A95090677934162B119E72C /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = C9F7A6D4127342458DB4AD53 /* awsconfiguration.json */; };
-		7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6420D0C1A300034C35 /* qr_code.jpg */; };
-		7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6520D0C1A300034C35 /* image_has_text.jpg */; };
-		7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6620D0C1A300034C35 /* barcode_128.png */; };
-		7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7202DC6720D0C1A300034C35 /* beach.jpg */; };
 		914F84E925E375F2005BB3DE /* PreCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84E825E375F2005BB3DE /* PreCameraViewController.swift */; };
 		914F84EC25E37640005BB3DE /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */; };
 		914F84EF25E3813E005BB3DE /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */; };
 		91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */; };
-		A4F89299243BB4BF00B58767 /* bird.tflite in Resources */ = {isa = PBXBuildFile; fileRef = A4F89297243BB4BE00B58767 /* bird.tflite */; };
-		A4F8929B243BB4BF00B58767 /* bird.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F89298243BB4BF00B58767 /* bird.jpg */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
 		D8000FB425DC501C00ED2C0C /* IdealWorkoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8000FB325DC501C00ED2C0C /* IdealWorkoutProtocol.swift */; };
@@ -56,14 +48,8 @@
 		1001E6FC20CF0C8F00445CB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10224B572087E43100A77316 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		10224B5B2087E49F00A77316 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
-		10224B702087E5A900A77316 /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grace_hopper.jpg; path = Resources/grace_hopper.jpg; sourceTree = "<group>"; };
-		1077670D210FBBB6007A19A7 /* liberty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = liberty.jpg; sourceTree = "<group>"; };
 		48BA26BD25DFDE7700970748 /* PoseUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseUtilities.swift; sourceTree = "<group>"; };
 		4FE4951DA0BB402986AAD265 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = amplifyconfiguration.json; sourceTree = "<group>"; };
-		7202DC6420D0C1A300034C35 /* qr_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = qr_code.jpg; path = Resources/qr_code.jpg; sourceTree = "<group>"; };
-		7202DC6520D0C1A300034C35 /* image_has_text.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_has_text.jpg; path = Resources/image_has_text.jpg; sourceTree = "<group>"; };
-		7202DC6620D0C1A300034C35 /* barcode_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barcode_128.png; path = Resources/barcode_128.png; sourceTree = "<group>"; };
-		7202DC6720D0C1A300034C35 /* beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = beach.jpg; path = Resources/beach.jpg; sourceTree = "<group>"; };
 		8E98A936E78D4C51810B1750 /* schema.graphql */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text; name = schema.graphql; path = amplify/backend/api/amplifyDatasource/schema.graphql; sourceTree = "<group>"; };
 		914F84E825E375F2005BB3DE /* PreCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreCameraViewController.swift; sourceTree = "<group>"; };
 		914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
@@ -71,8 +57,6 @@
 		91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualTrainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8E2C9FA1709AB4D6E13D79 /* Pods-VirtualTrainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualTrainer.debug.xcconfig"; path = "Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer.debug.xcconfig"; sourceTree = "<group>"; };
-		A4F89297243BB4BE00B58767 /* bird.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = bird.tflite; path = Resources/bird.tflite; sourceTree = "<group>"; };
-		A4F89298243BB4BF00B58767 /* bird.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bird.jpg; path = Resources/bird.jpg; sourceTree = "<group>"; };
 		A74384A83B0341EEA6431D45 /* amplifytools.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = amplifytools.xcconfig; sourceTree = "<group>"; };
 		BB287B3520729CE90069707A /* VirtualTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB287B3820729CE90069707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,14 +99,6 @@
 		10224B642087E52600A77316 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				10224B702087E5A900A77316 /* grace_hopper.jpg */,
-				7202DC6620D0C1A300034C35 /* barcode_128.png */,
-				7202DC6720D0C1A300034C35 /* beach.jpg */,
-				A4F89298243BB4BF00B58767 /* bird.jpg */,
-				A4F89297243BB4BE00B58767 /* bird.tflite */,
-				7202DC6520D0C1A300034C35 /* image_has_text.jpg */,
-				7202DC6420D0C1A300034C35 /* qr_code.jpg */,
-				1077670D210FBBB6007A19A7 /* liberty.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -350,21 +326,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D83BA63225DF295E003F5562 /* CustomResources.json in Resources */,
-				10224B762087E5A900A77316 /* grace_hopper.jpg in Resources */,
 				D83BA59B25DDBEEB003F5562 /* README.md in Resources */,
-				7202DC6C20D0C1A300034C35 /* beach.jpg in Resources */,
-				7202DC6920D0C1A300034C35 /* qr_code.jpg in Resources */,
-				7202DC6B20D0C1A300034C35 /* barcode_128.png in Resources */,
 				D83BA63425DF295E003F5562 /* schema.graphql in Resources */,
-				7202DC6A20D0C1A300034C35 /* image_has_text.jpg in Resources */,
 				D83BA63125DF295E003F5562 /* backend-config.json in Resources */,
 				BB287B3E20729CE90069707A /* Main.storyboard in Resources */,
 				D83BA62F25DF295E003F5562 /* project-config.json in Resources */,
 				D83BA63025DF295E003F5562 /* cli.json in Resources */,
-				A4F8929B243BB4BF00B58767 /* bird.jpg in Resources */,
 				1001E6FD20CF0C8F00445CB3 /* Assets.xcassets in Resources */,
-				A4F89299243BB4BF00B58767 /* bird.tflite in Resources */,
-				1077670E210FBBB6007A19A7 /* liberty.jpg in Resources */,
 				D83BA63325DF295E003F5562 /* parameters.json in Resources */,
 				914F84EC25E37640005BB3DE /* WorkoutTableViewCell.xib in Resources */,
 				2FCFFDD410B7424589CF9288 /* amplifyconfiguration.json in Resources */,
@@ -628,6 +596,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E8E2C9FA1709AB4D6E13D79 /* Pods-VirtualTrainer.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DW4Z72S9X9;
@@ -649,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D471CC151BE16E0BBDB87C1C /* Pods-VirtualTrainer.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DW4Z72S9X9;
