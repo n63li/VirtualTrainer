@@ -26,7 +26,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ydg-C1-MLG" firstAttribute="top" secondItem="OSH-tg-cZr" secondAttribute="bottom" id="HYM-Nm-IF6"/>
                             <constraint firstItem="OSH-tg-cZr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Nq2-BO-6HF"/>
@@ -189,12 +189,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
-                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwd-Qp-BMC" userLabel="Camera View">
+                                <rect key="frame" x="0.0" y="45" width="375" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="top" secondItem="bWY-Sx-TCF" secondAttribute="topMargin" id="GtM-D5-MQE"/>
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="leading" secondItem="bWY-Sx-TCF" secondAttribute="leading" id="bTr-O6-WSG"/>
@@ -202,7 +202,7 @@
                             <constraint firstItem="Vwd-Qp-BMC" firstAttribute="bottom" secondItem="7NG-lt-hPa" secondAttribute="top" id="ja0-Ki-fxw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="8dJ-Hr-2St">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8dJ-Hr-2St">
                         <nil key="title"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Process" id="l4h-My-vGv">
@@ -223,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-330" y="887"/>
+            <point key="canvasLocation" x="-330.39999999999998" y="886.50674662668678"/>
         </scene>
         <!--Feedback-->
         <scene sceneID="NpE-Da-ezc">
