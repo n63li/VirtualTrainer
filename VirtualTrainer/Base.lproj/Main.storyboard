@@ -55,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-pP-gYC">
-                                <rect key="frame" x="0.0" y="96" width="375" height="422"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="460"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
                                         <rect key="frame" x="16" y="16" width="343" height="63"/>
@@ -111,28 +111,20 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
-                                        <rect key="frame" x="16" y="174" width="343" height="232"/>
+                                        <rect key="frame" x="16" y="174" width="343" height="270"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8rd-ga-RjL">
-                                <rect key="frame" x="0.0" y="526" width="375" height="68"/>
+                                <rect key="frame" x="0.0" y="564" width="375" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBd-GJ-j8n">
-                                        <rect key="frame" x="126" y="0.0" width="123" height="30"/>
-                                        <state key="normal" title="Upload Recording"/>
-                                        <connections>
-                                            <action selector="uploadRecording:" destination="o24-vI-ApZ" eventType="touchUpInside" id="AQr-8Q-DYO"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ln-JF-Ec6">
-                                        <rect key="frame" x="139.5" y="38" width="96" height="30"/>
+                                        <rect key="frame" x="139.5" y="0.0" width="96" height="30"/>
                                         <state key="normal" title="Start Workout"/>
                                         <connections>
                                             <action selector="startWorkout:" destination="o24-vI-ApZ" eventType="touchUpInside" id="8ym-4l-ivp"/>
-                                            <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="T5U-qa-KZ2"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -152,6 +144,7 @@
                     <navigationItem key="navigationItem" title="Start Workout" id="8j9-N5-cU0"/>
                     <connections>
                         <segue destination="jry-iJ-a0X" kind="show" identifier="feedbackSegue" id="oML-Om-WaV"/>
+                        <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="SWg-ZJ-VpE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ex-aJ-F8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -339,7 +332,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wST-wt-oDM"/>
+        <segue reference="oML-Om-WaV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>

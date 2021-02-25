@@ -53,16 +53,23 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: Actions
     
     @IBAction func startWorkout(_ sender: Any) {
+        let alert = UIAlertController(title: "Workout Source", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Recording", comment: "Default action"), style: .default, handler: { _ in
+            self.upload()
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Live", comment: "Default action 2"), style: .default, handler: { _ in
+            self.performSegue(withIdentifier: "startWorkoutSegue", sender: self)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func uploadRecording(_ sender: Any) {
+    func upload() {
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         imagePickerController.mediaTypes = ["public.movie"]
 
         present(imagePickerController, animated: true, completion: nil)
     }
-    
     
     @IBAction func onWorkoutTypeChanged(_ sender: UISegmentedControl) {
         self.workoutType = sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()
