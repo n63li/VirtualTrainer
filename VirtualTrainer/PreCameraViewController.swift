@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AVKit
 
-class PreCameraViewController: UIViewController {
+class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     private var workoutType: String = ""
     private var cameraAngle: SquatOrientation = SquatOrientation.left
     
@@ -19,6 +20,9 @@ class PreCameraViewController: UIViewController {
     @IBOutlet weak var frontCameraAngle: UIButton!
     @IBOutlet weak var rightCameraAngle: UIButton!
     
+    let imagePickerController = UIImagePickerController()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,25 +31,54 @@ class PreCameraViewController: UIViewController {
         if (segue.identifier == "startWorkoutSegue") {
             let vc = segue.destination as! CameraViewController
             vc.workoutSession = WorkoutSession(workoutType: workoutType, cameraAngle: cameraAngle != nil)
+        } else if (segue.identifier == "feedbackSegue") {
+            let vc = segue.destination as! FeedbackViewController
+            vc.workoutSession = WorkoutSession(workoutType: workoutType, cameraAngle: cameraAngle != nil)
         }
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
+        print(videoURL)
+        imagePickerController.dismiss(animated: true, completion: nil)
+        let frames = UIUtilities.getAllFrames(videoURL: videoURL)
+        DispatchQueue.global(qos: .background).async {
+            let poseDetectorHelper = PoseDetectorHelper(frames: frames)
+            poseDetectorHelper.getResults()
+
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "feedbackSegue", sender: PreCameraViewController.self)
+            }
+        }
+    }
+    
+    // MARK: Actions
     
     @IBAction func startWorkout(_ sender: Any) {
     }
     
+    @IBAction func uploadRecording(_ sender: Any) {
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        imagePickerController.mediaTypes = ["public.movie"]
+
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // MARK: Workout Type Selection
     @IBAction func onSquatSelected(_ sender: Any) {
+        workoutType = "Squat"
         squatWorkoutType.backgroundColor = .yellow
         deadliftWorkoutType.backgroundColor = .systemBackground
     }
     
     @IBAction func onDeadliftSelected(_ sender: Any) {
-        
         workoutType = "Deadlift"
         deadliftWorkoutType.backgroundColor = .yellow
         squatWorkoutType.backgroundColor = .systemBackground
     }
     
-    
+    // MARK: Select Camera Angle
     @IBAction func onLeftSelected(_ sender: Any) {
         cameraAngle = SquatOrientation.left
         leftCameraAngle.backgroundColor = .yellow

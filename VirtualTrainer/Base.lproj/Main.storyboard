@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0KZ-pP-gYC">
-                                <rect key="frame" x="0.0" y="44" width="375" height="569"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="523"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-8o-n6e">
                                         <rect key="frame" x="16" y="16" width="343" height="62"/>
@@ -172,29 +172,42 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
-                                        <rect key="frame" x="16" y="172" width="343" height="381"/>
+                                        <rect key="frame" x="16" y="172" width="343" height="335"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ln-JF-Ec6">
-                                <rect key="frame" x="139.5" y="613" width="96" height="30"/>
-                                <state key="normal" title="Start Workout"/>
-                                <connections>
-                                    <action selector="startWorkout:" destination="o24-vI-ApZ" eventType="touchUpInside" id="8ym-4l-ivp"/>
-                                    <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="T5U-qa-KZ2"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8rd-ga-RjL">
+                                <rect key="frame" x="0.0" y="575" width="375" height="68"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBd-GJ-j8n">
+                                        <rect key="frame" x="126" y="0.0" width="123" height="30"/>
+                                        <state key="normal" title="Upload Recording"/>
+                                        <connections>
+                                            <action selector="uploadRecording:" destination="o24-vI-ApZ" eventType="touchUpInside" id="AQr-8Q-DYO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ln-JF-Ec6">
+                                        <rect key="frame" x="139.5" y="38" width="96" height="30"/>
+                                        <state key="normal" title="Start Workout"/>
+                                        <connections>
+                                            <action selector="startWorkout:" destination="o24-vI-ApZ" eventType="touchUpInside" id="8ym-4l-ivp"/>
+                                            <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="T5U-qa-KZ2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="0KZ-pP-gYC" secondAttribute="trailing" id="0vF-1h-kpt"/>
                             <constraint firstItem="0KZ-pP-gYC" firstAttribute="leading" secondItem="mHu-Is-dN4" secondAttribute="leading" id="OTc-1F-KIq"/>
                             <constraint firstItem="0KZ-pP-gYC" firstAttribute="top" secondItem="6x4-CH-ZmV" secondAttribute="bottom" id="SjY-pI-UJ5"/>
-                            <constraint firstItem="7Ln-JF-Ec6" firstAttribute="centerX" secondItem="mHu-Is-dN4" secondAttribute="centerX" id="eGK-i3-vDx"/>
-                            <constraint firstItem="7Ln-JF-Ec6" firstAttribute="top" secondItem="0KZ-pP-gYC" secondAttribute="bottom" id="g1G-Xk-syw"/>
-                            <constraint firstItem="3b1-aU-1fK" firstAttribute="top" secondItem="7Ln-JF-Ec6" secondAttribute="bottom" constant="24" id="sou-LG-NBz"/>
+                            <constraint firstItem="8rd-ga-RjL" firstAttribute="top" secondItem="0KZ-pP-gYC" secondAttribute="bottom" constant="8" symbolic="YES" id="ndJ-O8-Vyr"/>
+                            <constraint firstItem="3b1-aU-1fK" firstAttribute="top" secondItem="8rd-ga-RjL" secondAttribute="bottom" constant="24" id="tCg-f0-0Hd"/>
+                            <constraint firstItem="8rd-ga-RjL" firstAttribute="leading" secondItem="mHu-Is-dN4" secondAttribute="leading" id="vnK-zV-l4U"/>
+                            <constraint firstAttribute="trailing" secondItem="8rd-ga-RjL" secondAttribute="trailing" id="yJy-S1-r1W"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8j9-N5-cU0"/>
@@ -204,6 +217,7 @@
                         <outlet property="leftCameraAngle" destination="6vd-vN-za2" id="4RH-vE-dls"/>
                         <outlet property="rightCameraAngle" destination="S90-Sf-G2a" id="lJD-gg-ctJ"/>
                         <outlet property="squatWorkoutType" destination="8IK-Ft-fK5" id="4Sh-kc-fDj"/>
+                        <segue destination="jry-iJ-a0X" kind="show" identifier="feedbackSegue" id="oML-Om-WaV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ex-aJ-F8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -297,7 +311,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="M0h-0G-c32"/>
+        <segue reference="oML-Om-WaV"/>
+        <segue reference="T5U-qa-KZ2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>

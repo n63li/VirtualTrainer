@@ -25,6 +25,7 @@
 		914F84E925E375F2005BB3DE /* PreCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84E825E375F2005BB3DE /* PreCameraViewController.swift */; };
 		914F84EC25E37640005BB3DE /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */; };
 		914F84EF25E3813E005BB3DE /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */; };
+		914F851825E7355F005BB3DE /* PoseDetectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */; };
 		91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */; };
 		A4F89299243BB4BF00B58767 /* bird.tflite in Resources */ = {isa = PBXBuildFile; fileRef = A4F89297243BB4BE00B58767 /* bird.tflite */; };
 		A4F8929B243BB4BF00B58767 /* bird.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F89298243BB4BF00B58767 /* bird.jpg */; };
@@ -68,6 +69,7 @@
 		914F84E825E375F2005BB3DE /* PreCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreCameraViewController.swift; sourceTree = "<group>"; };
 		914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
 		914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseDetectorHelper.swift; sourceTree = "<group>"; };
 		91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualTrainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8E2C9FA1709AB4D6E13D79 /* Pods-VirtualTrainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualTrainer.debug.xcconfig"; path = "Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				D8000FBB25DC5EFD00ED2C0C /* WorkoutResult.swift */,
 				914F84E825E375F2005BB3DE /* PreCameraViewController.swift */,
 				914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */,
+				914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				D83BA62825DF295E003F5562 /* WorkoutSessionModel.swift in Sources */,
 				D8000FB825DC578B00ED2C0C /* WorkoutSession.swift in Sources */,
 				10224B582087E43100A77316 /* ViewController.swift in Sources */,
+				914F851825E7355F005BB3DE /* PoseDetectorHelper.swift in Sources */,
 				D8000FB425DC501C00ED2C0C /* IdealWorkoutProtocol.swift in Sources */,
 				91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */,
 				D83BA62D25DF295E003F5562 /* WorkoutResultModel.swift in Sources */,
@@ -630,12 +634,12 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DW4Z72S9X9;
+				DEVELOPMENT_TEAM = 89Q59LP47M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -651,12 +655,12 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DW4Z72S9X9;
+				DEVELOPMENT_TEAM = 89Q59LP47M;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
