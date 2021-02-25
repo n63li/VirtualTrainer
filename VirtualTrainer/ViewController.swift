@@ -55,18 +55,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
       }
     }
       
-    Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
-      switch(result) {
-      case .success(let items):
-        for item in items {
-          print("WorkoutSessionModel ID: \(item.id)")
-        }
-        workoutSessions = convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
-      case .failure(let error):
-        print("Could not query DataStore: \(error)")
-      }
-    }
-    
+    queryWorkoutSessions()
     tableView.reloadData()
     tableView.register(UINib(nibName: "WorkoutTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
     
@@ -79,22 +68,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     tableView.dataSource = self
   }
     
-    @objc func refresh(_ sender: AnyObject) {
-        Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
-          switch(result) {
-          case .success(let items):
-            for item in items {
-              print("WorkoutSessionModel ID: \(item.id)")
-            }
-            workoutSessions = convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
-          case .failure(let error):
-            print("Could not query DataStore: \(error)")
-          }
-        }
-        
-        refreshControl.endRefreshing()
-        tableView.reloadData()
-    }
+  @objc func refresh(_ sender: AnyObject) {
+    queryWorkoutSessions()
+    refreshControl.endRefreshing()
+    tableView.reloadData()
+  }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -123,6 +101,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UITableV
     cell.set(session: workoutSession)
     return cell
     
+  }
+    
+  func queryWorkoutSessions() {
+      Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
+        switch(result) {
+        case .success(let items):
+          for item in items {
+            print("WorkoutSessionModel ID: \(item.id)")
+          }
+          workoutSessions = convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
+        case .failure(let error):
+          print("Could not query DataStore: \(error)")
+        }
+      }
   }
   
   func convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: [WorkoutSessionModel]) -> [WorkoutSession]{
