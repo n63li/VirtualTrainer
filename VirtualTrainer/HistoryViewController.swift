@@ -19,13 +19,12 @@ import UIKit
 
 /// Main view controller class.
 @objc(HistoryViewController)
-class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
-    
+class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIContextMenuInteractionDelegate {
   /// An image picker for accessing the photo library or camera.
-  var imagePicker = UIImagePickerController()
-
-  // Image counter.
-  var currentImage = 0
+//  var imagePicker = UIImagePickerController()
+//
+//  // Image counter.
+//  var currentImage = 0
     
   // Workout sessions
   var workoutSessions = [] as [WorkoutSession]
@@ -109,13 +108,46 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
     }
   }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destination = storyboard.instantiateViewController(withIdentifier: "WorkoutResultViewController") as! WorkoutResultViewController
-        destination.workoutSession = workoutSessions[indexPath.row]
-        navigationController?.pushViewController(destination, animated: true)
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+      let destination = storyboard.instantiateViewController(withIdentifier: "WorkoutResultViewController") as! WorkoutResultViewController
+      destination.workoutSession = workoutSessions[indexPath.row]
+      navigationController?.pushViewController(destination, animated: true)
+  }
+  
+  func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+    print("hello")
+    // 1
+    guard
+      let identifier = configuration.identifier as? String,
+      let index = Int(identifier)
+      else {
+        return
     }
     
+    // 2
+    let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+    
+    // 3
+    animator.addCompletion {
+      self.performSegue(
+        withIdentifier: "showHistoryViewController",
+        sender: cell)
+    }
+  }
+  
+  func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    configurationForMenuAtLocation location: CGPoint)
+      -> UIContextMenuConfiguration? {
+    return UIContextMenuConfiguration(
+      identifier: nil,
+      previewProvider: nil,
+      actionProvider: { _ in
+        let children: [UIMenuElement] = []
+        return UIMenu(title: "", children: children)
+    })
+  }
   
   func queryWorkoutSessions() {
       Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in

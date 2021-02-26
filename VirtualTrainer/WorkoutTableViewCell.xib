@@ -58,7 +58,7 @@
                 <outlet property="dateLabel" destination="MHb-SR-6lq" id="Hmi-SN-jsO"/>
                 <outlet property="typeLabel" destination="thi-Be-UBT" id="FBv-FR-3MO"/>
             </connections>
-            <point key="canvasLocation" x="-139" y="-81"/>
+            <point key="canvasLocation" x="-139.13043478260872" y="-81.361607142857139"/>
         </tableViewCell>
     </objects>
 </document>
