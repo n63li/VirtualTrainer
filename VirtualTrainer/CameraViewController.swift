@@ -29,7 +29,7 @@ class CameraViewController: UIViewController {
   private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
   private var lastFrame: CMSampleBuffer?
 
-    private var poseDetectorHelper: PoseDetectorHelper = PoseDetectorHelper()
+  private var poseDetectorHelper: PoseDetectorHelper = PoseDetectorHelper()
 
   private lazy var previewOverlayView: UIImageView = {
 
@@ -112,17 +112,20 @@ class CameraViewController: UIViewController {
         poses.forEach { pose in
           PoseUtilities.displaySkeleton(pose: pose, width: width, height: height, previewLayer: previewLayer, annotationOverlayView: self.annotationOverlayView)
 
-//          if squat
-//          var squatData: [SquatElement] = []
-//          let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: .left)
-//          squatData.append(squatElement)
-//          PoseUtilities.displaySquatOverlay(pose: pose, to: self.annotationOverlayView, squatElement: squatElement, orientation: .left, width: width, height: height, previewLayer: previewLayer)
-          
-//          if deadlift
-          var deadliftData: [DeadliftElement] = []
-          let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: .front)
-          deadliftData.append(deadliftElement)
-          PoseUtilities.displayDeadliftOverlay(pose: pose, to: self.annotationOverlayView, deadliftElement: deadliftElement, orientation: .front, width: width, height: height, previewLayer: previewLayer)
+          switch workoutSession?.workoutType {
+            case "squat":
+              var squatData: [SquatElement] = []
+              let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
+              squatData.append(squatElement)
+              PoseUtilities.displaySquatOverlay(pose: pose, to: self.annotationOverlayView, squatElement: squatElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue, width: width, height: height, previewLayer: previewLayer)
+            case "deadlift":
+              var deadliftData: [DeadliftElement] = []
+              let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
+              deadliftData.append(deadliftElement)
+              PoseUtilities.displayDeadliftOverlay(pose: pose, to: self.annotationOverlayView, deadliftElement: deadliftElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue, width: width, height: height, previewLayer: previewLayer)
+            default:
+              break
+          }
         }
       }
   }

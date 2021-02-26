@@ -25,13 +25,13 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             let vc = segue.destination as! CameraViewController
             vc.workoutSession = WorkoutSession(
                 workoutType: workoutType,
-                cameraAngle: cameraAngle != nil
+                cameraAngle: cameraAngle.rawValue
             )
         } else if (segue.identifier == "feedbackSegue") {
             let vc = segue.destination as! FeedbackViewController
             vc.workoutSession = WorkoutSession(
                 workoutType: workoutType,
-                cameraAngle: cameraAngle != nil
+                cameraAngle: cameraAngle.rawValue
             )
         }
     }
