@@ -355,8 +355,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b8j-Vp-Bf1">
-                                <rect key="frame" x="16" y="104" width="57" height="33.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b8j-Vp-Bf1">
+                                <rect key="frame" x="20" y="96" width="57" height="33.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Lh-Cv8">
                                         <rect key="frame" x="0.0" y="0.0" width="57" height="33.5"/>
@@ -368,6 +368,10 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b8j-Vp-Bf1" firstAttribute="leading" secondItem="F9r-Ze-Lka" secondAttribute="leading" constant="20" symbolic="YES" id="0wy-aD-vbX"/>
+                            <constraint firstItem="xEk-Lh-Cv8" firstAttribute="top" secondItem="fgn-Xw-yLK" secondAttribute="bottom" id="O7r-JH-d1h"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Workout Result" id="TKY-QL-bmB"/>
                     <connections>

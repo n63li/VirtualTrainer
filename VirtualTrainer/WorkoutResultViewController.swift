@@ -21,7 +21,7 @@ class WorkoutResultViewController: UIViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
     dateFormatter.locale = NSLocale.current
-    dateFormatter.dateFormat = "yyyy-MM-dd" //Specify your format that you want
+    dateFormatter.dateFormat = "EEEE, MMM d" //Specify your format that you want
     let strDate = dateFormatter.string(from: date)
     
     dateLabel?.text = strDate

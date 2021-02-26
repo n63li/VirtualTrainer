@@ -15,7 +15,6 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
     
     let imagePickerController = UIImagePickerController()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
