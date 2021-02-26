@@ -10,9 +10,8 @@ import UIKit
 
 @objc(WorkoutResultViewController)
 class WorkoutResultViewController: UIViewController {
-  @IBOutlet weak var typeLabel: UILabel!
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var accuracyLabel: UILabel!
+    
+    var workoutSession: WorkoutSession?
   
   override func viewDidLoad() {
     super.viewDidLoad()

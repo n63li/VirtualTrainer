@@ -32,7 +32,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="f2P-rS-Tb3" kind="show" id="55z-Tj-Q3u"/>
+                                            <segue destination="f2P-rS-Tb3" kind="show" identifier="workoutDetailsSegue" id="55z-Tj-Q3u"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -346,7 +346,7 @@
         <!--Workout Result-->
         <scene sceneID="c76-N0-9nu">
             <objects>
-                <viewController id="f2P-rS-Tb3" customClass="WorkoutResultViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WorkoutResultViewController" id="f2P-rS-Tb3" customClass="WorkoutResultViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fgn-Xw-yLK"/>
                         <viewControllerLayoutGuide type="bottom" id="dzT-YF-TMg"/>

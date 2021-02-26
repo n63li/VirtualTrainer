@@ -108,6 +108,14 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
       }
     }
   }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destination = storyboard.instantiateViewController(withIdentifier: "WorkoutResultViewController") as! WorkoutResultViewController
+        destination.workoutSession = workoutSessions[indexPath.row]
+        navigationController?.pushViewController(destination, animated: true)
+    }
+    
   
   func queryWorkoutSessions() {
       Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
