@@ -11,7 +11,7 @@ import AVKit
 
 class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     private var workoutType: String = "squat"
-    private var cameraAngle: SquatOrientation = SquatOrientation.left
+    private var cameraAngle: WorkoutOrientation = WorkoutOrientation.left
 
     let imagePickerController = UIImagePickerController()
 
