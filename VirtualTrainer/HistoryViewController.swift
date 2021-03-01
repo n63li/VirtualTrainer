@@ -19,13 +19,7 @@ import UIKit
 
 /// Main view controller class.
 @objc(HistoryViewController)
-class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
-    
-  /// An image picker for accessing the photo library or camera.
-  var imagePicker = UIImagePickerController()
-
-  // Image counter.
-  var currentImage = 0
+class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIContextMenuInteractionDelegate {
     
   // Workout sessions
   var workoutSessions = [] as [WorkoutSession]
@@ -63,6 +57,9 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    if let indexPath = tableView.indexPathForSelectedRow {
+      tableView.deselectRow(at: indexPath, animated: true)
+    }
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -107,6 +104,46 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
         }
       }
     }
+  }
+    
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+      let destination = storyboard.instantiateViewController(withIdentifier: "WorkoutResultViewController") as! WorkoutResultViewController
+      destination.workoutSession = workoutSessions[indexPath.row]
+      navigationController?.pushViewController(destination, animated: true)
+  }
+  
+  func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+    // 1
+    guard
+      let identifier = configuration.identifier as? String,
+      let index = Int(identifier)
+      else {
+        return
+    }
+    
+    // 2
+    let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+    
+    // 3
+    animator.addCompletion {
+      self.performSegue(
+        withIdentifier: "showHistoryViewController",
+        sender: cell)
+    }
+  }
+  
+  func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction,
+    configurationForMenuAtLocation location: CGPoint)
+      -> UIContextMenuConfiguration? {
+    return UIContextMenuConfiguration(
+      identifier: nil,
+      previewProvider: nil,
+      actionProvider: { _ in
+        let children: [UIMenuElement] = []
+        return UIMenu(title: "", children: children)
+    })
   }
   
   func queryWorkoutSessions() {

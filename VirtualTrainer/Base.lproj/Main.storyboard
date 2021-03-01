@@ -21,8 +21,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OSH-tg-cZr">
-                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WorkoutTableViewCell" id="uKr-6y-tGH" customClass="WorkoutTableViewCell" customModule="VirtualTrainer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uKr-6y-tGH" id="XFT-dV-4ha">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="f2P-rS-Tb3" kind="show" identifier="workoutDetailsSegue" id="55z-Tj-Q3u"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -329,6 +342,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qo-kx-rRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="854" y="27"/>
+        </scene>
+        <!--Workout Result-->
+        <scene sceneID="c76-N0-9nu">
+            <objects>
+                <viewController storyboardIdentifier="WorkoutResultViewController" id="f2P-rS-Tb3" customClass="WorkoutResultViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fgn-Xw-yLK"/>
+                        <viewControllerLayoutGuide type="bottom" id="dzT-YF-TMg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F9r-Ze-Lka">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b8j-Vp-Bf1">
+                                <rect key="frame" x="20" y="96" width="57" height="33.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Lh-Cv8">
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="33.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b8j-Vp-Bf1" firstAttribute="leading" secondItem="F9r-Ze-Lka" secondAttribute="leading" constant="20" symbolic="YES" id="0wy-aD-vbX"/>
+                            <constraint firstItem="xEk-Lh-Cv8" firstAttribute="top" secondItem="fgn-Xw-yLK" secondAttribute="bottom" id="O7r-JH-d1h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Workout Result" id="TKY-QL-bmB"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="xEk-Lh-Cv8" id="bPd-mp-gll"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRU-g1-JFM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1391.2" y="26.53673163418291"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

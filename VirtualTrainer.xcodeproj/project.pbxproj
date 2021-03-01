@@ -41,6 +41,7 @@
 		D83BA63325DF295E003F5562 /* parameters.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62525DF295E003F5562 /* parameters.json */; };
 		D83BA63425DF295E003F5562 /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62625DF295E003F5562 /* schema.graphql */; };
 		D83BA63525DF295E003F5562 /* transform.conf.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62725DF295E003F5562 /* transform.conf.json */; };
+		D8C6932325E8A0E10012C5F6 /* WorkoutResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		D83BA62525DF295E003F5562 /* parameters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parameters.json; sourceTree = "<group>"; };
 		D83BA62625DF295E003F5562 /* schema.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
 		D83BA62725DF295E003F5562 /* transform.conf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transform.conf.json; sourceTree = "<group>"; };
+		D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				914F84E825E375F2005BB3DE /* PreCameraViewController.swift */,
 				914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */,
 				914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */,
+				D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				D83BA62B25DF295E003F5562 /* WorkoutResultModel+Schema.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
 				48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */,
+				D8C6932325E8A0E10012C5F6 /* WorkoutResultViewController.swift in Sources */,
 				D83BA62925DF295E003F5562 /* AmplifyModels.swift in Sources */,
 				914F84E925E375F2005BB3DE /* PreCameraViewController.swift in Sources */,
 				D8000FBC25DC5EFD00ED2C0C /* WorkoutResult.swift in Sources */,
