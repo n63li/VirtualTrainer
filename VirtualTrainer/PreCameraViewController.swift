@@ -42,7 +42,34 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         let frames = UIUtilities.getAllFrames(videoURL: videoURL)
         DispatchQueue.global(qos: .background).async {
             let poseDetectorHelper = PoseDetectorHelper(frames: frames)
-            poseDetectorHelper.getResults()
+            let poses = poseDetectorHelper.getResults()
+//            DispatchQueue.main.sync {
+//              self.updatePreviewOverlayView()
+//              self.removeDetectionAnnotations()
+//            }
+            guard !poses.isEmpty else {
+              print("Pose detector returned no results.")
+              return
+            }
+            DispatchQueue.main.sync {
+              // Pose detected. Currently, only single person detection is supported.
+              poses.forEach { pose in
+//                PoseUtilities.displaySkeleton(pose: pose, width: width, height: height, previewLayer: previewLayer, annotationOverlayView: self.annotationOverlayView)
+
+                switch vc.workoutSession?.workoutType {
+                  case "squat":
+                    let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: vc.workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                    vc.workoutSession?.squatElements.append(squatElement)
+//                    PoseUtilities.displaySquatOverlay(pose: pose, to: self.annotationOverlayView, squatElement: squatElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue, width: width, height: height, previewLayer: previewLayer)
+                  case "deadlift":
+                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                    workoutSession?.deadliftElements.append(deadliftElement)
+//                    PoseUtilities.displayDeadliftOverlay(pose: pose, to: self.annotationOverlayView, deadliftElement: deadliftElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue, width: width, height: height, previewLayer: previewLayer)
+                  default:
+                    break
+                }
+              }
+            }
 
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "feedbackSegue", sender: PreCameraViewController.self)

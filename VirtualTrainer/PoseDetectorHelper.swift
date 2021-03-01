@@ -13,11 +13,12 @@ import MLKit
 class PoseDetectorHelper {
     /// Initialized when one of the pose detector rows are chosen. Reset to `nil` when neither are.
     private var poseDetector: PoseDetector? = nil
+    var poseData: [Pose] = []
 
     init(frames: [UIImage] ) {
         resetManagedLifecycleDetectors()
         frames.forEach { frame in
-            detectPose(in: VisionImage(image: frame))
+          self.poseData.append(contentsOf: detectPose(in: VisionImage(image: frame)))
         }
     }
 
@@ -25,8 +26,8 @@ class PoseDetectorHelper {
 
     }
 
-    func getResults() {
-
+  func getResults() -> [Pose] {
+        return self.poseData
     }
 
     func detectPose(in image: VisionImage) -> [Pose] {
