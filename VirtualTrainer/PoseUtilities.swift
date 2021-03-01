@@ -11,28 +11,44 @@ import AVFoundation
 import MLKit
 import UIKit
 
-struct PoseData {
+public struct PoseData {
   let name: String
-  var data: [Double]
+  var data: [CGFloat]
 
-  init(name: String, data: [Double] = []) {
+  init(name: String, data: [CGFloat] = []) {
     self.name = name
     self.data = data
   }
 }
 
 public struct SquatElement {
-  let KneeAngle: CGFloat
-  let HipAngle: CGFloat
-  let AnkleAngle: CGFloat
-  let TrunkAngle: CGFloat
+  var orientation: String
+  var KneeAngle: CGFloat
+  var HipAngle: CGFloat
+  var AnkleAngle: CGFloat
+  var TrunkAngle: CGFloat
 }
 
-public enum SquatOrientation: String {
+public struct DeadliftElement {
+  var orientation: String
+  var LeftKneeAngle: CGFloat
+  var RightKneeAngle: CGFloat
+  var LeftHipAngle: CGFloat
+  var RightHipAngle: CGFloat
+  var LeftAnkleAngle: CGFloat
+  var RightAnkleAngle: CGFloat
+  var LeftTrunkAngle: CGFloat
+  var RightTrunkAngle: CGFloat
+  var LeftShoulderAngle: CGFloat
+  var RightShoulderAngle: CGFloat
+  var LeftElbowAngle: CGFloat
+  var RightElbowAngle: CGFloat
+}
+
+public enum WorkoutOrientation: String {
   case left = "left"
   case right = "right"
-  // front = "front"
-//  case back = "back"
+  case front = "front"
 }
 
 
@@ -54,54 +70,271 @@ public class PoseUtilities {
         }
         return degrees
     }
-  
-  public static func getSquatAngles(pose: Pose, orientation: SquatOrientation) -> SquatElement {
+
+  public static func getSquatAngles(pose: Pose, orientation: String) -> SquatElement {
     var knee: CGPoint
     var hip: CGPoint
     var ankle: CGPoint
     var shoulder: CGPoint
     var toe: CGPoint
     var shoulderXHipY: CGPoint
-    
+
 
     switch orientation {
-      case .left:
-        knee = CGPoint(x: pose.landmark(ofType: .leftKnee).position.x, y: pose.landmark(ofType: .leftKnee).position.y)
-        hip = CGPoint(x: pose.landmark(ofType: .leftHip).position.x, y: pose.landmark(ofType: .leftHip).position.y)
-        ankle = CGPoint(x: pose.landmark(ofType: .leftAnkle).position.x, y: pose.landmark(ofType: .leftAnkle).position.y)
-        shoulder = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftShoulder).position.y)
-        toe = CGPoint(x: pose.landmark(ofType: .leftToe).position.x, y: pose.landmark(ofType: .leftToe).position.y)
-        shoulderXHipY = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftHip).position.y)
+    case WorkoutOrientation.front.rawValue:
+          knee = CGPoint(x: pose.landmark(ofType: .leftKnee).position.x, y: pose.landmark(ofType: .leftKnee).position.y)
+          hip = CGPoint(x: pose.landmark(ofType: .leftHip).position.x, y: pose.landmark(ofType: .leftHip).position.y)
+          ankle = CGPoint(x: pose.landmark(ofType: .leftAnkle).position.x, y: pose.landmark(ofType: .leftAnkle).position.y)
+          shoulder = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftShoulder).position.y)
+          toe = CGPoint(x: pose.landmark(ofType: .leftToe).position.x, y: pose.landmark(ofType: .leftToe).position.y)
+          shoulderXHipY = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftHip).position.y)
 
-      case .right:
-        knee = CGPoint(x: pose.landmark(ofType: .rightKnee).position.x, y: pose.landmark(ofType: .rightKnee).position.y)
-        hip = CGPoint(x: pose.landmark(ofType: .rightHip).position.x, y: pose.landmark(ofType: .rightHip).position.y)
-        ankle = CGPoint(x: pose.landmark(ofType: .rightAnkle).position.x, y: pose.landmark(ofType: .rightAnkle).position.y)
-        shoulder = CGPoint(x: pose.landmark(ofType: .rightShoulder).position.x, y: pose.landmark(ofType: .rightShoulder).position.y)
-        toe = CGPoint(x: pose.landmark(ofType: .rightToe).position.x, y: pose.landmark(ofType: .rightToe).position.y)
-        shoulderXHipY = CGPoint(x: pose.landmark(ofType: .rightShoulder).position.x, y: pose.landmark(ofType: .rightShoulder).position.y)
+    case WorkoutOrientation.right.rawValue:
+          knee = CGPoint(x: pose.landmark(ofType: .rightKnee).position.x, y: pose.landmark(ofType: .rightKnee).position.y)
+          hip = CGPoint(x: pose.landmark(ofType: .rightHip).position.x, y: pose.landmark(ofType: .rightHip).position.y)
+          ankle = CGPoint(x: pose.landmark(ofType: .rightAnkle).position.x, y: pose.landmark(ofType: .rightAnkle).position.y)
+          shoulder = CGPoint(x: pose.landmark(ofType: .rightShoulder).position.x, y: pose.landmark(ofType: .rightShoulder).position.y)
+          toe = CGPoint(x: pose.landmark(ofType: .rightToe).position.x, y: pose.landmark(ofType: .rightToe).position.y)
+          shoulderXHipY = CGPoint(x: pose.landmark(ofType: .rightShoulder).position.x, y: pose.landmark(ofType: .rightShoulder).position.y)
+    // Left angle
+    default:
+      knee = CGPoint(x: pose.landmark(ofType: .leftKnee).position.x, y: pose.landmark(ofType: .leftKnee).position.y)
+      hip = CGPoint(x: pose.landmark(ofType: .leftHip).position.x, y: pose.landmark(ofType: .leftHip).position.y)
+      ankle = CGPoint(x: pose.landmark(ofType: .leftAnkle).position.x, y: pose.landmark(ofType: .leftAnkle).position.y)
+      shoulder = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftShoulder).position.y)
+      toe = CGPoint(x: pose.landmark(ofType: .leftToe).position.x, y: pose.landmark(ofType: .leftToe).position.y)
+      shoulderXHipY = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftHip).position.y)
+    }
+    
+    return SquatElement(orientation: orientation,
+                        KneeAngle: calcJointAngle(
+                          firstLandmark: hip,
+                          midLandmark: knee,
+                          lastLandmark: ankle
+                        ),
+                        HipAngle: calcJointAngle(
+                          firstLandmark: shoulder,
+                          midLandmark: hip,
+                          lastLandmark: knee
+                        ),
+                        AnkleAngle: calcJointAngle(
+                          firstLandmark: knee,
+                          midLandmark: ankle,
+                          lastLandmark: toe
+                        ),
+                        TrunkAngle: calcJointAngle(
+                          firstLandmark: shoulder,
+                          midLandmark: hip,
+                          lastLandmark: shoulderXHipY
+                        )
+    )
+  }
+
+  public static func poseLandmarkToCGPoint(l: PoseLandmark) -> CGPoint {
+    return CGPoint(x: l.position.x, y: l.position.y)
+  }
+
+  public static func getDeadLiftAngles(pose: Pose, orientation: String) -> DeadliftElement {
+    let leftKnee = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftKnee))
+    let leftHip = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftHip))
+    let leftAnkle = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftAnkle))
+    let leftShoulder = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftShoulder))
+    let leftToe = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftToe))
+    let leftElbow = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftElbow))
+    let leftWrist = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftWrist))
+    let leftShoulderXHipY = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftHip).position.y)
+    
+    let rightKnee = poseLandmarkToCGPoint(l: pose.landmark(ofType: .rightKnee))
+    let rightHip = poseLandmarkToCGPoint(l: pose.landmark(ofType: .rightHip))
+    let rightAnkle = poseLandmarkToCGPoint(l: pose.landmark(ofType: .rightAnkle))
+    let rightShoulder = poseLandmarkToCGPoint(l: pose.landmark(ofType: .rightShoulder))
+    let rightToe = poseLandmarkToCGPoint(l: pose.landmark(ofType: .rightToe))
+    let rightElbow = poseLandmarkToCGPoint(l: pose.landmark(ofType: .rightElbow))
+    let rightWrist = poseLandmarkToCGPoint(l: pose.landmark(ofType: .rightWrist))
+    let rightShoulderXHipY = CGPoint(x: pose.landmark(ofType: .rightShoulder).position.x, y: pose.landmark(ofType: .rightShoulder).position.y)
+
+    return DeadliftElement(orientation: orientation,
+                           LeftKneeAngle: calcJointAngle(
+                              firstLandmark: leftHip,
+                              midLandmark: leftKnee,
+                              lastLandmark: leftAnkle
+                           ),
+                           RightKneeAngle: calcJointAngle(
+                              firstLandmark: rightHip,
+                              midLandmark: rightKnee,
+                              lastLandmark: rightAnkle
+                           ),
+                           LeftHipAngle: calcJointAngle(
+                              firstLandmark: leftShoulder,
+                              midLandmark: leftHip,
+                              lastLandmark: leftKnee
+                           ),
+                           RightHipAngle: calcJointAngle(
+                              firstLandmark: rightShoulder,
+                              midLandmark: rightHip,
+                              lastLandmark: rightKnee
+                           ),
+                           LeftAnkleAngle: calcJointAngle(
+                              firstLandmark: leftKnee,
+                              midLandmark: leftAnkle,
+                              lastLandmark: leftToe
+                           ),
+                           RightAnkleAngle: calcJointAngle(
+                              firstLandmark: rightKnee,
+                              midLandmark: rightAnkle,
+                              lastLandmark: rightToe
+                           ),
+                           LeftTrunkAngle: calcJointAngle(
+                              firstLandmark: leftShoulder,
+                              midLandmark: leftHip,
+                              lastLandmark: leftShoulderXHipY
+                           ),
+                           RightTrunkAngle: calcJointAngle(
+                              firstLandmark: rightShoulder,
+                              midLandmark: rightHip,
+                              lastLandmark: rightShoulderXHipY
+                           ),
+                           LeftShoulderAngle: calcJointAngle(
+                            firstLandmark: leftElbow,
+                            midLandmark: leftShoulder,
+                            lastLandmark: leftHip
+                         ),
+                           RightShoulderAngle: calcJointAngle(
+                            firstLandmark: rightElbow,
+                            midLandmark: rightShoulder,
+                            lastLandmark: rightHip
+                         ),
+                           LeftElbowAngle: calcJointAngle(
+                            firstLandmark: leftShoulder,
+                            midLandmark: leftElbow,
+                            lastLandmark: leftWrist
+                         ),
+                           RightElbowAngle: calcJointAngle(
+                            firstLandmark: rightShoulder,
+                            midLandmark: rightElbow,
+                            lastLandmark: rightWrist
+                         )
+    )
+  }
+  
+  public static func normalizedPoint(
+    fromVisionPoint point: VisionPoint,
+    width: CGFloat,
+    height: CGFloat,
+    previewLayer: AVCaptureVideoPreviewLayer
+  ) -> CGPoint {
+    let cgPoint = CGPoint(x: point.x, y: point.y)
+    var normalizedPoint = CGPoint(x: cgPoint.x / width, y: cgPoint.y / height)
+    normalizedPoint = previewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
+    return normalizedPoint
+  }
+  
+  public static func displaySkeleton(pose: Pose, width: CGFloat, height: CGFloat, previewLayer: AVCaptureVideoPreviewLayer, annotationOverlayView: UIView) {
+    for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
+      let startLandmark = pose.landmark(ofType: startLandmarkType)
+      if (startLandmark.inFrameLikelihood > 0.6) {
+        for endLandmarkType in endLandmarkTypesArray {
+          let endLandmark = pose.landmark(ofType: endLandmarkType)
+          let startLandmarkPoint = normalizedPoint(
+            fromVisionPoint: startLandmark.position, width: width, height: height, previewLayer: previewLayer)
+          let endLandmarkPoint = normalizedPoint(
+            fromVisionPoint: endLandmark.position, width: width, height: height, previewLayer: previewLayer)
+          UIUtilities.addLineSegment(
+            fromPoint: startLandmarkPoint,
+            toPoint: endLandmarkPoint,
+            inView: annotationOverlayView,
+            color: UIColor.green,
+            width: 3.0
+          )
+        }
+      }
+    }
+    
+    for landmark in pose.landmarks {
+      let landmarkPoint = normalizedPoint(
+        fromVisionPoint: landmark.position, width: width, height: height, previewLayer: previewLayer)
+      UIUtilities.addCircle(
+        atPoint: landmarkPoint,
+        to: annotationOverlayView,
+        color: UIColor.blue,
+        radius: 4.0
+      )
+    }
+  }
+  
+  public static func displaySquatOverlay(pose: Pose, to view: UIView, squatElement: SquatElement, orientation: String, width: CGFloat, height: CGFloat, previewLayer: AVCaptureVideoPreviewLayer) {
+    var knee: CGPoint
+    var hip: CGPoint
+    var ankle: CGPoint
+    var shoulder: CGPoint
+
+
+    switch orientation {
+        case WorkoutOrientation.front.rawValue:
+            knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height, previewLayer: previewLayer)
+            hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height, previewLayer: previewLayer)
+            ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height, previewLayer: previewLayer)
+            shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height, previewLayer: previewLayer)
+        case WorkoutOrientation.right.rawValue:
+            knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightKnee).position, width: width, height: height, previewLayer: previewLayer)
+            hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightHip).position, width: width, height: height, previewLayer: previewLayer)
+            ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightAnkle).position, width: width, height: height, previewLayer: previewLayer)
+            shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height, previewLayer: previewLayer)
+        // Left angle
+        default:
+            knee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height, previewLayer: previewLayer)
+            hip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height, previewLayer: previewLayer)
+            ankle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height, previewLayer: previewLayer)
+            shoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height, previewLayer: previewLayer)
     }
 
-    let kneeAngle = calcJointAngle(
-      firstLandmark: hip,
-      midLandmark: knee,
-      lastLandmark: ankle)
+    UIUtilities.addLabel(atPoint: knee, to: view, label: String(Int(squatElement.KneeAngle)))
+    UIUtilities.addLabel(atPoint: hip, to: view, label: String(Int(squatElement.HipAngle)))
+    UIUtilities.addLabel(atPoint: ankle, to: view, label: String(Int(squatElement.AnkleAngle)))
+    UIUtilities.addLabel(atPoint: shoulder, to: view, label: String(Int(squatElement.TrunkAngle)))
+  }
+  
+  public static func displayDeadliftOverlay(pose: Pose, to view: UIView, deadliftElement: DeadliftElement, orientation: String, width: CGFloat, height: CGFloat, previewLayer: AVCaptureVideoPreviewLayer) {
     
-    let hipAngle = calcJointAngle(
-      firstLandmark: shoulder,
-      midLandmark: hip,
-      lastLandmark: knee)
+    let leftKnee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height, previewLayer: previewLayer)
+    let leftHip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height, previewLayer: previewLayer)
+    let leftAnkle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height, previewLayer: previewLayer)
+    let leftShoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height, previewLayer: previewLayer)
+    let leftElbow = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftElbow).position, width: width, height: height, previewLayer: previewLayer)
     
-    let ankleAngle = calcJointAngle(
-      firstLandmark: knee,
-      midLandmark: ankle,
-      lastLandmark: toe)
-    
-    let trunkAngle = calcJointAngle(
-      firstLandmark: shoulder,
-      midLandmark: hip,
-      lastLandmark: shoulderXHipY)
+    let rightKnee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightKnee).position, width: width, height: height, previewLayer: previewLayer)
+    let rightHip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightHip).position, width: width, height: height, previewLayer: previewLayer)
+    let rightAnkle = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightAnkle).position, width: width, height: height, previewLayer: previewLayer)
+    let rightShoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height, previewLayer: previewLayer)
+    let rightElbow = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightElbow).position, width: width, height: height, previewLayer: previewLayer)
 
-    return SquatElement(KneeAngle: kneeAngle, HipAngle: hipAngle, AnkleAngle: ankleAngle, TrunkAngle: trunkAngle)
+
+    switch orientation {
+      case WorkoutOrientation.right.rawValue:
+        UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(deadliftElement.RightKneeAngle)))
+        UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(deadliftElement.RightHipAngle)))
+        UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(deadliftElement.RightAnkleAngle)))
+        UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(deadliftElement.RightTrunkAngle)))
+        UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(deadliftElement.RightElbowAngle)))
+      case WorkoutOrientation.front.rawValue:
+        UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(deadliftElement.LeftKneeAngle)))
+        UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(deadliftElement.LeftHipAngle)))
+        UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(deadliftElement.LeftAnkleAngle)))
+        UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(deadliftElement.LeftTrunkAngle)))
+        UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(deadliftElement.LeftElbowAngle)))
+        
+        UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(deadliftElement.RightKneeAngle)))
+        UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(deadliftElement.RightHipAngle)))
+        UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(deadliftElement.RightAnkleAngle)))
+        UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(deadliftElement.RightTrunkAngle)))
+        UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(deadliftElement.RightElbowAngle)))
+      default:
+        UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(deadliftElement.LeftKneeAngle)))
+        UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(deadliftElement.LeftHipAngle)))
+        UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(deadliftElement.LeftAnkleAngle)))
+        UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(deadliftElement.LeftTrunkAngle)))
+        UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(deadliftElement.LeftElbowAngle)))
+    }
+
   }
 }

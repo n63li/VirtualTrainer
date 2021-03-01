@@ -11,12 +11,12 @@ class WorkoutSession {
   var workoutType: String = ""
   var poseNetData: [Double] = []
   var imuData: [Double] = []
-  var cameraAngle: Bool
+  var cameraAngle: String
   var workoutResult: WorkoutResultModel
   var startTimestamp: Double = 0
   var endTimestamp: Double = 0
   
-  init(workoutType: String, cameraAngle: Bool) {
+  init(workoutType: String, cameraAngle: String) {
     self.workoutType = workoutType
     self.cameraAngle = cameraAngle
     self.workoutResult = WorkoutResultModel(score: 0, incorrectJoints: [0], incorrectAccelerations: [0])
@@ -56,6 +56,7 @@ class WorkoutSession {
   }
   
   func save() -> Bool {
+    print(self.workoutType)
     let workoutSessionItem = WorkoutSessionModel(
       poseNetData: [],
       imuData: [],

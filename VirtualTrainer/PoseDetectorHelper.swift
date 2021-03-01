@@ -13,22 +13,22 @@ import MLKit
 class PoseDetectorHelper {
     /// Initialized when one of the pose detector rows are chosen. Reset to `nil` when neither are.
     private var poseDetector: PoseDetector? = nil
-    
+
     init(frames: [UIImage] ) {
         resetManagedLifecycleDetectors()
         frames.forEach { frame in
             detectPose(in: VisionImage(image: frame))
         }
     }
-    
+
     init() {
-        
+
     }
-    
+
     func getResults() {
-        
+
     }
-    
+
     func detectPose(in image: VisionImage) -> [Pose] {
       if let poseDetector = self.poseDetector {
         var poses: [Pose]
@@ -47,7 +47,7 @@ class PoseDetectorHelper {
       }
         return []
     }
-    
+
     /// Resets any detector instances which use a conventional lifecycle paradigm. This method is
     /// expected to be invoked on the AVCaptureOutput queue - the same queue on which detection is
     /// run.

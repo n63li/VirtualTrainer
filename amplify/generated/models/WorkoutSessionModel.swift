@@ -6,7 +6,7 @@ public struct WorkoutSessionModel: Model {
   public let id: String
   public var poseNetData: [Double]
   public var imuData: [Double]
-  public var cameraAngle: Bool
+  public var cameraAngle: String
   public var workoutType: String
   public var startTimestamp: Int
   public var result: WorkoutResultModel?
@@ -15,7 +15,7 @@ public struct WorkoutSessionModel: Model {
   public init(id: String = UUID().uuidString,
       poseNetData: [Double] = [],
       imuData: [Double] = [],
-      cameraAngle: Bool,
+      cameraAngle: String,
       workoutType: String,
       startTimestamp: Int,
       result: WorkoutResultModel? = nil,

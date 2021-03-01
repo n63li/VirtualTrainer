@@ -11,30 +11,31 @@ import AVKit
 
 class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     private var workoutType: String = "squat"
-    private var cameraAngle: SquatOrientation = SquatOrientation.left
-    
+    private var cameraAngle: WorkoutOrientation = WorkoutOrientation.left
+
     let imagePickerController = UIImagePickerController()
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "startWorkoutSegue") {
             let vc = segue.destination as! CameraViewController
             vc.workoutSession = WorkoutSession(
                 workoutType: workoutType,
-                cameraAngle: cameraAngle != nil
+                cameraAngle: cameraAngle.rawValue
             )
         } else if (segue.identifier == "feedbackSegue") {
             let vc = segue.destination as! FeedbackViewController
             vc.workoutSession = WorkoutSession(
                 workoutType: workoutType,
-                cameraAngle: cameraAngle != nil
+                cameraAngle: cameraAngle.rawValue
             )
         }
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
         imagePickerController.dismiss(animated: true, completion: nil)
@@ -48,9 +49,9 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             }
         }
     }
-    
+
     // MARK: Actions
-    
+
     @IBAction func startWorkout(_ sender: Any) {
         let alert = UIAlertController(title: "Select Workout Source", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Photo Library", comment: "Default action"), style: .default, handler: { _ in
@@ -64,7 +65,7 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     func upload() {
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
@@ -72,13 +73,13 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
 
         present(imagePickerController, animated: true, completion: nil)
     }
-    
+
     @IBAction func onWorkoutTypeChanged(_ sender: UISegmentedControl) {
         self.workoutType = sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()
     }
-    
-    
+
+
     @IBAction func onCameraAngleChanged(_ sender: UISegmentedControl) {
-        self.cameraAngle = SquatOrientation(rawValue: sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()) ?? SquatOrientation.left
+        self.cameraAngle = WorkoutOrientation(rawValue: sender.titleForSegment(at: sender.selectedSegmentIndex)!.lowercased()) ?? WorkoutOrientation.left
     }
 }
