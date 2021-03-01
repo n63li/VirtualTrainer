@@ -27,7 +27,7 @@ extension WorkoutSessionModel {
       .id(),
       .field(workoutSessionModel.poseNetData, is: .required, ofType: .embeddedCollection(of: Double.self)),
       .field(workoutSessionModel.imuData, is: .required, ofType: .embeddedCollection(of: Double.self)),
-      .field(workoutSessionModel.cameraAngle, is: .required, ofType: .bool),
+      .field(workoutSessionModel.cameraAngle, is: .required, ofType: .string),
       .field(workoutSessionModel.workoutType, is: .required, ofType: .string),
       .field(workoutSessionModel.startTimestamp, is: .required, ofType: .int),
       .belongsTo(workoutSessionModel.result, is: .optional, ofType: WorkoutResultModel.self, targetName: "workoutSessionModelResultId"),
