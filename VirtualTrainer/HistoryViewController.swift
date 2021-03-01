@@ -62,6 +62,9 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    if let indexPath = tableView.indexPathForSelectedRow {
+      tableView.deselectRow(at: indexPath, animated: true)
+    }
   }
 
   override func viewWillDisappear(_ animated: Bool) {
