@@ -11,6 +11,8 @@ public struct WorkoutSessionModel: Model {
   public var startTimestamp: Int
   public var result: WorkoutResultModel?
   public var endTimestamp: Int
+  public var squatElements: [SquatElement]?
+  public var deadliftElements: [DeadliftElement]?
   
   public init(id: String = UUID().uuidString,
       poseNetData: [Double] = [],
@@ -19,7 +21,9 @@ public struct WorkoutSessionModel: Model {
       workoutType: String,
       startTimestamp: Int,
       result: WorkoutResultModel? = nil,
-      endTimestamp: Int) {
+      endTimestamp: Int,
+      squatElements: [SquatElement]? = [],
+      deadliftElements: [DeadliftElement]? = []) {
       self.id = id
       self.poseNetData = poseNetData
       self.imuData = imuData
@@ -28,5 +32,7 @@ public struct WorkoutSessionModel: Model {
       self.startTimestamp = startTimestamp
       self.result = result
       self.endTimestamp = endTimestamp
+      self.squatElements = squatElements
+      self.deadliftElements = deadliftElements
   }
 }

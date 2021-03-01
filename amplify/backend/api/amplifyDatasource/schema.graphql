@@ -1,8 +1,7 @@
-type DeadliftElement @model @auth(rules: [{allow: public}]) {
-  id: ID!
+type DeadliftElement {
   orientation: String!
   leftKneeAngle: Float!
-  rightKneeAngl: Float!
+  rightKneeAngle: Float!
   leftHipAngle: Float!
   rightHipAngle: Float!
   leftAnkleAngle: Float!
@@ -10,18 +9,17 @@ type DeadliftElement @model @auth(rules: [{allow: public}]) {
   leftTrunkAngle: Float!
   rightTrunkAngle: Float!
   leftShoulderAngle: Float!
-  rightShoulderAngl: Float!
+  rightShoulderAngle: Float!
   leftElbowAngle: Float!
   rightElbowAngle: Float!
 }
 
-type SquatElemen @model @auth(rules: [{allow: public}]) {
-  id: ID!
+type SquatElement {
   orientation: String!
+  kneeAngle: Float!
   hipAngle: Float!
   ankleAngle: Float!
   trunkAngle: Float!
-  kneeAngle: Float!
 }
 
 type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
@@ -33,6 +31,8 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   startTimestamp: AWSTimestamp!
   result: WorkoutResultModel @connection
   endTimestamp: AWSTimestamp!
+  squatElements: [SquatElement]
+  deadliftElements: [DeadliftElement]
 }
 
 type WorkoutResultModel @model @auth(rules: [{allow: public}]) {
