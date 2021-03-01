@@ -1,6 +1,5 @@
 type DeadliftElement {
   orientation: String!
-  leftKneeAngle: Float!
   rightKneeAngle: Float!
   leftHipAngle: Float!
   rightHipAngle: Float!
@@ -12,14 +11,15 @@ type DeadliftElement {
   rightShoulderAngle: Float!
   leftElbowAngle: Float!
   rightElbowAngle: Float!
+  leftKneeAngle: Float!
 }
 
 type SquatElement {
   orientation: String!
-  kneeAngle: Float!
   hipAngle: Float!
   ankleAngle: Float!
   trunkAngle: Float!
+  kneeAngle: Float!
 }
 
 type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
@@ -27,8 +27,8 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   imuData: [Float!]
   cameraAngle: String!
   workoutType: String!
-  startTimestamp: AWSTimestamp!
   result: WorkoutResultModel @connection
+  startTimestamp: AWSTimestamp!
   endTimestamp: AWSTimestamp!
   squatElements: [SquatElement]
   deadliftElements: [DeadliftElement]

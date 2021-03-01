@@ -7,8 +7,8 @@ public struct WorkoutSessionModel: Model {
   public var imuData: [Double]
   public var cameraAngle: String
   public var workoutType: String
-  public var startTimestamp: Int
   public var result: WorkoutResultModel?
+  public var startTimestamp: Int
   public var endTimestamp: Int
   public var squatElements: [SquatElement]?
   public var deadliftElements: [DeadliftElement]?
@@ -17,8 +17,8 @@ public struct WorkoutSessionModel: Model {
       imuData: [Double] = [],
       cameraAngle: String,
       workoutType: String,
-      startTimestamp: Int,
       result: WorkoutResultModel? = nil,
+      startTimestamp: Int,
       endTimestamp: Int,
       squatElements: [SquatElement]? = [],
       deadliftElements: [DeadliftElement]? = []) {
@@ -26,8 +26,8 @@ public struct WorkoutSessionModel: Model {
       self.imuData = imuData
       self.cameraAngle = cameraAngle
       self.workoutType = workoutType
-      self.startTimestamp = startTimestamp
       self.result = result
+      self.startTimestamp = startTimestamp
       self.endTimestamp = endTimestamp
       self.squatElements = squatElements
       self.deadliftElements = deadliftElements

@@ -4,7 +4,6 @@ import Foundation
 
 public struct DeadliftElement: Embeddable {
   var orientation: String
-  var leftKneeAngle: Double
   var rightKneeAngle: Double
   var leftHipAngle: Double
   var rightHipAngle: Double
@@ -16,4 +15,5 @@ public struct DeadliftElement: Embeddable {
   var rightShoulderAngle: Double
   var leftElbowAngle: Double
   var rightElbowAngle: Double
+  var leftKneeAngle: Double
 }

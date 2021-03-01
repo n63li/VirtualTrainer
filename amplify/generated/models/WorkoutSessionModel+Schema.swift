@@ -9,8 +9,8 @@ extension WorkoutSessionModel {
     case imuData
     case cameraAngle
     case workoutType
-    case startTimestamp
     case result
+    case startTimestamp
     case endTimestamp
     case squatElements
     case deadliftElements
@@ -29,8 +29,8 @@ extension WorkoutSessionModel {
       .field(workoutSessionModel.imuData, is: .required, ofType: .embeddedCollection(of: Double.self)),
       .field(workoutSessionModel.cameraAngle, is: .required, ofType: .string),
       .field(workoutSessionModel.workoutType, is: .required, ofType: .string),
-      .field(workoutSessionModel.startTimestamp, is: .required, ofType: .int),
       .belongsTo(workoutSessionModel.result, is: .optional, ofType: WorkoutResultModel.self, targetName: "workoutSessionModelResultId"),
+      .field(workoutSessionModel.startTimestamp, is: .required, ofType: .int),
       .field(workoutSessionModel.endTimestamp, is: .required, ofType: .int),
       .field(workoutSessionModel.squatElements, is: .optional, ofType: .embeddedCollection(of: SquatElement.self)),
       .field(workoutSessionModel.deadliftElements, is: .optional, ofType: .embeddedCollection(of: DeadliftElement.self))

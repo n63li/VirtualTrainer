@@ -6,7 +6,6 @@ extension DeadliftElement {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case orientation
-    case leftKneeAngle
     case rightKneeAngle
     case leftHipAngle
     case rightHipAngle
@@ -18,6 +17,7 @@ extension DeadliftElement {
     case rightShoulderAngle
     case leftElbowAngle
     case rightElbowAngle
+    case leftKneeAngle
   }
   
   public static let keys = CodingKeys.self
@@ -30,7 +30,6 @@ extension DeadliftElement {
     
     model.fields(
       .field(deadliftElement.orientation, is: .required, ofType: .string),
-      .field(deadliftElement.leftKneeAngle, is: .required, ofType: .double),
       .field(deadliftElement.rightKneeAngle, is: .required, ofType: .double),
       .field(deadliftElement.leftHipAngle, is: .required, ofType: .double),
       .field(deadliftElement.rightHipAngle, is: .required, ofType: .double),
@@ -41,7 +40,8 @@ extension DeadliftElement {
       .field(deadliftElement.leftShoulderAngle, is: .required, ofType: .double),
       .field(deadliftElement.rightShoulderAngle, is: .required, ofType: .double),
       .field(deadliftElement.leftElbowAngle, is: .required, ofType: .double),
-      .field(deadliftElement.rightElbowAngle, is: .required, ofType: .double)
+      .field(deadliftElement.rightElbowAngle, is: .required, ofType: .double),
+      .field(deadliftElement.leftKneeAngle, is: .required, ofType: .double)
     )
     }
 }

@@ -6,10 +6,10 @@ extension SquatElement {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case orientation
-    case kneeAngle
     case hipAngle
     case ankleAngle
     case trunkAngle
+    case kneeAngle
   }
   
   public static let keys = CodingKeys.self
@@ -22,10 +22,10 @@ extension SquatElement {
     
     model.fields(
       .field(squatElement.orientation, is: .required, ofType: .string),
-      .field(squatElement.kneeAngle, is: .required, ofType: .double),
       .field(squatElement.hipAngle, is: .required, ofType: .double),
       .field(squatElement.ankleAngle, is: .required, ofType: .double),
-      .field(squatElement.trunkAngle, is: .required, ofType: .double)
+      .field(squatElement.trunkAngle, is: .required, ofType: .double),
+      .field(squatElement.kneeAngle, is: .required, ofType: .double)
     )
     }
 }

@@ -62,8 +62,8 @@ class WorkoutSession {
       imuData: self.imuData,
       cameraAngle: self.cameraAngle,
       workoutType: self.workoutType,
-      startTimestamp: Int(self.startTimestamp),
       result: self.workoutResult,
+      startTimestamp: Int(self.startTimestamp),
       endTimestamp: Int(self.endTimestamp),
       squatElements: self.squatElements,
       deadliftElements: self.deadliftElements)
