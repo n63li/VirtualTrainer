@@ -15,7 +15,6 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
 
     let imagePickerController = UIImagePickerController()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -37,10 +36,6 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         DispatchQueue.global(qos: .background).async {
             let poseDetectorHelper = PoseDetectorHelper(frames: frames)
             let poses = poseDetectorHelper.getResults()
-            guard !poses.isEmpty else {
-              print("Pose detector returned no results.")
-              return
-            }
 
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
