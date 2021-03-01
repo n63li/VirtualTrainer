@@ -15,8 +15,11 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
 
     let imagePickerController = UIImagePickerController()
 
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        progressBar.isHidden = true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,9 +36,13 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
         imagePickerController.dismiss(animated: true, completion: nil)
         let frames = UIUtilities.getAllFrames(videoURL: videoURL)
+        self.progressBar.isHidden = false
         DispatchQueue.global(qos: .background).async {
-            print("Processing Poses")
-            let poseDetectorHelper = PoseDetectorHelper(frames: frames)
+            let poseDetectorHelper = PoseDetectorHelper(frames: frames) { (progress) -> () in
+                DispatchQueue.main.async {
+                    self.progressBar.setProgress(progress, animated: true)
+                }
+            }
             let poses = poseDetectorHelper.getResults()
             let workoutSession = WorkoutSession(
                 workoutType: self.workoutType,
@@ -53,9 +60,9 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
                   break
               }
             }
-            print("Done Processing Poses")
             
             DispatchQueue.main.async {
+                self.progressBar.isHidden = true
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let vc = storyboard.instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController
                 vc.workoutSession = workoutSession
