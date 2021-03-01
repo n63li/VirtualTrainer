@@ -20,11 +20,6 @@ import UIKit
 /// Main view controller class.
 @objc(HistoryViewController)
 class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIContextMenuInteractionDelegate {
-  /// An image picker for accessing the photo library or camera.
-//  var imagePicker = UIImagePickerController()
-//
-//  // Image counter.
-//  var currentImage = 0
     
   // Workout sessions
   var workoutSessions = [] as [WorkoutSession]
@@ -119,7 +114,6 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
   }
   
   func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-    print("hello")
     // 1
     guard
       let identifier = configuration.identifier as? String,
