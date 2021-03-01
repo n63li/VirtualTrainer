@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HistoryViewController"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutTableViewCell" rowHeight="125" id="Hk9-Au-ba1" customClass="WorkoutTableViewCell" customModule="VirtualTrainer" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
@@ -58,7 +58,7 @@
                 <outlet property="dateLabel" destination="MHb-SR-6lq" id="Hmi-SN-jsO"/>
                 <outlet property="typeLabel" destination="thi-Be-UBT" id="FBv-FR-3MO"/>
             </connections>
-            <point key="canvasLocation" x="-139" y="-81"/>
+            <point key="canvasLocation" x="-139.13043478260872" y="-81.361607142857139"/>
         </tableViewCell>
     </objects>
 </document>

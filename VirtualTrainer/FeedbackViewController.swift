@@ -34,7 +34,6 @@ class FeedbackViewController: UIViewController {
         
         workoutSession?.workoutResult = item
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
-        print("finishing workout \(workoutSession?.workoutResult)")
         workoutSession?.save()
     }
 }
