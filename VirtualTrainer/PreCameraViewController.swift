@@ -34,28 +34,31 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         imagePickerController.dismiss(animated: true, completion: nil)
         let frames = UIUtilities.getAllFrames(videoURL: videoURL)
         DispatchQueue.global(qos: .background).async {
+            print("Processing Poses")
             let poseDetectorHelper = PoseDetectorHelper(frames: frames)
             let poses = poseDetectorHelper.getResults()
-
+            let workoutSession = WorkoutSession(
+                workoutType: self.workoutType,
+                cameraAngle: self.cameraAngle.rawValue
+            )
+            poses.forEach { pose in
+              switch workoutSession.workoutType {
+                case "squat":
+                  let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                    workoutSession.squatElements.append(squatElement)
+                case "deadlift":
+                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                    workoutSession.deadliftElements.append(deadliftElement)
+                default:
+                  break
+              }
+            }
+            print("Done Processing Poses")
+            
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let vc = storyboard.instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController
-                vc.workoutSession = WorkoutSession(
-                    workoutType: self.workoutType,
-                    cameraAngle: self.cameraAngle.rawValue
-                )
-                poses.forEach { pose in
-                  switch vc.workoutSession?.workoutType {
-                    case "squat":
-                      let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: vc.workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
-                      vc.workoutSession?.squatElements.append(squatElement)
-                    case "deadlift":
-                        let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: vc.workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
-                        vc.workoutSession?.deadliftElements.append(deadliftElement)
-                    default:
-                      break
-                  }
-                }
+                vc.workoutSession = workoutSession
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
