@@ -6,7 +6,6 @@ extension WorkoutSessionModel {
   // MARK: - CodingKeys 
    public enum CodingKeys: String, ModelKey {
     case id
-    case poseNetData
     case imuData
     case cameraAngle
     case workoutType
@@ -27,7 +26,6 @@ extension WorkoutSessionModel {
     
     model.fields(
       .id(),
-      .field(workoutSessionModel.poseNetData, is: .required, ofType: .embeddedCollection(of: Double.self)),
       .field(workoutSessionModel.imuData, is: .required, ofType: .embeddedCollection(of: Double.self)),
       .field(workoutSessionModel.cameraAngle, is: .required, ofType: .string),
       .field(workoutSessionModel.workoutType, is: .required, ofType: .string),

@@ -32,6 +32,8 @@ class FeedbackViewController: UIViewController {
             }
         }
         
+        print(workoutSession?.squatElements)
+        print(workoutSession?.deadliftElements)
         workoutSession?.workoutResult = item
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         workoutSession?.save()

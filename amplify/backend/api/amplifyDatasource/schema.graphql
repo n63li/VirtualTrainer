@@ -24,7 +24,6 @@ type SquatElement {
 
 type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   id: ID!
-  poseNetData: [Float!]
   imuData: [Float!]
   cameraAngle: String!
   workoutType: String!

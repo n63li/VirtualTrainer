@@ -4,7 +4,6 @@ import Foundation
 
 public struct WorkoutSessionModel: Model {
   public let id: String
-  public var poseNetData: [Double]
   public var imuData: [Double]
   public var cameraAngle: String
   public var workoutType: String
@@ -15,7 +14,6 @@ public struct WorkoutSessionModel: Model {
   public var deadliftElements: [DeadliftElement]?
   
   public init(id: String = UUID().uuidString,
-      poseNetData: [Double] = [],
       imuData: [Double] = [],
       cameraAngle: String,
       workoutType: String,
@@ -25,7 +23,6 @@ public struct WorkoutSessionModel: Model {
       squatElements: [SquatElement]? = [],
       deadliftElements: [DeadliftElement]? = []) {
       self.id = id
-      self.poseNetData = poseNetData
       self.imuData = imuData
       self.cameraAngle = cameraAngle
       self.workoutType = workoutType

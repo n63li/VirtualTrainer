@@ -166,7 +166,6 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
     for model in workoutSessionModels {
       let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: model.cameraAngle)
       workoutSession.id = model.id
-      workoutSession.poseNetData = model.poseNetData
       workoutSession.imuData = model.imuData
       workoutSession.workoutResult = model.result ?? WorkoutResultModel(
         score: 0,

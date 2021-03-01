@@ -114,14 +114,12 @@ class CameraViewController: UIViewController {
 
           switch workoutSession?.workoutType {
             case "squat":
-              var squatData: [SquatElement] = []
               let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
-              squatData.append(squatElement)
+              workoutSession?.squatElements.append(squatElement)
               PoseUtilities.displaySquatOverlay(pose: pose, to: self.annotationOverlayView, squatElement: squatElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue, width: width, height: height, previewLayer: previewLayer)
             case "deadlift":
-              var deadliftData: [DeadliftElement] = []
               let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue)
-              deadliftData.append(deadliftElement)
+              workoutSession?.deadliftElements.append(deadliftElement)
               PoseUtilities.displayDeadliftOverlay(pose: pose, to: self.annotationOverlayView, deadliftElement: deadliftElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left.rawValue, width: width, height: height, previewLayer: previewLayer)
             default:
               break
