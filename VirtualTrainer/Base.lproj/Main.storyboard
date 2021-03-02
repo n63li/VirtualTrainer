@@ -125,6 +125,12 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjb-Bx-Ta4">
                                         <rect key="frame" x="16" y="174" width="343" height="270"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XUA-Gw-S4H">
+                                                <rect key="frame" x="96" y="132" width="150" height="5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </progressView>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -156,6 +162,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Start Workout" id="8j9-N5-cU0"/>
                     <connections>
+                        <outlet property="progressBar" destination="XUA-Gw-S4H" id="7nu-zK-UzF"/>
                         <segue destination="jry-iJ-a0X" kind="show" identifier="feedbackSegue" id="oML-Om-WaV"/>
                         <segue destination="YXl-5B-mBF" kind="show" identifier="startWorkoutSegue" id="SWg-ZJ-VpE"/>
                     </connections>
@@ -215,7 +222,7 @@
         <!--Feedback-->
         <scene sceneID="NpE-Da-ezc">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="jry-iJ-a0X" customClass="FeedbackViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedbackViewController" hidesBottomBarWhenPushed="YES" id="jry-iJ-a0X" customClass="FeedbackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hwp-a6-DYp"/>
                         <viewControllerLayoutGuide type="bottom" id="fXK-yI-mU9"/>
@@ -231,8 +238,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
+                                <rect key="frame" x="18" y="96" width="57" height="33.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QET-Vy-SuW">
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="33.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="05z-vK-0qD" firstAttribute="leading" secondItem="7rK-pb-3aj" secondAttribute="leading" constant="18" id="gPT-1m-AK0"/>
+                            <constraint firstItem="05z-vK-0qD" firstAttribute="top" secondItem="hwp-a6-DYp" secondAttribute="bottom" id="uoP-UQ-VSP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feedback" id="PaJ-T1-oAx">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="5et-gO-2KR">
@@ -242,6 +264,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateLabel" destination="QET-Vy-SuW" id="qNJ-rr-6Zl"/>
                         <outlet property="doneButton" destination="5et-gO-2KR" id="7xQ-b5-79t"/>
                     </connections>
                 </viewController>

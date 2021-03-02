@@ -15,20 +15,16 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
 
     let imagePickerController = UIImagePickerController()
 
-
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        progressBar.isHidden = true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "startWorkoutSegue") {
             let vc = segue.destination as! CameraViewController
-            vc.workoutSession = WorkoutSession(
-                workoutType: workoutType,
-                cameraAngle: cameraAngle.rawValue
-            )
-        } else if (segue.identifier == "feedbackSegue") {
-            let vc = segue.destination as! FeedbackViewController
             vc.workoutSession = WorkoutSession(
                 workoutType: workoutType,
                 cameraAngle: cameraAngle.rawValue
@@ -40,12 +36,38 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
         imagePickerController.dismiss(animated: true, completion: nil)
         let frames = UIUtilities.getAllFrames(videoURL: videoURL)
+        self.progressBar.setProgress(0, animated: false)
+        self.progressBar.isHidden = false
         DispatchQueue.global(qos: .background).async {
-            let poseDetectorHelper = PoseDetectorHelper(frames: frames)
-            poseDetectorHelper.getResults()
-
+            let poseDetectorHelper = PoseDetectorHelper(frames: frames) { (progress) -> () in
+                DispatchQueue.main.async {
+                    self.progressBar.setProgress(progress, animated: true)
+                }
+            }
+            let poses = poseDetectorHelper.getResults()
+            let workoutSession = WorkoutSession(
+                workoutType: self.workoutType,
+                cameraAngle: self.cameraAngle.rawValue
+            )
+            poses.forEach { pose in
+              switch workoutSession.workoutType {
+                case "squat":
+                  let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                    workoutSession.squatElements.append(squatElement)
+                case "deadlift":
+                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                    workoutSession.deadliftElements.append(deadliftElement)
+                default:
+                  break
+              }
+            }
+            
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "feedbackSegue", sender: PreCameraViewController.self)
+                self.progressBar.isHidden = true
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let vc = storyboard.instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController
+                vc.workoutSession = workoutSession
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

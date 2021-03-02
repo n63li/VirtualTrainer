@@ -9,12 +9,13 @@ import Amplify
 class WorkoutSession {
   var id: String = ""
   var workoutType: String = ""
-  var poseNetData: [Double] = []
   var imuData: [Double] = []
   var cameraAngle: String
   var workoutResult: WorkoutResultModel
   var startTimestamp: Double = 0
   var endTimestamp: Double = 0
+  var squatElements: [SquatElement] = []
+  var deadliftElements: [DeadliftElement] = []
   
   init(workoutType: String, cameraAngle: String) {
     self.workoutType = workoutType
@@ -58,13 +59,14 @@ class WorkoutSession {
   func save() -> Bool {
     print(self.workoutType)
     let workoutSessionItem = WorkoutSessionModel(
-      poseNetData: [],
-      imuData: [],
+      imuData: self.imuData,
       cameraAngle: self.cameraAngle,
       workoutType: self.workoutType,
-      startTimestamp: Int(self.startTimestamp),
       result: self.workoutResult,
-      endTimestamp: Int(self.endTimestamp))
+      startTimestamp: Int(self.startTimestamp),
+      endTimestamp: Int(self.endTimestamp),
+      squatElements: self.squatElements,
+      deadliftElements: self.deadliftElements)
     Amplify.DataStore.save(workoutSessionItem) { result in
       switch(result) {
       case .success(let savedItem):
