@@ -238,8 +238,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
+                                <rect key="frame" x="18" y="96" width="57" height="33.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QET-Vy-SuW">
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="33.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="05z-vK-0qD" firstAttribute="leading" secondItem="7rK-pb-3aj" secondAttribute="leading" constant="18" id="gPT-1m-AK0"/>
+                            <constraint firstItem="05z-vK-0qD" firstAttribute="top" secondItem="hwp-a6-DYp" secondAttribute="bottom" id="uoP-UQ-VSP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feedback" id="PaJ-T1-oAx">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="5et-gO-2KR">
@@ -249,6 +264,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateLabel" destination="QET-Vy-SuW" id="qNJ-rr-6Zl"/>
                         <outlet property="doneButton" destination="5et-gO-2KR" id="7xQ-b5-79t"/>
                     </connections>
                 </viewController>
