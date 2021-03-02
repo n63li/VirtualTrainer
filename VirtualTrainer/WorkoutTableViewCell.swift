@@ -27,6 +27,6 @@ class WorkoutTableViewCell: UITableViewCell {
       
       typeLabel?.text = session.workoutType.capitalized
       dateLabel?.text = strDate
-        accuracyLabel?.text = String(session.workoutResult.score)
+      accuracyLabel?.text = String(session.workoutResult.score ?? 0)
     }
 }

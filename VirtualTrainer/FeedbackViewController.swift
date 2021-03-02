@@ -29,22 +29,14 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
-        let item = WorkoutResultModel(
-                score: 1020,
-                incorrectJoints: [],
-                incorrectAccelerations: [])
-        Amplify.DataStore.save(item) { result in
-            switch(result) {
-            case .success(let savedItem):
-                print("Saved item: \(savedItem.id)")
-            case .failure(let error):
-                print("Could not save item to DataStore: \(error)")
-            }
-        }
-        
+
         print(workoutSession?.squatElements)
         print(workoutSession?.deadliftElements)
-        workoutSession?.workoutResult = item
+        workoutSession?.workoutResult = WorkoutResult(
+          score: 1020,
+          incorrectJoints: [],
+          incorrectAccelerations: []
+        )
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         workoutSession?.save()
     }

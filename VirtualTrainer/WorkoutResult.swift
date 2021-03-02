@@ -6,7 +6,7 @@
 //  Copyright © 2021 Google Inc. All rights reserved.
 //
 
-struct WorkoutResult {
+public struct WorkoutResult: Codable {
   var score: Int?
   var incorrectJoints: [Double]?
   var incorrectAccelerations: [Double]?

@@ -1,3 +1,9 @@
+type WorkoutResult {
+  score: Int!
+  incorrectJoints: [Float]
+  incorrectAccelerations: [Float]
+}
+
 type DeadliftElement {
   orientation: String!
   rightKneeAngle: Float!
@@ -27,11 +33,11 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   imuData: [Float!]
   cameraAngle: String!
   workoutType: String!
-  result: WorkoutResultModel @connection
   startTimestamp: AWSTimestamp!
   endTimestamp: AWSTimestamp!
   squatElements: [SquatElement]
   deadliftElements: [DeadliftElement]
+  workoutResult: WorkoutResult
 }
 
 type WorkoutResultModel @model @auth(rules: [{allow: public}]) {
