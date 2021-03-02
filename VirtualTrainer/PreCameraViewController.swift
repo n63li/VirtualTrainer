@@ -27,7 +27,7 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             let vc = segue.destination as! CameraViewController
             vc.workoutSession = WorkoutSession(
                 workoutType: workoutType,
-                cameraAngle: cameraAngle.rawValue
+                cameraAngle: cameraAngle
             )
         }
     }
@@ -47,15 +47,15 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             let poses = poseDetectorHelper.getResults()
             let workoutSession = WorkoutSession(
                 workoutType: self.workoutType,
-                cameraAngle: self.cameraAngle.rawValue
+                cameraAngle: self.cameraAngle
             )
             poses.forEach { pose in
               switch workoutSession.workoutType {
                 case "squat":
-                  let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                  let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
                     workoutSession.squatElements.append(squatElement)
                 case "deadlift":
-                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left.rawValue)
+                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
                     workoutSession.deadliftElements.append(deadliftElement)
                 default:
                   break

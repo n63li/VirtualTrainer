@@ -10,14 +10,14 @@ class WorkoutSession {
   var id: String = ""
   var workoutType: String = ""
   var imuData: [Double] = []
-  var cameraAngle: String
+  var cameraAngle: WorkoutOrientation
   var workoutResult: WorkoutResult
   var startTimestamp: Double = 0
   var endTimestamp: Double = 0
   var squatElements: [SquatElement] = []
   var deadliftElements: [DeadliftElement] = []
   
-  init(workoutType: String, cameraAngle: String) {
+  init(workoutType: String, cameraAngle: WorkoutOrientation) {
     self.workoutType = workoutType
     self.cameraAngle = cameraAngle
     self.workoutResult = WorkoutResult(score: 0, incorrectJoints: [0], incorrectAccelerations: [0])
@@ -52,7 +52,7 @@ class WorkoutSession {
     print(self.workoutResult)
     let workoutSessionItem = WorkoutSessionModel(
       imuData: self.imuData,
-      cameraAngle: self.cameraAngle,
+      cameraAngle: self.cameraAngle.rawValue,
       workoutType: self.workoutType,
       startTimestamp: Int(self.startTimestamp),
       endTimestamp: Int(self.endTimestamp),
