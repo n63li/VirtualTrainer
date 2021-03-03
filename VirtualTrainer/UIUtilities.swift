@@ -20,6 +20,28 @@ import UIKit
 
 /// Defines UI-related utilitiy methods for vision detection.
 public class UIUtilities {
+    public static func getAllFrames2(videoURL: URL) -> [CMSampleBuffer] {
+        var frames = [CMSampleBuffer]()
+        let asset = AVAsset(url: videoURL)
+        let reader = try! AVAssetReader(asset: asset)
+
+        let videoTrack = asset.tracks(withMediaType: AVMediaType.video)[0]
+
+        // read video frames as BGRA
+        let trackReaderOutput = AVAssetReaderTrackOutput(track: videoTrack, outputSettings:[String(kCVPixelBufferPixelFormatTypeKey): NSNumber(value: kCVPixelFormatType_32BGRA)])
+
+        reader.add(trackReaderOutput)
+        reader.startReading()
+
+        while let sampleBuffer = trackReaderOutput.copyNextSampleBuffer() {
+            print("sample at time \(CMSampleBufferGetPresentationTimeStamp(sampleBuffer))")
+            frames.append(sampleBuffer)
+            if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+                
+            }
+        }
+        return frames
+    }
     
     // MARK: - Image Utils
     public static func getAllFrames(videoURL: URL) -> [UIImage] {

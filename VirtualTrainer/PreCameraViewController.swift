@@ -37,12 +37,11 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
         picker.videoExportPreset = AVAssetExportPreset1920x1080
         let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
         imagePickerController.dismiss(animated: true, completion: nil)
-        let frames = UIUtilities.getAllFrames(videoURL: videoURL)
-        print(frames)
         self.progressBar.setProgress(0, animated: false)
         self.progressBar.isHidden = false
         DispatchQueue.global(qos: .background).async {
-            let poseDetectorHelper = PoseDetectorHelper(frames: frames) { (progress) -> () in
+            let buffers = UIUtilities.getAllFrames(videoURL: videoURL)
+            let poseDetectorHelper = PoseDetectorHelper(buffers: buffers) { (progress) -> () in
                 DispatchQueue.main.async {
                     self.progressBar.setProgress(progress, animated: true)
                 }
