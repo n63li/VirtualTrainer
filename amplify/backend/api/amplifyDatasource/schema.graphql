@@ -38,18 +38,5 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   squatElements: [SquatElement]
   deadliftElements: [DeadliftElement]
   workoutResult: WorkoutResult
-}
-
-type WorkoutResultModel @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  score: Int!
-  incorrectJoints: [Float!]
-  incorrectAccelerations: [Float]
-}
-
-type IdealWorkoutModel @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  workoutType: String!
-  jointAngles: [Float!]
-  accelerations: [Float]
+  videoURL: String
 }

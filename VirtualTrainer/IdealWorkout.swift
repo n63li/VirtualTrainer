@@ -4,8 +4,23 @@
 //
 //  Created by Nathan Li on 2021-02-16.
 //
-public struct idealSquat {
-  static let jointAngles = [
+public let idealSquatRight = [
+  SquatElement(orientation: "right", KneeAngle: 179.7561044347451, HipAngle: 177.23966649398434, AnkleAngle: 128.48408243711748, TrunkAngle: 0.0),
+  SquatElement(orientation: "right", KneeAngle: 90.86861052318542, HipAngle: 100.48350676788714, AnkleAngle: 106.3977112137546, TrunkAngle: 0.0),
+  SquatElement(orientation: "right", KneeAngle: 178.21735024388704, HipAngle: 177.7292506491383, AnkleAngle: 119.23408719256155, TrunkAngle: 0.0)
+]
+//
+//protocol IdealWorkout {
+//  static var jointAngles { get }
+//}
+//
+//let IdealWorkouts = [
+//  "squat": Squat(),
+//  "deadlift": Deadlift()
+//] as [String : IdealWorkout]
+
+public struct Squat {
+  static var jointAngles = [
     WorkoutOrientation.front: [
       SquatElement(orientation: "front", KneeAngle: 179.6099312342993, HipAngle: 164.87005306411166, AnkleAngle: 170.0828288218672, TrunkAngle: 82.0075221223597),
       SquatElement(orientation: "front", KneeAngle: 121.26256833371818, HipAngle: 129.75911995111406, AnkleAngle: 127.8847898113248, TrunkAngle: 80.897916478019),
@@ -26,7 +41,7 @@ public struct idealSquat {
   ] as [AnyHashable: [SquatElement]]
 }
 
-public struct idealDeadlift {
+public struct Deadlift {
   static let jointAngles = [
     WorkoutOrientation.front: [
       DeadliftElement(orientation: "front", LeftKneeAngle: 179.3810663925355, RightKneeAngle: 174.44456262741164, LeftHipAngle: 166.2306509715523, RightHipAngle: 172.20387248749512, LeftAnkleAngle: 178.65832210506247, RightAnkleAngle: 175.9133484267583, LeftTrunkAngle: 80.31341269497882, RightTrunkAngle: 0.0, LeftShoulderAngle: 24.914843750289737, RightShoulderAngle: 22.98292610065798, LeftElbowAngle: 174.44736425704323, RightElbowAngle: 171.88930036293652),

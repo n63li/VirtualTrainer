@@ -24,29 +24,19 @@ class WorkoutSession {
     self.startTimestamp = NSDate().timeIntervalSince1970
   }
   
-//  func compare() -> WorkoutResultModel {
-//    let k = IdealWorkoutModel.keys
-//
-//    Amplify.DataStore.query(IdealWorkoutModel.self, where: k.workoutType == workoutType) { result in
-//      switch(result) {
-//      case .success(let items):
-//        for item in items {
-//            print("IdealWorkoutModel ID: \(item.id)")
-//            do comparison here
-//        }
-//      case .failure(let error):
-//          print("Could not query DataStore: \(error)")
-//        }
-//      }
-//
-//    self.workoutResult = WorkoutResult(
-//        score: 1020,
-//        incorrectJoints: [0],
-//        incorrectAccelerations: [0])
-//    )
-//
-//    return workoutResultItem
-//  }
+  func compare() {
+    var currentIdealFrame = 0
+    
+    for element in self.squatElements {
+      
+    }
+    
+    self.workoutResult = WorkoutResult(
+        score: 1020,
+        incorrectJoints: [0],
+        incorrectAccelerations: [0]
+    )
+  }
   
   func save() -> Bool {
     print(self.workoutResult)

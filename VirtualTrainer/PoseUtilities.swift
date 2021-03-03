@@ -11,6 +11,36 @@ import AVFoundation
 import MLKit
 import UIKit
 
+protocol PropertyLoopable
+{
+    func allProperties() throws -> [String: Any]
+}
+
+extension PropertyLoopable
+{
+    func allProperties() throws -> [String: Any] {
+
+        var result: [String: Any] = [:]
+
+        let mirror = Mirror(reflecting: self)
+
+        guard let style = mirror.displayStyle where style == .Struct || style == .Class else {
+            //throw some error
+            throw NSError(domain: "hris.to", code: 777, userInfo: nil)
+        }
+
+        for (labelMaybe, valueMaybe) in mirror.children {
+            guard let label = labelMaybe else {
+                continue
+            }
+
+            result[label] = valueMaybe
+        }
+
+        return result
+    }
+}
+
 public struct PoseData {
   let name: String
   var data: [CGFloat]
