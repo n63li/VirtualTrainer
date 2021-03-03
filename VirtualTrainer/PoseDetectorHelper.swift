@@ -18,6 +18,7 @@ class PoseDetectorHelper {
     init(frames: [UIImage], setProgress: (Float)->()) {
         resetManagedLifecycleDetectors()
         let totalFrames = Float(frames.count)
+        print(totalFrames)
         for (index, frame) in frames.enumerated() {
           self.poseData.append(contentsOf: detectPose(in: VisionImage(image: frame)))
             setProgress(Float(index) / totalFrames)
