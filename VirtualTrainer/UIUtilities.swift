@@ -20,7 +20,8 @@ import UIKit
 
 /// Defines UI-related utilitiy methods for vision detection.
 public class UIUtilities {
-    public static func getAllFrames2(videoURL: URL) -> [CMSampleBuffer] {
+    //
+    public static func getAllFrames(videoURL: URL) -> [CMSampleBuffer] {
         var frames = [CMSampleBuffer]()
         let asset = AVAsset(url: videoURL)
         let reader = try! AVAssetReader(asset: asset)
@@ -34,17 +35,13 @@ public class UIUtilities {
         reader.startReading()
 
         while let sampleBuffer = trackReaderOutput.copyNextSampleBuffer() {
-            print("sample at time \(CMSampleBufferGetPresentationTimeStamp(sampleBuffer))")
             frames.append(sampleBuffer)
-            if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
-                
-            }
         }
         return frames
     }
     
     // MARK: - Image Utils
-    public static func getAllFrames(videoURL: URL) -> [UIImage] {
+    public static func getAllFrames2(videoURL: URL) -> [UIImage] {
         let asset: AVAsset = AVAsset(url: videoURL)
         let duration: Float64 = CMTimeGetSeconds(asset.duration)
         var generator: AVAssetImageGenerator! = AVAssetImageGenerator(asset:asset)
