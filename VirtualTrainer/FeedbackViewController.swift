@@ -7,12 +7,14 @@
 //
 import Amplify
 import UIKit
+import AVKit
 
 @objc(FeedbackViewController)
 class FeedbackViewController: UIViewController {
   var workoutSession: WorkoutSession? = nil
   @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var videoView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,15 @@ class FeedbackViewController: UIViewController {
         let strDate = dateFormatter.string(from: date)
         
         dateLabel?.text = strDate
+        let videoURL = URL(string: (workoutSession?.videoURL)!)
+        
+        let player = AVPlayer(url: videoURL!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        playerViewController.view.frame = videoView.bounds
+        playerViewController.showsPlaybackControls = true
+        videoView.addSubview(playerViewController.view)
+        self.addChild(playerViewController)
     }
     
     @IBAction func finish(_ sender: Any) {
