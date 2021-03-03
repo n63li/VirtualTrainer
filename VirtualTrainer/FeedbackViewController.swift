@@ -29,6 +29,8 @@ class FeedbackViewController: UIViewController {
         dateLabel?.text = strDate
         let videoURL = URL(string: (workoutSession?.videoURL)!)
         
+        print("Playing from URL: \(videoURL?.absoluteString)")
+        
         let player = AVPlayer(url: videoURL!)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player

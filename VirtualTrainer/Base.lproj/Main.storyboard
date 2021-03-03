@@ -201,7 +201,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Process" id="l4h-My-vGv">
                                 <connections>
-                                    <segue destination="jry-iJ-a0X" kind="show" identifier="processWorkoutSegue" id="wST-wt-oDM"/>
+                                    <action selector="process:" destination="YXl-5B-mBF" id="zG0-Wq-iwe"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="camera.rotate.fill" catalog="system" id="kXj-bT-GY0" userLabel="Switch Camera Button">
@@ -213,6 +213,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Vwd-Qp-BMC" id="yRq-e8-30h"/>
+                        <segue destination="jry-iJ-a0X" kind="show" identifier="processWorkoutSegue" id="vic-MG-SnD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -232,7 +233,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QET-Vy-SuW">
                                         <rect key="frame" x="8" y="8" width="359" height="33.5"/>
@@ -248,7 +249,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-L6-8hs">
-                                        <rect key="frame" x="8" y="139" width="359" height="476"/>
+                                        <rect key="frame" x="8" y="139" width="359" height="424"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </view>
                                 </subviews>
@@ -423,7 +424,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wST-wt-oDM"/>
+        <segue reference="oML-Om-WaV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>

@@ -17,6 +17,7 @@
 import AVFoundation
 import CoreVideo
 import MLKit
+import Photos
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
@@ -88,18 +89,45 @@ class CameraViewController: UIViewController {
     previewLayer.frame = cameraView.frame
   }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        stopRecording()
-        if (segue.identifier == "processWorkoutSegue") {
-            let vc = segue.destination as! FeedbackViewController
-            workoutSession?.videoURL = avAssetWriter?.outputURL.absoluteString
-            vc.workoutSession = workoutSession
-        }
-    }
-
   // MARK: - IBActions
 
-  @IBAction func switchCamera(_ sender: Any) {
+    @IBAction func process(_ sender: Any) {
+        let outputURL = self.avAssetWriter?.outputURL
+        stopRecording()
+        
+        PHPhotoLibrary.requestAuthorization { status in
+            guard status == .authorized else {
+                self.transition()
+                return
+            }
+
+            PHPhotoLibrary.shared().performChanges({
+                let request = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputURL!)
+                let placeholder = request?.placeholderForCreatedAsset
+            }) { saved, error in
+                print("Successfully saved \(saved), outputURL \(outputURL!.absoluteString)")
+                let fetchOptions = PHFetchOptions()
+                    fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+                    let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
+                    PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
+                        let newObj = avurlAsset as! AVURLAsset
+                        self.workoutSession?.videoURL = newObj.url.absoluteString
+                        self.transition()
+                    })
+            }
+        }
+    }
+    
+    private func transition() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let destination = storyboard.instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController
+            destination.workoutSession = self.workoutSession
+            self.navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+    
+    @IBAction func switchCamera(_ sender: Any) {
     isUsingFrontCamera = !isUsingFrontCamera
     removeDetectionAnnotations()
     setUpCaptureSessionInput()
