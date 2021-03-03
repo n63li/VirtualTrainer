@@ -38,6 +38,7 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   squatElements: [SquatElement]
   deadliftElements: [DeadliftElement]
   workoutResult: WorkoutResult
+  videoURL: String
 }
 
 type WorkoutResultModel @model @auth(rules: [{allow: public}]) {
