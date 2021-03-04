@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import AVKit
 
 @objc(WorkoutResultViewController)
 class WorkoutResultViewController: UIViewController {
     
   @IBOutlet weak var dateLabel: UILabel!
-  var workoutSession: WorkoutSession?
+    @IBOutlet weak var videoView: UIView!
+    
+    var workoutSession: WorkoutSession?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,5 +28,15 @@ class WorkoutResultViewController: UIViewController {
     let strDate = dateFormatter.string(from: date)
     
     dateLabel?.text = strDate
+    
+    let videoURL = URL(string: (workoutSession?.videoURL)!)
+    
+    let player = AVPlayer(url: videoURL!)
+    let playerViewController = AVPlayerViewController()
+    playerViewController.player = player
+    playerViewController.view.frame = videoView.bounds
+    playerViewController.showsPlaybackControls = true
+    videoView.addSubview(playerViewController.view)
+    self.addChild(playerViewController)
   }
 }

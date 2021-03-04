@@ -201,7 +201,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Process" id="l4h-My-vGv">
                                 <connections>
-                                    <segue destination="jry-iJ-a0X" kind="show" identifier="processWorkoutSegue" id="wST-wt-oDM"/>
+                                    <action selector="process:" destination="YXl-5B-mBF" id="zG0-Wq-iwe"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="camera.rotate.fill" catalog="system" id="kXj-bT-GY0" userLabel="Switch Camera Button">
@@ -213,6 +213,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Vwd-Qp-BMC" id="yRq-e8-30h"/>
+                        <segue destination="jry-iJ-a0X" kind="show" identifier="processWorkoutSegue" id="vic-MG-SnD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-Fx-HUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,28 +232,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Results here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oC-3O-boR">
-                                <rect key="frame" x="140" y="323" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
-                                <rect key="frame" x="18" y="96" width="57" height="33.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QET-Vy-SuW">
-                                        <rect key="frame" x="0.0" y="0.0" width="57" height="33.5"/>
+                                        <rect key="frame" x="16" y="8" width="343" height="33.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWs-Kg-Gvj">
+                                        <rect key="frame" x="16" y="49.5" width="343" height="81.5"/>
+                                        <string key="text">TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-L6-8hs">
+                                        <rect key="frame" x="16" y="139" width="343" height="424"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                    </view>
                                 </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="05z-vK-0qD" firstAttribute="leading" secondItem="7rK-pb-3aj" secondAttribute="leading" constant="18" id="gPT-1m-AK0"/>
+                            <constraint firstItem="fXK-yI-mU9" firstAttribute="top" secondItem="05z-vK-0qD" secondAttribute="bottom" id="DWM-4H-RVM"/>
+                            <constraint firstAttribute="trailing" secondItem="05z-vK-0qD" secondAttribute="trailing" id="PNs-uJ-qZK"/>
+                            <constraint firstItem="05z-vK-0qD" firstAttribute="leading" secondItem="7rK-pb-3aj" secondAttribute="leading" id="gPT-1m-AK0"/>
                             <constraint firstItem="05z-vK-0qD" firstAttribute="top" secondItem="hwp-a6-DYp" secondAttribute="bottom" id="uoP-UQ-VSP"/>
                         </constraints>
                     </view>
@@ -266,6 +274,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="QET-Vy-SuW" id="qNJ-rr-6Zl"/>
                         <outlet property="doneButton" destination="5et-gO-2KR" id="7xQ-b5-79t"/>
+                        <outlet property="videoView" destination="Ped-L6-8hs" id="SmS-wX-tRA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Hm-aw-bGt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -378,27 +387,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b8j-Vp-Bf1">
-                                <rect key="frame" x="20" y="96" width="57" height="33.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b8j-Vp-Bf1">
+                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Lh-Cv8">
-                                        <rect key="frame" x="0.0" y="0.0" width="57" height="33.5"/>
+                                        <rect key="frame" x="16" y="8" width="343" height="33.5"/>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-y6-k6q">
+                                        <rect key="frame" x="16" y="49.5" width="343" height="464.5"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                                    </view>
                                 </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="b8j-Vp-Bf1" firstAttribute="leading" secondItem="F9r-Ze-Lka" secondAttribute="leading" constant="20" symbolic="YES" id="0wy-aD-vbX"/>
-                            <constraint firstItem="xEk-Lh-Cv8" firstAttribute="top" secondItem="fgn-Xw-yLK" secondAttribute="bottom" id="O7r-JH-d1h"/>
+                            <constraint firstItem="b8j-Vp-Bf1" firstAttribute="leading" secondItem="F9r-Ze-Lka" secondAttribute="leading" id="0wy-aD-vbX"/>
+                            <constraint firstAttribute="trailing" secondItem="b8j-Vp-Bf1" secondAttribute="trailing" id="1Vj-3b-T8S"/>
+                            <constraint firstItem="dzT-YF-TMg" firstAttribute="top" secondItem="b8j-Vp-Bf1" secondAttribute="bottom" id="UJh-BS-azT"/>
+                            <constraint firstItem="b8j-Vp-Bf1" firstAttribute="top" secondItem="fgn-Xw-yLK" secondAttribute="bottom" id="rI9-tP-rKr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Workout Result" id="TKY-QL-bmB"/>
                     <connections>
                         <outlet property="dateLabel" destination="xEk-Lh-Cv8" id="bPd-mp-gll"/>
+                        <outlet property="videoView" destination="ZtX-y6-k6q" id="Ze2-hN-gQx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRU-g1-JFM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -416,6 +435,12 @@
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
