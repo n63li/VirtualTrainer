@@ -24,19 +24,46 @@ class WorkoutSession {
     self.startTimestamp = NSDate().timeIntervalSince1970
   }
   
-  func compare() {
-    var currentIdealFrame = 0
-    
-    for element in self.squatElements {
-      
-    }
-    
+  func compare() throws {
+      var currentIdealFrameIndex = 0
+      let keys = try self.squatElements[0].allProperties()
+      let tolerance = 15.0
+      var score = 100.0
+      for userFrame in self.squatElements {
+        let currentIdealFrame = idealSquatRight[currentIdealFrameIndex]
+        var isUserFrameGood = false
+        var scoreDeduction = 0
+        let scoreDeductionWeighting = 0.5
+        for (key, val): (String, Any) in keys {
+          let userVal = userFrame[keyPath: \SquatElement.key]
+          let idealVal = currentIdealFrame[keyPath: \SquatElement.key]
+           let difference = abs(userVal - idealVal)
+           if (difference <= tolerance) {
+             scoreDeduction += difference * 0.5
+             isUserFrameGood = true
+           } else {
+             isUserFrameGood = false
+             break
+           }
+         }
+
+        if isUserFrameGood {
+          currentIdealFrameIndex += 1
+          score -= Double(scoreDeduction)
+        }
+      }
+      if currentIdealFrameIndex != idealSquatRight.count {
+        // means that we couldn't find any user poses that resembles the ideal poses
+        // user has bad pose, might need to ask them to try again
+        print("User has bad pose, cannot match user poses to ideal poses")
+      }
+      print("Hey we have a score of this: \(score)")
     self.workoutResult = WorkoutResult(
-        score: 1020,
-        incorrectJoints: [0],
-        incorrectAccelerations: [0]
+      score: score,
+      incorrectJoints: [0],
+      incorrectAccelerations: [0]
     )
-  }
+    }
   
   func save() -> Bool {
     print(self.workoutResult)

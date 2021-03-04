@@ -11,30 +11,30 @@ import AVFoundation
 import MLKit
 import UIKit
 
-protocol PropertyLoopable
-{
+protocol Loopable {
     func allProperties() throws -> [String: Any]
 }
 
-extension PropertyLoopable
-{
+extension Loopable {
     func allProperties() throws -> [String: Any] {
 
         var result: [String: Any] = [:]
 
         let mirror = Mirror(reflecting: self)
 
-        guard let style = mirror.displayStyle where style == .Struct || style == .Class else {
-            //throw some error
-            throw NSError(domain: "hris.to", code: 777, userInfo: nil)
+        // Optional check to make sure we're iterating over a struct or class
+        guard let style = mirror.displayStyle, style == .struct || style == .class else {
+            throw NSError()
         }
 
-        for (labelMaybe, valueMaybe) in mirror.children {
-            guard let label = labelMaybe else {
+        for (property, value) in mirror.children {
+            guard let property = property else {
                 continue
             }
+          
+            if property == "orientation" { continue }
 
-            result[label] = valueMaybe
+            result[property] = value
         }
 
         return result
@@ -51,7 +51,7 @@ public struct PoseData {
   }
 }
 
-public struct SquatElement: Codable {
+public struct SquatElement: Codable, Loopable {
   var orientation: String
   var KneeAngle: CGFloat
   var HipAngle: CGFloat
@@ -59,7 +59,7 @@ public struct SquatElement: Codable {
   var TrunkAngle: CGFloat
 }
 
-public struct DeadliftElement: Codable {
+public struct DeadliftElement: Codable, Loopable {
   var orientation: String
   var LeftKneeAngle: CGFloat
   var RightKneeAngle: CGFloat
