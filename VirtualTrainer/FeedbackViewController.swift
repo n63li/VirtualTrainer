@@ -19,6 +19,14 @@ class FeedbackViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        do {
+          try workoutSession?.calculateScore()
+        }
+        catch {
+          print("did not calculate score")
+        }
+      
+        workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
@@ -42,15 +50,6 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
-
-        print(workoutSession?.squatElements)
-        print(workoutSession?.deadliftElements)
-        workoutSession?.workoutResult = WorkoutResult(
-          score: 1020,
-          incorrectJoints: [],
-          incorrectAccelerations: []
-        )
-        workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         workoutSession?.save()
     }
 }

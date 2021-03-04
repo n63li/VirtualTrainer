@@ -57,6 +57,16 @@ public struct SquatElement: Codable, Loopable {
   var HipAngle: CGFloat
   var AnkleAngle: CGFloat
   var TrunkAngle: CGFloat
+  
+  func valueByPropertyName(name: String) -> CGFloat {
+      switch name {
+      case "KneeAngle": return self.KneeAngle
+      case "HipAngle": return self.HipAngle
+      case "AnkleAngle": return self.AnkleAngle
+      case "TrunkAngle": return self.TrunkAngle
+      default: fatalError("Wrong property name")
+      }
+  }
 }
 
 public struct DeadliftElement: Codable, Loopable {

@@ -25,22 +25,25 @@ class WorkoutSession {
     self.startTimestamp = NSDate().timeIntervalSince1970
   }
   
-  func compare() throws {
+  func calculateScore() throws {
       var currentIdealFrameIndex = 0
       let keys = try self.squatElements[0].allProperties()
-      let tolerance = 15.0
+      let tolerance = 2.5
       var score = 100.0
       for userFrame in self.squatElements {
+        if currentIdealFrameIndex >= idealSquatRight.count {
+          break
+        }
         let currentIdealFrame = idealSquatRight[currentIdealFrameIndex]
         var isUserFrameGood = false
-        var scoreDeduction = 0
+        var scoreDeduction = 0.0
         let scoreDeductionWeighting = 0.5
-        for (key, val): (String, Any) in keys {
-          let userVal = userFrame[keyPath: \SquatElement.key]
-          let idealVal = currentIdealFrame[keyPath: \SquatElement.key]
-           let difference = abs(userVal - idealVal)
+        for (key, _): (String, Any) in keys {
+          let userVal = userFrame.valueByPropertyName(name: key)
+          let idealVal = currentIdealFrame.valueByPropertyName(name: key)
+           let difference = Double(abs(userVal - idealVal))
            if (difference <= tolerance) {
-             scoreDeduction += difference * 0.5
+             scoreDeduction += difference * scoreDeductionWeighting
              isUserFrameGood = true
            } else {
              isUserFrameGood = false
@@ -58,13 +61,13 @@ class WorkoutSession {
         // user has bad pose, might need to ask them to try again
         print("User has bad pose, cannot match user poses to ideal poses")
       }
-      print("Hey we have a score of this: \(score)")
+      print("Hey we have a score of: \(score)")
     self.workoutResult = WorkoutResult(
       score: score,
       incorrectJoints: [0],
       incorrectAccelerations: [0]
     )
-    }
+  }
   
   func save() -> Bool {
     print(self.workoutResult)
@@ -77,7 +80,7 @@ class WorkoutSession {
       squatElements: self.squatElements,
       deadliftElements: self.deadliftElements,
       workoutResult: self.workoutResult,
-        videoURL: self.videoURL  )
+      videoURL: self.videoURL)
     Amplify.DataStore.save(workoutSessionItem) { result in
       switch(result) {
       case .success(let savedItem):
