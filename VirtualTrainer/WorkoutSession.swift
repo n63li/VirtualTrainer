@@ -60,8 +60,10 @@ class WorkoutSession {
         // means that we couldn't find any user poses that resembles the ideal poses
         // user has bad pose, might need to ask them to try again
         print("User has bad pose, cannot match user poses to ideal poses")
+        score = 0.0
+      } else {
+        print("Hey we have a score of: \(score)")
       }
-      print("Hey we have a score of: \(score)")
     self.workoutResult = WorkoutResult(
       score: score,
       incorrectJoints: [0],

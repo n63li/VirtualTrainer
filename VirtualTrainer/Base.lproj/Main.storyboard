@@ -204,7 +204,7 @@
                                     <action selector="process:" destination="YXl-5B-mBF" id="zG0-Wq-iwe"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="camera.rotate.fill" catalog="system" id="kXj-bT-GY0" userLabel="Switch Camera Button">
+                            <barButtonItem image="arrow.triangle.2.circlepath.camera.fill" catalog="system" id="kXj-bT-GY0" userLabel="Switch Camera Button">
                                 <connections>
                                     <action selector="switchCamera:" destination="YXl-5B-mBF" id="sFo-ar-LIv"/>
                                 </connections>
@@ -233,7 +233,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
-                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QET-Vy-SuW">
                                         <rect key="frame" x="16" y="8" width="343" height="33.5"/>
@@ -241,15 +241,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWs-Kg-Gvj">
-                                        <rect key="frame" x="16" y="49.5" width="343" height="81.5"/>
-                                        <string key="text">TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWs-Kg-Gvj">
+                                        <rect key="frame" x="16" y="49.5" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-L6-8hs">
-                                        <rect key="frame" x="16" y="139" width="343" height="424"/>
+                                        <rect key="frame" x="16" y="78" width="343" height="537"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </view>
                                 </subviews>
@@ -274,6 +273,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="QET-Vy-SuW" id="qNJ-rr-6Zl"/>
                         <outlet property="doneButton" destination="5et-gO-2KR" id="7xQ-b5-79t"/>
+                        <outlet property="scoreLabel" destination="oWs-Kg-Gvj" id="San-MQ-atG"/>
                         <outlet property="videoView" destination="Ped-L6-8hs" id="SmS-wX-tRA"/>
                     </connections>
                 </viewController>
@@ -426,11 +426,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oML-Om-WaV"/>
+        <segue reference="vic-MG-SnD"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="94"/>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
-        <image name="camera.rotate.fill" catalog="system" width="128" height="94"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
