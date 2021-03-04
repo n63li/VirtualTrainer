@@ -236,24 +236,24 @@
                                 <rect key="frame" x="0.0" y="96" width="375" height="571"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QET-Vy-SuW">
-                                        <rect key="frame" x="8" y="8" width="359" height="33.5"/>
+                                        <rect key="frame" x="16" y="8" width="343" height="33.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWs-Kg-Gvj">
-                                        <rect key="frame" x="8" y="49.5" width="359" height="81.5"/>
+                                        <rect key="frame" x="16" y="49.5" width="343" height="81.5"/>
                                         <string key="text">TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN TEMPORARY FILL IN</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-L6-8hs">
-                                        <rect key="frame" x="8" y="139" width="359" height="424"/>
+                                        <rect key="frame" x="16" y="139" width="343" height="424"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </view>
                                 </subviews>
-                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -391,17 +391,19 @@
                                 <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Lh-Cv8">
-                                        <rect key="frame" x="8" y="8" width="359" height="33.5"/>
+                                        <rect key="frame" x="16" y="8" width="343" height="33.5"/>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-y6-k6q">
-                                        <rect key="frame" x="8" y="49.5" width="359" height="464.5"/>
+                                        <rect key="frame" x="16" y="49.5" width="343" height="464.5"/>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                     </view>
                                 </subviews>
-                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
