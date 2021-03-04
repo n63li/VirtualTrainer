@@ -17,11 +17,19 @@
 import AVFoundation
 import CoreVideo
 import MLKit
+import Photos
 
 @objc(CameraViewController)
 class CameraViewController: UIViewController {
 
   var workoutSession: WorkoutSession? = nil
+    
+    private var avAssetWriter: AVAssetWriter? = nil
+    private var avAssetWriterInput: AVAssetWriterInput? = nil
+    private var avAssetWriterAdapter: AVAssetWriterInputPixelBufferAdaptor? = nil
+    private var initialTimestamp: Double = 0
+    
+    private var isRecording: Bool = false
 
   private var isUsingFrontCamera = true
   private var previewLayer: AVCaptureVideoPreviewLayer!
@@ -81,16 +89,45 @@ class CameraViewController: UIViewController {
     previewLayer.frame = cameraView.frame
   }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "processWorkoutSegue") {
-            let vc = segue.destination as! FeedbackViewController
-            vc.workoutSession = workoutSession
-        }
-    }
-
   // MARK: - IBActions
 
-  @IBAction func switchCamera(_ sender: Any) {
+    @IBAction func process(_ sender: Any) {
+        let outputURL = self.avAssetWriter?.outputURL
+        stopRecording()
+        
+        PHPhotoLibrary.requestAuthorization { status in
+            guard status == .authorized else {
+                self.transition()
+                return
+            }
+
+            PHPhotoLibrary.shared().performChanges({
+                let request = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputURL!)
+                let placeholder = request?.placeholderForCreatedAsset
+            }) { saved, error in
+                print("Successfully saved \(saved), outputURL \(outputURL!.absoluteString)")
+                let fetchOptions = PHFetchOptions()
+                    fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+                    let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
+                    PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
+                        let newObj = avurlAsset as! AVURLAsset
+                        self.workoutSession?.videoURL = newObj.url.absoluteString
+                        self.transition()
+                    })
+            }
+        }
+    }
+    
+    private func transition() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let destination = storyboard.instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController
+            destination.workoutSession = self.workoutSession
+            self.navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+    
+    @IBAction func switchCamera(_ sender: Any) {
     isUsingFrontCamera = !isUsingFrontCamera
     removeDetectionAnnotations()
     setUpCaptureSessionInput()
@@ -127,8 +164,15 @@ class CameraViewController: UIViewController {
       }
     }
   }
-
-
+    
+    private func stopRecording() {
+        self.avAssetWriterInput?.markAsFinished()
+        self.avAssetWriter?.finishWriting {
+            self.avAssetWriter = nil
+            self.avAssetWriterInput = nil
+            self.avAssetWriterAdapter = nil
+        }
+    }
 
   // MARK: - Private
 
@@ -152,6 +196,20 @@ class CameraViewController: UIViewController {
       }
       self.captureSession.addOutput(output)
       self.captureSession.commitConfiguration()
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let timestamp = NSDate().timeIntervalSince1970
+        let fileUrl = paths[0].appendingPathComponent("\(timestamp)_workout.mov")
+        try? FileManager.default.removeItem(at: fileUrl)
+        try? self.avAssetWriter = AVAssetWriter(outputURL: fileUrl, fileType: .mov)
+        let settings = output.recommendedVideoSettingsForAssetWriter(writingTo: .mov)
+        self.avAssetWriterInput = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: settings)
+        self.avAssetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
+        self.avAssetWriterInput?.expectsMediaDataInRealTime = true
+        self.avAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi/2)
+        self.avAssetWriterAdapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: self.avAssetWriterInput!, sourcePixelBufferAttributes: nil)
+        self.avAssetWriter?.add(self.avAssetWriterInput!)
+        
     }
   }
 
@@ -190,6 +248,7 @@ class CameraViewController: UIViewController {
 
   private func stopSession() {
     sessionQueue.async {
+        self.stopRecording()
       self.captureSession.stopRunning()
     }
   }
@@ -309,7 +368,16 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))
 
     detectPose(in: visionImage, width: imageWidth, height: imageHeight)
-
+    
+    let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer).seconds
+    if (self.isRecording == false) {
+        self.initialTimestamp = timestamp
+        self.avAssetWriter?.startWriting()
+        self.avAssetWriter?.startSession(atSourceTime: .zero)
+        self.isRecording = true
+    }
+    let time = CMTime(seconds: timestamp - self.initialTimestamp, preferredTimescale: CMTimeScale(600))
+    self.avAssetWriterAdapter?.append(imageBuffer, withPresentationTime: time)
   }
 }
 

@@ -65,6 +65,7 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             }
             
             DispatchQueue.main.async {
+                workoutSession.videoURL = videoURL.absoluteString
                 self.progressBar.isHidden = true
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let vc = storyboard.instantiateViewController(withIdentifier: "FeedbackViewController") as! FeedbackViewController

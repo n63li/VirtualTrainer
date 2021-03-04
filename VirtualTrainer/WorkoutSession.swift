@@ -16,6 +16,7 @@ class WorkoutSession {
   var endTimestamp: Double = 0
   var squatElements: [SquatElement] = []
   var deadliftElements: [DeadliftElement] = []
+    var videoURL: String? = ""
   
   init(workoutType: String, cameraAngle: WorkoutOrientation) {
     self.workoutType = workoutType
@@ -58,7 +59,8 @@ class WorkoutSession {
       endTimestamp: Int(self.endTimestamp),
       squatElements: self.squatElements,
       deadliftElements: self.deadliftElements,
-      workoutResult: self.workoutResult)
+      workoutResult: self.workoutResult,
+        videoURL: self.videoURL  )
     Amplify.DataStore.save(workoutSessionItem) { result in
       switch(result) {
       case .success(let savedItem):
