@@ -26,15 +26,21 @@ class WorkoutSession {
   }
   
   func calculateScore() throws {
+      var idealWorkouts = [
+       "squat": Squat()
+      ] as [String : IdealWorkout]
+    
+      let idealWorkout = idealWorkouts[self.workoutType]
+      let jointAngles = idealWorkout?.jointAngles[self.cameraAngle]
       var currentIdealFrameIndex = 0
       let keys = try self.squatElements[0].allProperties()
       let tolerance = 2.5
       var score = 100.0
       for userFrame in self.squatElements {
-        if currentIdealFrameIndex >= idealSquatRight.count {
+        if currentIdealFrameIndex >= jointAngles.count {
           break
         }
-        let currentIdealFrame = idealSquatRight[currentIdealFrameIndex]
+        let currentIdealFrame = jointAngles[currentIdealFrameIndex]
         var isUserFrameGood = false
         var scoreDeduction = 0.0
         let scoreDeductionWeighting = 0.5
@@ -56,7 +62,7 @@ class WorkoutSession {
           score -= Double(scoreDeduction)
         }
       }
-      if currentIdealFrameIndex != idealSquatRight.count {
+    if currentIdealFrameIndex != idealWorkout.count {
         // means that we couldn't find any user poses that resembles the ideal poses
         // user has bad pose, might need to ask them to try again
         print("User has bad pose, cannot match user poses to ideal poses")
