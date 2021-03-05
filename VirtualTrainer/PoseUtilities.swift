@@ -51,6 +51,16 @@ public struct PoseData {
   }
 }
 
+public struct WorkoutElement: Codable, Loopable {
+  var orientation: String
+  var kneeAngle: CGFloat
+  var hipAngle: CGFloat
+  var ankleAngle: CGFloat
+  var trunkAngle: CGFloat
+  var shoulderAngle: CGFloat
+  var elbowAngle: CGFloat
+}
+
 public struct SquatElement: Codable, Loopable {
   var orientation: String
   var KneeAngle: CGFloat

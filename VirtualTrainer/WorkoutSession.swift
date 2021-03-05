@@ -30,7 +30,7 @@ class WorkoutSession {
        "squat": Squat()
       ] as [String : IdealWorkout]
     
-      let idealWorkout = idealWorkouts[self.workoutType]?.jointAngles[self.cameraAngle] ?? [SquatElement(orientation: "right", KneeAngle: 179.7561044347451, HipAngle: 177.23966649398434, AnkleAngle: 128.48408243711748, TrunkAngle: 0.0)]
+      let idealWorkout = idealWorkouts[self.workoutType]!.jointAngles[self.cameraAngle]
       print(idealWorkout)
       var currentIdealFrameIndex = 0
       let keys = try self.squatElements[0].allProperties()
@@ -38,13 +38,12 @@ class WorkoutSession {
       var score = 100.0
     print(self.squatElements.count)
     print(self.squatElements[0])
-      var minRequiredDetections = 5
       for userFrame in self.squatElements {
-        if currentIdealFrameIndex >= idealWorkout.count {
+        if currentIdealFrameIndex >= idealWorkout!.count {
           print("current ideal frame index out of bounds")
           break
         }
-        let currentIdealFrame = idealWorkout[currentIdealFrameIndex]
+        let currentIdealFrame = idealWorkout![currentIdealFrameIndex]
         var isUserFrameGood = false
         var scoreDeduction = 0.0
         let scoreDeductionWeighting = 0.5
@@ -62,17 +61,12 @@ class WorkoutSession {
          }
 
         if isUserFrameGood {
-          minRequiredDetections -= 1
-
-          if minRequiredDetections == 0 {
-            print("We found frame \(currentIdealFrameIndex)")
-            currentIdealFrameIndex += 1
-            score -= Double(scoreDeduction)
-            minRequiredDetections = 5
-          }
+          print("We found frame \(currentIdealFrameIndex)")
+          currentIdealFrameIndex += 1
+          score -= Double(scoreDeduction)
         }
       }
-    if currentIdealFrameIndex < idealWorkout.count {
+    if currentIdealFrameIndex < idealWorkout!.count {
         // means that we couldn't find any user poses that resembles the ideal poses
         // user has bad pose, might need to ask them to try again
         print("User has bad pose, cannot match user poses to ideal poses")
