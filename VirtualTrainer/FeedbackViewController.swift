@@ -52,7 +52,7 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
-        print(workoutSession?.squatElements)
+//        print(workoutSession?.squatElements)
         workoutSession?.save()
     }
 }
