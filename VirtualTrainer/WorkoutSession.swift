@@ -38,6 +38,7 @@ class WorkoutSession {
       var score = 100.0
     print(self.squatElements.count)
     print(self.squatElements[0])
+      var minRequiredDetections = 5
       for userFrame in self.squatElements {
         if currentIdealFrameIndex >= idealWorkout.count {
           print("current ideal frame index out of bounds")
@@ -61,9 +62,14 @@ class WorkoutSession {
          }
 
         if isUserFrameGood {
-          print("We found frame \(currentIdealFrameIndex)")
-          currentIdealFrameIndex += 1
-          score -= Double(scoreDeduction)
+          minRequiredDetections -= 1
+
+          if minRequiredDetections == 0 {
+            print("We found frame \(currentIdealFrameIndex)")
+            currentIdealFrameIndex += 1
+            score -= Double(scoreDeduction)
+            minRequiredDetections = 5
+          }
         }
       }
     if currentIdealFrameIndex < idealWorkout.count {
