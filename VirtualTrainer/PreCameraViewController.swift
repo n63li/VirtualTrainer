@@ -57,7 +57,7 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
                   let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
                     workoutSession.squatElements.append(squatElement)
                 case "deadlift":
-                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
+                    let deadliftElement = PoseUtilities.getAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
                     workoutSession.deadliftElements.append(deadliftElement)
                 default:
                   break

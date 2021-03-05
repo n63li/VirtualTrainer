@@ -121,62 +121,11 @@ public class PoseUtilities {
         return degrees
     }
 
-  public static func getSquatAngles(pose: Pose, orientation: WorkoutOrientation) -> SquatElement {
-    var knee: CGPoint
-    var hip: CGPoint
-    var ankle: CGPoint
-    var shoulder: CGPoint
-    var toe: CGPoint
-    var shoulderXHipY: CGPoint
-
-
-    switch orientation {
-    case .left, .front:
-          knee = CGPoint(x: pose.landmark(ofType: .leftKnee).position.x, y: pose.landmark(ofType: .leftKnee).position.y)
-          hip = CGPoint(x: pose.landmark(ofType: .leftHip).position.x, y: pose.landmark(ofType: .leftHip).position.y)
-          ankle = CGPoint(x: pose.landmark(ofType: .leftAnkle).position.x, y: pose.landmark(ofType: .leftAnkle).position.y)
-          shoulder = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftShoulder).position.y)
-          toe = CGPoint(x: pose.landmark(ofType: .leftToe).position.x, y: pose.landmark(ofType: .leftToe).position.y)
-          shoulderXHipY = CGPoint(x: pose.landmark(ofType: .leftShoulder).position.x, y: pose.landmark(ofType: .leftHip).position.y)
-
-    case .right:
-          knee = CGPoint(x: pose.landmark(ofType: .rightKnee).position.x, y: pose.landmark(ofType: .rightKnee).position.y)
-          hip = CGPoint(x: pose.landmark(ofType: .rightHip).position.x, y: pose.landmark(ofType: .rightHip).position.y)
-          ankle = CGPoint(x: pose.landmark(ofType: .rightAnkle).position.x, y: pose.landmark(ofType: .rightAnkle).position.y)
-          shoulder = CGPoint(x: pose.landmark(ofType: .rightShoulder).position.x, y: pose.landmark(ofType: .rightShoulder).position.y)
-          toe = CGPoint(x: pose.landmark(ofType: .rightToe).position.x, y: pose.landmark(ofType: .rightToe).position.y)
-          shoulderXHipY = CGPoint(x: pose.landmark(ofType: .rightShoulder).position.x, y: pose.landmark(ofType: .rightShoulder).position.y)
-    }
-    
-    return SquatElement(orientation: orientation.rawValue,
-                        KneeAngle: calcJointAngle(
-                          firstLandmark: hip,
-                          midLandmark: knee,
-                          lastLandmark: ankle
-                        ),
-                        HipAngle: calcJointAngle(
-                          firstLandmark: shoulder,
-                          midLandmark: hip,
-                          lastLandmark: knee
-                        ),
-                        AnkleAngle: calcJointAngle(
-                          firstLandmark: knee,
-                          midLandmark: ankle,
-                          lastLandmark: toe
-                        ),
-                        TrunkAngle: calcJointAngle(
-                          firstLandmark: shoulder,
-                          midLandmark: hip,
-                          lastLandmark: shoulderXHipY
-                        )
-    )
-  }
-
   public static func poseLandmarkToCGPoint(l: PoseLandmark) -> CGPoint {
     return CGPoint(x: l.position.x, y: l.position.y)
   }
 
-  public static func getDeadLiftAngles(pose: Pose, orientation: WorkoutOrientation) -> DeadliftElement {
+  public static func getAngles(pose: Pose, orientation: WorkoutOrientation) -> DeadliftElement {
     let leftKnee = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftKnee))
     let leftHip = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftHip))
     let leftAnkle = poseLandmarkToCGPoint(l: pose.landmark(ofType: .leftAnkle))
