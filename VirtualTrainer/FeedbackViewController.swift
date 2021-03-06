@@ -18,6 +18,7 @@ class FeedbackViewController: UIViewController {
     @IBOutlet weak var videoView: UIView!
     
     override func viewDidLoad() {
+        print(workoutSession?.jointAnglesList)
         super.viewDidLoad()
       
         do {

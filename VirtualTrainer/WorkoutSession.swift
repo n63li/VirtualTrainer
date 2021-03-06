@@ -27,8 +27,9 @@ class WorkoutSession {
   }
   
   func calculateScore() throws {
-    var idealWorkouts = [
-      "squat": Squat()
+    let idealWorkouts = [
+      "squat": Squat(),
+      "deadlift": Deadlift()
     ] as [String : IdealWorkout]
     
     let idealJointAnglesList = idealWorkouts[self.workoutType]!.jointAngles[self.cameraAngle]
