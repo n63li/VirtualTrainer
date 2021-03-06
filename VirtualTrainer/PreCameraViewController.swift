@@ -54,17 +54,26 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             let width = CGFloat(CVPixelBufferGetWidth(CMSampleBufferGetImageBuffer(buffers[0])!))
             let height = CGFloat(CVPixelBufferGetHeight(CMSampleBufferGetImageBuffer(buffers[0])!))
           
+            let encoder = JSONEncoder()
+          
             poses.forEach { pose in
-              let workoutElement = PoseUtilities.getAngles(pose: pose, orientation: workoutSession.cameraAngle)
+              let jointAngles = PoseUtilities.getAngles(pose: pose, orientation: workoutSession.cameraAngle)
+              var encodedJointAngles = ""
               
-              switch workoutSession.workoutType {
-                case "squat":
-                  workoutSession.squatElements.append(workoutElement)
-                case "deadlift":
-                  workoutSession.deadliftElements.append(workoutElement)
-                default:
-                  break
+              do {
+                let jsonData = try encoder.encode(jointAngles)
+                encodedJointAngles = String(data: jsonData, encoding: .utf8)!
+              } catch {
+                print("Unable to encode joint angles")
               }
+              
+              
+              let workoutElement = WorkoutElement(
+                orientation: self.cameraAngle.rawValue,
+                jointAngles: encodedJointAngles
+              )
+              
+              workoutSession.workoutElements.append(workoutElement)
 //              add video overlay later => miss preview layer
 //              PoseUtilities.displayOverlay(pose: pose, to: self.annotationOverlayView, workoutElement: workoutElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
             }

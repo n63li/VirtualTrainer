@@ -20,6 +20,18 @@ class WorkoutResultViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let decoder = JSONDecoder()
+    var decoded: [String: CGFloat] = [:]
+    
+    for element in workoutSession!.workoutElements {
+      do {
+        decoded = try decoder.decode([String: CGFloat].self, from: Data(element.jointAngles.utf8))
+        print(decoded)
+      } catch {
+        print("Unable to decode joint angles")
+      }
+    }
+    
     let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
     let dateFormatter = DateFormatter()
     dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
