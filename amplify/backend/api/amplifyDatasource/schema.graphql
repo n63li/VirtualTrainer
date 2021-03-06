@@ -45,4 +45,5 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   workoutResult: WorkoutResult
   videoURL: String
   workoutElements: [WorkoutElement]
+  jointAnglesList: [String]
 }

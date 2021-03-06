@@ -250,7 +250,7 @@ public class PoseUtilities {
     }
   }
 
-  public static func displayOverlay(pose: Pose, to view: UIView, workoutElement: WorkoutElement, orientation: WorkoutOrientation, width: CGFloat, height: CGFloat, previewLayer: AVCaptureVideoPreviewLayer) {
+  public static func displayOverlay(pose: Pose, to view: UIView, jointAngles: [String: CGFloat], orientation: WorkoutOrientation, width: CGFloat, height: CGFloat, previewLayer: AVCaptureVideoPreviewLayer) {
 
     let leftKnee = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height, previewLayer: previewLayer)
     let leftHip = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height, previewLayer: previewLayer)
@@ -264,41 +264,41 @@ public class PoseUtilities {
     let rightShoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height, previewLayer: previewLayer)
     let rightElbow = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightElbow).position, width: width, height: height, previewLayer: previewLayer)
 
-    let decoder = JSONDecoder()
-    var decoded: [String: CGFloat] = [:]
-    
-    do {
-      decoded = try decoder.decode([String: CGFloat].self, from: Data(workoutElement.jointAngles.utf8))
-      
-    } catch {
-      print("Unable to decode joint angles")
-    }
+//    let decoder = JSONDecoder()
+//    var decoded: [String: CGFloat] = [:]
+//
+//    do {
+//      decoded = try decoder.decode([String: CGFloat].self, from: Data(workoutElement.jointAngles.utf8))
+//
+//    } catch {
+//      print("Unable to decode joint angles")
+//    }
     
     switch orientation {
       case .left:
-        UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(decoded["LeftKneeAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(decoded["LeftHipAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(decoded["LeftAnkleAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(decoded["LeftTrunkAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(decoded["LeftElbowAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(jointAngles["LeftKneeAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(jointAngles["LeftHipAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(jointAngles["LeftAnkleAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(jointAngles["LeftTrunkAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(jointAngles["LeftElbowAngle"]!)))
       case .right:
-        UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(decoded["RightKneeAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(decoded["RightHipAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(decoded["RightAnkleAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(decoded["RightTrunkAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(decoded["RightElbowAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(jointAngles["RightKneeAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(jointAngles["RightHipAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(jointAngles["RightAnkleAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(jointAngles["RightTrunkAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
       case .front:
-        UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(decoded["LeftKneeAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(decoded["LeftHipAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(decoded["LeftAnkleAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(decoded["LeftTrunkAngle"]!)))
-        UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(decoded["LeftElbowAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(jointAngles["LeftKneeAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(jointAngles["LeftHipAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(jointAngles["LeftAnkleAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(jointAngles["LeftTrunkAngle"]!)))
+        UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(jointAngles["LeftElbowAngle"]!)))
 
-        UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(decoded["RightKneeAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(decoded["RightHipAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(decoded["RightAnkleAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(decoded["RightTrunkAngle"]!)))
-        UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(decoded["RightElbowAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(jointAngles["RightKneeAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(jointAngles["RightHipAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(jointAngles["RightAnkleAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(jointAngles["RightTrunkAngle"]!)))
+        UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
     }
   }
 }

@@ -14,6 +14,7 @@ public struct WorkoutSessionModel: Model {
   public var workoutResult: WorkoutResult?
   public var videoURL: String?
   public var workoutElements: [WorkoutElement]?
+  public var jointAnglesList: [String]?
   
   public init(id: String = UUID().uuidString,
       imuData: [Double] = [],
@@ -25,7 +26,8 @@ public struct WorkoutSessionModel: Model {
       deadliftElements: [DeadliftElement]? = [],
       workoutResult: WorkoutResult? = nil,
       videoURL: String? = nil,
-      workoutElements: [WorkoutElement]? = []) {
+      workoutElements: [WorkoutElement]? = [],
+      jointAnglesList: [String]? = []) {
       self.id = id
       self.imuData = imuData
       self.cameraAngle = cameraAngle
@@ -37,5 +39,6 @@ public struct WorkoutSessionModel: Model {
       self.workoutResult = workoutResult
       self.videoURL = videoURL
       self.workoutElements = workoutElements
+      self.jointAnglesList = jointAnglesList
   }
 }

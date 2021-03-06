@@ -54,26 +54,26 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             let width = CGFloat(CVPixelBufferGetWidth(CMSampleBufferGetImageBuffer(buffers[0])!))
             let height = CGFloat(CVPixelBufferGetHeight(CMSampleBufferGetImageBuffer(buffers[0])!))
           
-            let encoder = JSONEncoder()
+//            let encoder = JSONEncoder()
           
             poses.forEach { pose in
               let jointAngles = PoseUtilities.getAngles(pose: pose, orientation: workoutSession.cameraAngle)
-              var encodedJointAngles = ""
-              
-              do {
-                let jsonData = try encoder.encode(jointAngles)
-                encodedJointAngles = String(data: jsonData, encoding: .utf8)!
-              } catch {
-                print("Unable to encode joint angles")
-              }
-              
-              
-              let workoutElement = WorkoutElement(
-                orientation: self.cameraAngle.rawValue,
-                jointAngles: encodedJointAngles
-              )
-              
-              workoutSession.workoutElements.append(workoutElement)
+//              var encodedJointAngles = ""
+//
+//              do {
+//                let jsonData = try encoder.encode(jointAngles)
+//                encodedJointAngles = String(data: jsonData, encoding: .utf8)!
+//              } catch {
+//                print("Unable to encode joint angles")
+//              }
+//
+//
+//              let workoutElement = WorkoutElement(
+//                orientation: self.cameraAngle.rawValue,
+//                jointAngles: encodedJointAngles
+//              )
+              workoutSession.jointAnglesList.append(jointAngles)
+//              workoutSession.workoutElements.append(workoutElement)
 //              add video overlay later => miss preview layer
 //              PoseUtilities.displayOverlay(pose: pose, to: self.annotationOverlayView, workoutElement: workoutElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
             }
