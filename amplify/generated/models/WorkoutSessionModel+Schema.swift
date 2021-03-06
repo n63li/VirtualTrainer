@@ -15,7 +15,7 @@ extension WorkoutSessionModel {
     case deadliftElements
     case workoutResult
     case videoURL
-    case workoutElements
+    case jointAnglesList
   }
   
   public static let keys = CodingKeys.self
@@ -37,7 +37,7 @@ extension WorkoutSessionModel {
       .field(workoutSessionModel.deadliftElements, is: .optional, ofType: .embeddedCollection(of: DeadliftElement.self)),
       .field(workoutSessionModel.workoutResult, is: .optional, ofType: .embedded(type: WorkoutResult.self)),
       .field(workoutSessionModel.videoURL, is: .optional, ofType: .string),
-      .field(workoutSessionModel.workoutElements, is: .optional, ofType: .embeddedCollection(of: WorkoutElement.self))
+      .field(workoutSessionModel.jointAnglesList, is: .optional, ofType: .embeddedCollection(of: String.self))
     )
     }
 }
