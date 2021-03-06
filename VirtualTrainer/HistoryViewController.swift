@@ -175,9 +175,21 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
       )
       workoutSession.startTimestamp = Double(model.startTimestamp)
       workoutSession.endTimestamp = Double(model.endTimestamp)
-        workoutSession.videoURL = model.videoURL
-      workoutSession.workoutElements = model.workoutElements!
-     
+      workoutSession.videoURL = model.videoURL
+      
+      let decoder = JSONDecoder()
+      var decodedAnglesList: [[String: CGFloat]] = []
+            
+      for encodedAngles in model.jointAnglesList! {
+        do {
+          let decoded = try decoder.decode([String: CGFloat].self, from: Data(encodedAngles.utf8))
+          decodedAnglesList.append(decoded)
+        } catch {
+          print("Unable to decode joint angles")
+        }
+      }
+      workoutSession.jointAnglesList = decodedAnglesList
+      
       workoutSessionsList.append(workoutSession)
     }
     

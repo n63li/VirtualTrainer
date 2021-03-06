@@ -17,7 +17,7 @@ class WorkoutSession {
   var squatElements: [SquatElement] = []
   var deadliftElements: [DeadliftElement] = []
   var videoURL: String? = ""
-  var workoutElements: [WorkoutElement] = []
+  var jointAnglesList: [[String: CGFloat]] = []
   
   init(workoutType: String, cameraAngle: WorkoutOrientation) {
     self.workoutType = workoutType
@@ -88,7 +88,21 @@ class WorkoutSession {
   }
   
   func save() {
-    print(self.workoutResult)
+    let encoder = JSONEncoder()
+    var encodedJointAnglesList: [String] = []
+    
+    for jointAngles in self.jointAnglesList {
+      var encodedJointAngles = ""
+      do {
+        let jsonData = try encoder.encode(jointAngles)
+        encodedJointAngles = String(data: jsonData, encoding: .utf8)!
+      } catch {
+        print("Unable to encode joint angles")
+      }
+      
+      encodedJointAnglesList.append(encodedJointAngles)
+    }
+        
     let workoutSessionItem = WorkoutSessionModel(
       imuData: self.imuData,
       cameraAngle: self.cameraAngle.rawValue,
@@ -99,7 +113,7 @@ class WorkoutSession {
       deadliftElements: self.deadliftElements,
       workoutResult: self.workoutResult,
       videoURL: self.videoURL,
-      workoutElements: self.workoutElements)
+      jointAnglesList: encodedJointAnglesList)
     Amplify.DataStore.save(workoutSessionItem) { result in
       switch(result) {
       case .success(let savedItem):
