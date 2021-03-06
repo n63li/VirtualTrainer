@@ -21,11 +21,6 @@ public struct PoseData {
   }
 }
 
-public struct WorkoutElement: Codable {
-  var orientation: String
-  var jointAngles: String
-}
-
 public struct SquatElement: Codable {
   var orientation: String
   var KneeAngle: CGFloat

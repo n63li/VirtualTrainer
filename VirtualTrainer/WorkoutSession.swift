@@ -17,7 +17,6 @@ class WorkoutSession {
   var squatElements: [SquatElement] = []
   var deadliftElements: [DeadliftElement] = []
   var videoURL: String? = ""
-  var workoutElements: [WorkoutElement] = []
   var jointAnglesList: [[String: CGFloat]] = []
   
   init(workoutType: String, cameraAngle: WorkoutOrientation) {

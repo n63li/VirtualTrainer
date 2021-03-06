@@ -146,27 +146,10 @@ class CameraViewController: UIViewController {
     }
     DispatchQueue.main.sync {
       // Pose detected. Currently, only single person detection is supported.
-      let encoder = JSONEncoder()
       poses.forEach { pose in
         PoseUtilities.displaySkeleton(pose: pose, width: width, height: height, previewLayer: previewLayer, annotationOverlayView: self.annotationOverlayView)
 
         let jointAngles = PoseUtilities.getAngles(pose: pose, orientation: workoutSession!.cameraAngle)
-//        var encodedJointAngles = ""
-//
-//        do {
-//          let jsonData = try encoder.encode(jointAngles)
-//          encodedJointAngles = String(data: jsonData, encoding: .utf8)!
-//        } catch {
-//          print("Unable to encode joint angles")
-//        }
-//
-//
-//        let workoutElement = WorkoutElement(
-//          orientation: workoutSession!.cameraAngle.rawValue,
-//          jointAngles: encodedJointAngles
-//        )
-//
-//        workoutSession!.workoutElements.append(workoutElement)
         workoutSession?.jointAnglesList.append(jointAngles)
         PoseUtilities.displayOverlay(pose: pose, to: self.annotationOverlayView, jointAngles: jointAngles, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
       }
