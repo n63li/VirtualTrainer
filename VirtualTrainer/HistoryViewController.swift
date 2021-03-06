@@ -176,6 +176,7 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
       workoutSession.startTimestamp = Double(model.startTimestamp)
       workoutSession.endTimestamp = Double(model.endTimestamp)
         workoutSession.videoURL = model.videoURL
+      workoutSession.workoutElements = model.workoutElements!
      
       workoutSessionsList.append(workoutSession)
     }

@@ -52,7 +52,7 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
-//        print(workoutSession?.squatElements)
+        workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         workoutSession?.save()
     }
 }
