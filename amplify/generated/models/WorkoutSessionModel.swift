@@ -9,8 +9,8 @@ public struct WorkoutSessionModel: Model {
   public var workoutType: String
   public var startTimestamp: Int
   public var endTimestamp: Int
-  public var squatElements: [SquatElement]?
-  public var deadliftElements: [DeadliftElement]?
+  public var squatElements: [WorkoutElement]?
+  public var deadliftElements: [WorkoutElement]?
   public var workoutResult: WorkoutResult?
   public var videoURL: String?
   
@@ -20,8 +20,8 @@ public struct WorkoutSessionModel: Model {
       workoutType: String,
       startTimestamp: Int,
       endTimestamp: Int,
-      squatElements: [SquatElement]? = [],
-      deadliftElements: [DeadliftElement]? = [],
+      squatElements: [WorkoutElement]? = [],
+      deadliftElements: [WorkoutElement]? = [],
       workoutResult: WorkoutResult? = nil,
       videoURL: String? = nil) {
       self.id = id

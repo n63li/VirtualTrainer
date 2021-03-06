@@ -51,17 +51,22 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
                 workoutType: self.workoutType,
                 cameraAngle: self.cameraAngle
             )
+            let width = CGFloat(CVPixelBufferGetWidth(CMSampleBufferGetImageBuffer(buffers[0])!))
+            let height = CGFloat(CVPixelBufferGetHeight(CMSampleBufferGetImageBuffer(buffers[0])!))
+          
             poses.forEach { pose in
+              let workoutElement = PoseUtilities.getAngles(pose: pose, orientation: workoutSession.cameraAngle)
+              
               switch workoutSession.workoutType {
                 case "squat":
-                  let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
-                    workoutSession.squatElements.append(squatElement)
+                  workoutSession.squatElements.append(workoutElement)
                 case "deadlift":
-                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
-                    workoutSession.deadliftElements.append(deadliftElement)
+                  workoutSession.deadliftElements.append(workoutElement)
                 default:
                   break
               }
+//              add video overlay later => miss preview layer
+//              PoseUtilities.displayOverlay(pose: pose, to: self.annotationOverlayView, workoutElement: workoutElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
             }
             
             DispatchQueue.main.async {

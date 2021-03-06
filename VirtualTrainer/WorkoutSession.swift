@@ -14,8 +14,8 @@ class WorkoutSession {
   var workoutResult: WorkoutResult
   var startTimestamp: Double = 0
   var endTimestamp: Double = 0
-  var squatElements: [SquatElement] = []
-  var deadliftElements: [DeadliftElement] = []
+  var squatElements: [WorkoutElement] = []
+  var deadliftElements: [WorkoutElement] = []
     var videoURL: String? = ""
   
   init(workoutType: String, cameraAngle: WorkoutOrientation) {

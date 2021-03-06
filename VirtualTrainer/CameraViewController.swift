@@ -149,18 +149,17 @@ class CameraViewController: UIViewController {
       poses.forEach { pose in
         PoseUtilities.displaySkeleton(pose: pose, width: width, height: height, previewLayer: previewLayer, annotationOverlayView: self.annotationOverlayView)
 
+        let workoutElement = PoseUtilities.getAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left)
+        
         switch workoutSession?.workoutType {
           case "squat":
-            let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left)
-            workoutSession?.squatElements.append(squatElement)
-            PoseUtilities.displaySquatOverlay(pose: pose, to: self.annotationOverlayView, squatElement: squatElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
+            workoutSession?.squatElements.append(workoutElement)
           case "deadlift":
-            let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left)
-            workoutSession?.deadliftElements.append(deadliftElement)
-            PoseUtilities.displayDeadliftOverlay(pose: pose, to: self.annotationOverlayView, deadliftElement: deadliftElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
+            workoutSession?.deadliftElements.append(workoutElement)
           default:
             break
         }
+        PoseUtilities.displayOverlay(pose: pose, to: self.annotationOverlayView, workoutElement: workoutElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
       }
     }
   }
