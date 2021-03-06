@@ -51,7 +51,7 @@ public struct PoseData {
   }
 }
 
-public struct SquatElement: Codable {
+public struct SquatElement: Codable, Loopable {
   var orientation: String
   var KneeAngle: CGFloat
   var HipAngle: CGFloat

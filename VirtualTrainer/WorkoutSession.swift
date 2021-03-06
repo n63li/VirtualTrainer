@@ -31,48 +31,45 @@ class WorkoutSession {
       "squat": Squat()
     ] as [String : IdealWorkout]
     
-    let idealWorkout = idealWorkouts[self.workoutType]!.jointAngles[self.cameraAngle]
-    print(idealWorkout)
-    var currentIdealFrameIndex = 0
-    let keys = try self.squatElements[0].allProperties()
+    let idealJointAnglesList = idealWorkouts[self.workoutType]!.jointAngles[self.cameraAngle]
+    var currentIdealJointAngleListIndex = 0
+    let keys = self.jointAnglesList[0].keys
     var tolerance = 4.0
     var score = 100.0
-    print(self.squatElements.count)
-    print(self.squatElements[0])
     var iterations = 1
-    while currentIdealFrameIndex < idealWorkout!.count {
+    while currentIdealJointAngleListIndex < idealJointAnglesList!.count {
       tolerance += Double(iterations) * 2
-      for userFrame in self.squatElements {
-        if currentIdealFrameIndex >= idealWorkout!.count {
+      for jointAngles in self.jointAnglesList {
+        if currentIdealJointAngleListIndex >= idealJointAnglesList!.count {
           break
         }
-        let currentIdealFrame = idealWorkout![currentIdealFrameIndex]
-        var isUserFrameGood = false
+        let currentIdealJointAngles = idealJointAnglesList![currentIdealJointAngleListIndex]
+        var isUserJointAngleGood = false
         var scoreDeduction = 0.0
         let scoreDeductionWeighting = 0.25
-        for (key, _): (String, Any) in keys {
-          let userVal = userFrame.valueByPropertyName(name: key)
-          let idealVal = currentIdealFrame.valueByPropertyName(name: key)
-          let difference = Double(abs(userVal - idealVal))
+        for key in keys {
+          let userVal = jointAngles[key]
+          let idealJointAngle = currentIdealJointAngles[key]
+          let difference = Double(abs(userVal! - CGFloat(idealJointAngle!)))
           if (difference <= tolerance) {
-            scoreDeduction += difference * scoreDeductionWeighting * Double(iterations) / 10
-            isUserFrameGood = true
+            scoreDeduction += difference * scoreDeductionWeighting * Double(iterations) / 14
+            isUserJointAngleGood = true
           } else {
-            isUserFrameGood = false
+            isUserJointAngleGood = false
             break
           }
         }
-        
-        if isUserFrameGood {
-          print("We found frame \(currentIdealFrameIndex)")
-          currentIdealFrameIndex += 1
+
+        if isUserJointAngleGood {
+          print("We found frame \(currentIdealJointAngleListIndex)")
+          currentIdealJointAngleListIndex += 1
           score -= Double(scoreDeduction)
         }
       }
       iterations += 1
     }
-    
-    if currentIdealFrameIndex < idealWorkout!.count {
+
+    if currentIdealJointAngleListIndex < idealJointAnglesList!.count {
       // means that we couldn't find any user poses that resembles the ideal poses
       // user has bad pose, might need to ask them to try again
       print("User has bad pose, cannot match user poses to ideal poses")
