@@ -51,17 +51,31 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
                 workoutType: self.workoutType,
                 cameraAngle: self.cameraAngle
             )
+            let width = CGFloat(CVPixelBufferGetWidth(CMSampleBufferGetImageBuffer(buffers[0])!))
+            let height = CGFloat(CVPixelBufferGetHeight(CMSampleBufferGetImageBuffer(buffers[0])!))
+          
+            let encoder = JSONEncoder()
+          
             poses.forEach { pose in
-              switch workoutSession.workoutType {
-                case "squat":
-                  let squatElement = PoseUtilities.getSquatAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
-                    workoutSession.squatElements.append(squatElement)
-                case "deadlift":
-                    let deadliftElement = PoseUtilities.getDeadLiftAngles(pose: pose, orientation: workoutSession.cameraAngle ?? WorkoutOrientation.left)
-                    workoutSession.deadliftElements.append(deadliftElement)
-                default:
-                  break
+              let jointAngles = PoseUtilities.getAngles(pose: pose, orientation: workoutSession.cameraAngle)
+              var encodedJointAngles = ""
+              
+              do {
+                let jsonData = try encoder.encode(jointAngles)
+                encodedJointAngles = String(data: jsonData, encoding: .utf8)!
+              } catch {
+                print("Unable to encode joint angles")
               }
+              
+              
+              let workoutElement = WorkoutElement(
+                orientation: self.cameraAngle.rawValue,
+                jointAngles: encodedJointAngles
+              )
+              
+              workoutSession.workoutElements.append(workoutElement)
+//              add video overlay later => miss preview layer
+//              PoseUtilities.displayOverlay(pose: pose, to: self.annotationOverlayView, workoutElement: workoutElement, orientation: workoutSession?.cameraAngle ?? WorkoutOrientation.left, width: width, height: height, previewLayer: previewLayer)
             }
             
             DispatchQueue.main.async {

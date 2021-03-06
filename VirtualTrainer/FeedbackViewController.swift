@@ -43,8 +43,6 @@ class FeedbackViewController: UIViewController {
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
 
-        print(workoutSession?.squatElements)
-        print(workoutSession?.deadliftElements)
         workoutSession?.workoutResult = WorkoutResult(
           score: 1020,
           incorrectJoints: [],
