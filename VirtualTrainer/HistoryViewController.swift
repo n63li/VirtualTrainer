@@ -85,24 +85,8 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            
             let workoutSession = workoutSessions[indexPath.row]
-            
-            // remove the item from the data model
-            workoutSessions.remove(at: indexPath.row)
-            
-            // delete the table view row
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            // Delete from Amplify datastore
-            Amplify.DataStore.delete(WorkoutSessionModel.self, withId: workoutSession.id) { result in
-                switch(result) {
-                case .success:
-                    print("Deleted item: \(workoutSession.id)")
-                case .failure(let error):
-                    print("Could not update data in Datastore: \(error)")
-                }
-            }
+            self.deleteWorkoutSession(tableView: tableView, indexPath: indexPath, workoutSession: workoutSession)
         }
     }
     
@@ -113,23 +97,30 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
         navigationController?.pushViewController(destination, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+    func tableView(
+        _ tableView: UITableView,
+        contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint)
+    -> UIContextMenuConfiguration? {
         // 1
-        guard
-            let identifier = configuration.identifier as? String,
-            let index = Int(identifier)
-        else {
-            return
-        }
+        let index = indexPath.row
+        let workoutSession = workoutSessions[index]
         
         // 2
-        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+        let identifier = "\(index)" as NSString
         
-        // 3
-        animator.addCompletion {
-            self.performSegue(
-                withIdentifier: "showHistoryViewController",
-                sender: cell)
+        return UIContextMenuConfiguration(
+            identifier: identifier,
+            previewProvider: nil) { _ in
+            // 3
+            let deleteAction = UIAction(
+                title: "Delete Workout",
+                image: UIImage(systemName: "trash"),
+                attributes: .destructive
+            ) { _ in
+                self.deleteWorkoutSession(tableView: tableView, indexPath: indexPath, workoutSession: workoutSession)
+            }
+                // 5
+            return UIMenu(title: "", image: nil, children: [deleteAction])
         }
     }
     
@@ -156,6 +147,24 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
                 workoutSessions = WorkoutSession.convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
             case .failure(let error):
                 print("Could not query DataStore: \(error)")
+            }
+        }
+    }
+
+    func deleteWorkoutSession(tableView: UITableView, indexPath: IndexPath, workoutSession: WorkoutSession) {
+        // remove the item from the data model
+        workoutSessions.remove(at: indexPath.row)
+        
+        // delete the table view row
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        // Delete from Amplify datastore
+        Amplify.DataStore.delete(WorkoutSessionModel.self, withId: workoutSession.id) { result in
+            switch(result) {
+            case .success:
+                print("Deleted item: \(workoutSession.id)")
+            case .failure(let error):
+                print("Could not update data in Datastore: \(error)")
             }
         }
     }
