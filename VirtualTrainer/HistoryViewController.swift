@@ -21,178 +21,178 @@ import UIKit
 @objc(HistoryViewController)
 class HistoryViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIContextMenuInteractionDelegate {
     
-  // Workout sessions
-  var workoutSessions = [] as [WorkoutSession]
+    // Workout sessions
+    var workoutSessions = [] as [WorkoutSession]
     
-  var refreshControl = UIRefreshControl()
-
-  let cellReuseIdentifier = "WorkoutTableViewCell"
+    var refreshControl = UIRefreshControl()
     
-  // MARK: - IBOutlets
-  @IBOutlet weak var tableView: UITableView!
-
-  // MARK: - UIViewController
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-      
-    queryWorkoutSessions()
-    tableView.reloadData()
-    tableView.register(UINib(nibName: "WorkoutTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+    let cellReuseIdentifier = "WorkoutTableViewCell"
     
-    refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-    refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-    tableView.addSubview(refreshControl) // not required when using UITableViewController
-
+    // MARK: - IBOutlets
+    @IBOutlet weak var tableView: UITableView!
     
-    tableView.delegate = self
-    tableView.dataSource = self
-  }
+    // MARK: - UIViewController
     
-  @objc func refresh(_ sender: AnyObject) {
-    queryWorkoutSessions()
-    refreshControl.endRefreshing()
-    tableView.reloadData()
-  }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    if let indexPath = tableView.indexPathForSelectedRow {
-      tableView.deselectRow(at: indexPath, animated: true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        queryWorkoutSessions()
+        tableView.reloadData()
+        tableView.register(UINib(nibName: "WorkoutTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl) // not required when using UITableViewController
+        
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-  }
-
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-  }
     
-  // MARK: - UITableViewController
+    @objc func refresh(_ sender: AnyObject) {
+        queryWorkoutSessions()
+        refreshControl.endRefreshing()
+        tableView.reloadData()
+    }
     
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return workoutSessions.count;
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: WorkoutTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! WorkoutTableViewCell
-
-    let workoutSession = workoutSessions[indexPath.row]
-    
-    cell.set(session: workoutSession)
-    return cell
-    
-  }
-  
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    
-    if editingStyle == .delete {
-
-      let workoutSession = workoutSessions[indexPath.row]
-      
-      // remove the item from the data model
-      workoutSessions.remove(at: indexPath.row)
-
-      // delete the table view row
-      tableView.deleteRows(at: [indexPath], with: .fade)
-
-      // Delete from Amplify datastore
-      Amplify.DataStore.delete(WorkoutSessionModel.self, withId: workoutSession.id) { result in
-        switch(result) {
-        case .success:
-            print("Deleted item: \(workoutSession.id)")
-        case .failure(let error):
-            print("Could not update data in Datastore: \(error)")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
-      }
-    }
-  }
-    
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-      let destination = storyboard.instantiateViewController(withIdentifier: "WorkoutResultViewController") as! WorkoutResultViewController
-      destination.workoutSession = workoutSessions[indexPath.row]
-      navigationController?.pushViewController(destination, animated: true)
-  }
-  
-  func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-    // 1
-    guard
-      let identifier = configuration.identifier as? String,
-      let index = Int(identifier)
-      else {
-        return
     }
     
-    // 2
-    let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
-    
-    // 3
-    animator.addCompletion {
-      self.performSegue(
-        withIdentifier: "showHistoryViewController",
-        sender: cell)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
-  }
-  
-  func contextMenuInteraction(
-    _ interaction: UIContextMenuInteraction,
-    configurationForMenuAtLocation location: CGPoint)
-      -> UIContextMenuConfiguration? {
-    return UIContextMenuConfiguration(
-      identifier: nil,
-      previewProvider: nil,
-      actionProvider: { _ in
-        let children: [UIMenuElement] = []
-        return UIMenu(title: "", children: children)
-    })
-  }
-  
-  func queryWorkoutSessions() {
-      Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
-        switch(result) {
-        case .success(let items):
-          for item in items {
-            print("WorkoutSessionModel ID: \(item.id)")
-          }
-          workoutSessions = convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
-        case .failure(let error):
-          print("Could not query DataStore: \(error)")
-        }
-      }
-  }
-  
-  func convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: [WorkoutSessionModel]) -> [WorkoutSession]{
-    var workoutSessionsList = [] as [WorkoutSession]
     
-    for model in workoutSessionModels {
-      let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: WorkoutOrientation(rawValue: model.cameraAngle) ?? WorkoutOrientation.left)
-      
-      workoutSession.id = model.id
-      workoutSession.imuData = model.imuData
-      workoutSession.workoutResult = model.workoutResult ?? WorkoutResult(
-        score: 0,
-        incorrectJoints: [0],
-        incorrectAccelerations: [0]
-      )
-      workoutSession.startTimestamp = Double(model.startTimestamp)
-      workoutSession.endTimestamp = Double(model.endTimestamp)
-      workoutSession.videoURL = model.videoURL
-      
-      let decoder = JSONDecoder()
-      var decodedAnglesList: [[String: CGFloat]] = []
+    // MARK: - UITableViewController
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return workoutSessions.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: WorkoutTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! WorkoutTableViewCell
+        
+        let workoutSession = workoutSessions[indexPath.row]
+        
+        cell.set(session: workoutSession)
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
             
-      for encodedAngles in model.jointAnglesList! {
-        do {
-          let decoded = try decoder.decode([String: CGFloat].self, from: Data(encodedAngles.utf8))
-          decodedAnglesList.append(decoded)
-        } catch {
-          print("Unable to decode joint angles")
+            let workoutSession = workoutSessions[indexPath.row]
+            
+            // remove the item from the data model
+            workoutSessions.remove(at: indexPath.row)
+            
+            // delete the table view row
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // Delete from Amplify datastore
+            Amplify.DataStore.delete(WorkoutSessionModel.self, withId: workoutSession.id) { result in
+                switch(result) {
+                case .success:
+                    print("Deleted item: \(workoutSession.id)")
+                case .failure(let error):
+                    print("Could not update data in Datastore: \(error)")
+                }
+            }
         }
-      }
-      workoutSession.jointAnglesList = decodedAnglesList
-      
-      workoutSessionsList.append(workoutSession)
     }
     
-    return workoutSessionsList
-  }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destination = storyboard.instantiateViewController(withIdentifier: "WorkoutResultViewController") as! WorkoutResultViewController
+        destination.workoutSession = workoutSessions[indexPath.row]
+        navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        // 1
+        guard
+            let identifier = configuration.identifier as? String,
+            let index = Int(identifier)
+        else {
+            return
+        }
+        
+        // 2
+        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+        
+        // 3
+        animator.addCompletion {
+            self.performSegue(
+                withIdentifier: "showHistoryViewController",
+                sender: cell)
+        }
+    }
+    
+    func contextMenuInteraction(
+        _ interaction: UIContextMenuInteraction,
+        configurationForMenuAtLocation location: CGPoint)
+    -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { _ in
+                let children: [UIMenuElement] = []
+                return UIMenu(title: "", children: children)
+            })
+    }
+    
+    func queryWorkoutSessions() {
+        Amplify.DataStore.query(WorkoutSessionModel.self, sort: .descending(WorkoutSessionModel.keys.startTimestamp)) { result in
+            switch(result) {
+            case .success(let items):
+                for item in items {
+                    print("WorkoutSessionModel ID: \(item.id)")
+                }
+                workoutSessions = convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: items)
+            case .failure(let error):
+                print("Could not query DataStore: \(error)")
+            }
+        }
+    }
+    
+    func convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: [WorkoutSessionModel]) -> [WorkoutSession]{
+        var workoutSessionsList = [] as [WorkoutSession]
+        
+        for model in workoutSessionModels {
+            let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: WorkoutOrientation(rawValue: model.cameraAngle) ?? WorkoutOrientation.left)
+            
+            workoutSession.id = model.id
+            workoutSession.imuData = model.imuData
+            workoutSession.workoutResult = model.workoutResult ?? WorkoutResult(
+                score: 0,
+                incorrectJoints: [0],
+                incorrectAccelerations: [0]
+            )
+            workoutSession.startTimestamp = Double(model.startTimestamp)
+            workoutSession.endTimestamp = Double(model.endTimestamp)
+            workoutSession.videoURL = model.videoURL
+            
+            let decoder = JSONDecoder()
+            var decodedAnglesList: [[String: CGFloat]] = []
+            
+            for encodedAngles in model.jointAnglesList! {
+                do {
+                    let decoded = try decoder.decode([String: CGFloat].self, from: Data(encodedAngles.utf8))
+                    decodedAnglesList.append(decoded)
+                } catch {
+                    print("Unable to decode joint angles")
+                }
+            }
+            workoutSession.jointAnglesList = decodedAnglesList
+            
+            workoutSessionsList.append(workoutSession)
+        }
+        
+        return workoutSessionsList
+    }
 }

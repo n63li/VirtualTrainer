@@ -11,23 +11,23 @@ import AVKit
 
 @objc(FeedbackViewController)
 class FeedbackViewController: UIViewController {
-  var workoutSession: WorkoutSession? = nil
-  @IBOutlet weak var dateLabel: UILabel!
-  @IBOutlet weak var scoreLabel: UILabel!
-  @IBOutlet weak var doneButton: UIBarButtonItem!
+    var workoutSession: WorkoutSession? = nil
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var videoView: UIView!
     
     override func viewDidLoad() {
         print(workoutSession?.jointAnglesList)
         super.viewDidLoad()
-      
+        
         do {
-          try workoutSession?.calculateScore()
+            try workoutSession?.calculateScore()
         }
         catch {
-          print("did not calculate score")
+            print("did not calculate score")
         }
-      
+        
         scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
