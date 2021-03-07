@@ -235,16 +235,6 @@ public class PoseUtilities {
         let rightShoulder = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height, previewLayer: previewLayer)
         let rightElbow = normalizedPoint(fromVisionPoint: pose.landmark(ofType: .rightElbow).position, width: width, height: height, previewLayer: previewLayer)
         
-        //    let decoder = JSONDecoder()
-        //    var decoded: [String: CGFloat] = [:]
-        //
-        //    do {
-        //      decoded = try decoder.decode([String: CGFloat].self, from: Data(workoutElement.jointAngles.utf8))
-        //
-        //    } catch {
-        //      print("Unable to decode joint angles")
-        //    }
-        
         switch orientation {
         case .left:
             UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(jointAngles["LeftKneeAngle"]!)))

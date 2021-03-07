@@ -22,9 +22,6 @@ class WorkoutTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
         
-        //        print("Loading session \(session)")
-        //        print("TypeLabel: \(typeLabel)")
-        
         typeLabel?.text = session.workoutType.capitalized
         dateLabel?.text = strDate
         accuracyLabel?.text = String(session.workoutResult.score ?? 0)
