@@ -14,14 +14,14 @@ class PoseDetectorHelper {
     /// Initialized when one of the pose detector rows are chosen. Reset to `nil` when neither are.
     private var poseDetector: PoseDetector? = nil
     var poseData: [Pose] = []
-
+    
     // Deprecated
     init(frames: [UIImage], setProgress: (Float)->()) {
         resetManagedLifecycleDetectors()
         let totalFrames = Float(frames.count)
         print("About to process \(totalFrames) frames")
         for (index, frame) in frames.enumerated() {
-          self.poseData.append(contentsOf: detectPose(in: VisionImage(image: frame)))
+            self.poseData.append(contentsOf: detectPose(in: VisionImage(image: frame)))
             setProgress(Float(index) / totalFrames)
         }
     }
@@ -31,48 +31,48 @@ class PoseDetectorHelper {
         let totalBuffers = Float(buffers.count)
         print("About to process \(totalBuffers) frames")
         for (index, buffer) in buffers.enumerated() {
-          self.poseData.append(contentsOf: detectPose(in: VisionImage(buffer: buffer)))
+            self.poseData.append(contentsOf: detectPose(in: VisionImage(buffer: buffer)))
             setProgress(Float(index) / totalBuffers)
         }
-
+        
     }
-
+    
     init() {
-
+        
     }
-
-  func getResults() -> [Pose] {
+    
+    func getResults() -> [Pose] {
         return self.poseData
     }
-
+    
     func detectPose(in image: VisionImage) -> [Pose] {
-      if let poseDetector = self.poseDetector {
-        var poses: [Pose]
-        do {
-          poses = try poseDetector.results(in: image)
-        } catch let error {
-          print("Failed to detect poses with error: \(error.localizedDescription).")
-          return []
+        if let poseDetector = self.poseDetector {
+            var poses: [Pose]
+            do {
+                poses = try poseDetector.results(in: image)
+            } catch let error {
+                print("Failed to detect poses with error: \(error.localizedDescription).")
+                return []
+            }
+            
+            guard !poses.isEmpty else {
+                print("Pose detector returned no results.")
+                return []
+            }
+            return poses
         }
-
-        guard !poses.isEmpty else {
-          print("Pose detector returned no results.")
-          return []
-        }
-        return poses
-      }
         return []
     }
-
+    
     /// Resets any detector instances which use a conventional lifecycle paradigm. This method is
     /// expected to be invoked on the AVCaptureOutput queue - the same queue on which detection is
     /// run.
     func resetManagedLifecycleDetectors() {
-      if (self.poseDetector != nil) {
-          return
-      }
-      let options = AccuratePoseDetectorOptions()
-      options.detectorMode = .stream
-      self.poseDetector = PoseDetector.poseDetector(options: options)
+        if (self.poseDetector != nil) {
+            return
+        }
+        let options = AccuratePoseDetectorOptions()
+        options.detectorMode = .stream
+        self.poseDetector = PoseDetector.poseDetector(options: options)
     }
 }

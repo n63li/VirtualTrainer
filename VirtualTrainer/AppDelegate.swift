@@ -20,23 +20,23 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
-
-  func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-  ) -> Bool {
-      let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
-      //let apiPlugin = AWSAPIPlugin(modelRegistration: AmplifyModels()) // UNCOMMENT this line once backend is deployed
-
-      do {
-          try Amplify.add(plugin: dataStorePlugin)
-          //try Amplify.add(plugin: apiPlugin) // UNCOMMENT this line once backend is deployed
-          try Amplify.configure()
-          print("Initialized Amplify");
-      } catch {
-          print("Could not initialize Amplify: \(error)")
-      }
-    return true
-  }
+    var window: UIWindow?
+    
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
+        //let apiPlugin = AWSAPIPlugin(modelRegistration: AmplifyModels()) // UNCOMMENT this line once backend is deployed
+        
+        do {
+            try Amplify.add(plugin: dataStorePlugin)
+            //try Amplify.add(plugin: apiPlugin) // UNCOMMENT this line once backend is deployed
+            try Amplify.configure()
+            print("Initialized Amplify");
+        } catch {
+            print("Could not initialize Amplify: \(error)")
+        }
+        return true
+    }
 }
