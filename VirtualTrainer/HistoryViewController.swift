@@ -114,7 +114,8 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
             // 3
             let deleteAction = UIAction(
                 title: "Delete Workout",
-                image: UIImage(systemName: "trash")
+                image: UIImage(systemName: "trash"),
+                attributes: .destructive
             ) { _ in
                 self.deleteWorkoutSession(tableView: tableView, indexPath: indexPath, workoutSession: workoutSession)
             }
