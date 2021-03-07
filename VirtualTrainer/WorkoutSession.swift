@@ -14,8 +14,6 @@ class WorkoutSession {
   var workoutResult: WorkoutResult
   var startTimestamp: Double = 0
   var endTimestamp: Double = 0
-  var squatElements: [SquatElement] = []
-  var deadliftElements: [DeadliftElement] = []
   var videoURL: String? = ""
   var jointAnglesList: [[String: CGFloat]] = []
   
@@ -107,8 +105,6 @@ class WorkoutSession {
       workoutType: self.workoutType,
       startTimestamp: Int(self.startTimestamp),
       endTimestamp: Int(self.endTimestamp),
-      squatElements: self.squatElements,
-      deadliftElements: self.deadliftElements,
       workoutResult: self.workoutResult,
       videoURL: self.videoURL,
       jointAnglesList: encodedJointAnglesList)

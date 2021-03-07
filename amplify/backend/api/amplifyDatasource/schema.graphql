@@ -4,30 +4,6 @@ type WorkoutResult {
   incorrectAccelerations: [Float]
 }
 
-type DeadliftElement {
-  orientation: String!
-  rightKneeAngle: Float!
-  leftHipAngle: Float!
-  rightHipAngle: Float!
-  leftAnkleAngle: Float!
-  rightAnkleAngle: Float!
-  leftTrunkAngle: Float!
-  rightTrunkAngle: Float!
-  leftShoulderAngle: Float!
-  rightShoulderAngle: Float!
-  leftElbowAngle: Float!
-  rightElbowAngle: Float!
-  leftKneeAngle: Float!
-}
-
-type SquatElement {
-  orientation: String!
-  hipAngle: Float!
-  ankleAngle: Float!
-  trunkAngle: Float!
-  kneeAngle: Float!
-}
-
 type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   id: ID!
   imuData: [Float!]
@@ -35,8 +11,6 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   workoutType: String!
   startTimestamp: AWSTimestamp!
   endTimestamp: AWSTimestamp!
-  squatElements: [SquatElement]
-  deadliftElements: [DeadliftElement]
   workoutResult: WorkoutResult
   videoURL: String
   jointAnglesList: [String]
