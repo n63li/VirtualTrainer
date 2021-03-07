@@ -13,12 +13,23 @@ import AVKit
 class FeedbackViewController: UIViewController {
   var workoutSession: WorkoutSession? = nil
   @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var scoreLabel: UILabel!
   @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var videoView: UIView!
     
     override func viewDidLoad() {
+        print(workoutSession?.jointAnglesList)
         super.viewDidLoad()
       
+        do {
+          try workoutSession?.calculateScore()
+        }
+        catch {
+          print("did not calculate score")
+        }
+      
+        scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+        workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
@@ -42,12 +53,6 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
-
-        workoutSession?.workoutResult = WorkoutResult(
-          score: 1020,
-          incorrectJoints: [],
-          incorrectAccelerations: []
-        )
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         workoutSession?.save()
     }

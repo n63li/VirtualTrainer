@@ -11,6 +11,36 @@ import AVFoundation
 import MLKit
 import UIKit
 
+protocol Loopable {
+    func allProperties() throws -> [String: Any]
+}
+
+extension Loopable {
+    func allProperties() throws -> [String: Any] {
+
+        var result: [String: Any] = [:]
+
+        let mirror = Mirror(reflecting: self)
+
+        // Optional check to make sure we're iterating over a struct or class
+        guard let style = mirror.displayStyle, style == .struct || style == .class else {
+            throw NSError()
+        }
+
+        for (property, value) in mirror.children {
+            guard let property = property else {
+                continue
+            }
+          
+            if property == "orientation" { continue }
+
+            result[property] = value
+        }
+
+        return result
+    }
+}
+
 public struct PoseData {
   let name: String
   var data: [CGFloat]
@@ -21,15 +51,25 @@ public struct PoseData {
   }
 }
 
-public struct SquatElement: Codable {
+public struct SquatElement: Codable, Loopable {
   var orientation: String
   var KneeAngle: CGFloat
   var HipAngle: CGFloat
   var AnkleAngle: CGFloat
   var TrunkAngle: CGFloat
+  
+  func valueByPropertyName(name: String) -> CGFloat {
+      switch name {
+      case "KneeAngle": return self.KneeAngle
+      case "HipAngle": return self.HipAngle
+      case "AnkleAngle": return self.AnkleAngle
+      case "TrunkAngle": return self.TrunkAngle
+      default: fatalError("Wrong property name")
+      }
+  }
 }
 
-public struct DeadliftElement: Codable {
+public struct DeadliftElement: Codable, Loopable {
   var orientation: String
   var LeftKneeAngle: CGFloat
   var RightKneeAngle: CGFloat
