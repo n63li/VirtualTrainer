@@ -11,8 +11,6 @@ extension WorkoutSessionModel {
     case workoutType
     case startTimestamp
     case endTimestamp
-    case squatElements
-    case deadliftElements
     case workoutResult
     case videoURL
     case jointAnglesList
@@ -33,8 +31,6 @@ extension WorkoutSessionModel {
       .field(workoutSessionModel.workoutType, is: .required, ofType: .string),
       .field(workoutSessionModel.startTimestamp, is: .required, ofType: .int),
       .field(workoutSessionModel.endTimestamp, is: .required, ofType: .int),
-      .field(workoutSessionModel.squatElements, is: .optional, ofType: .embeddedCollection(of: SquatElement.self)),
-      .field(workoutSessionModel.deadliftElements, is: .optional, ofType: .embeddedCollection(of: DeadliftElement.self)),
       .field(workoutSessionModel.workoutResult, is: .optional, ofType: .embedded(type: WorkoutResult.self)),
       .field(workoutSessionModel.videoURL, is: .optional, ofType: .string),
       .field(workoutSessionModel.jointAnglesList, is: .optional, ofType: .embeddedCollection(of: String.self))

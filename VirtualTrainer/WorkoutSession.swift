@@ -107,8 +107,6 @@ class WorkoutSession {
       workoutType: self.workoutType,
       startTimestamp: Int(self.startTimestamp),
       endTimestamp: Int(self.endTimestamp),
-      squatElements: self.squatElements,
-      deadliftElements: self.deadliftElements,
       workoutResult: self.workoutResult,
       videoURL: self.videoURL,
       jointAnglesList: encodedJointAnglesList)

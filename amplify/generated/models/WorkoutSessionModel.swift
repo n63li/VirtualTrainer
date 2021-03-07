@@ -9,8 +9,6 @@ public struct WorkoutSessionModel: Model {
   public var workoutType: String
   public var startTimestamp: Int
   public var endTimestamp: Int
-  public var squatElements: [SquatElement]?
-  public var deadliftElements: [DeadliftElement]?
   public var workoutResult: WorkoutResult?
   public var videoURL: String?
   public var jointAnglesList: [String]?
@@ -21,8 +19,6 @@ public struct WorkoutSessionModel: Model {
       workoutType: String,
       startTimestamp: Int,
       endTimestamp: Int,
-      squatElements: [SquatElement]? = [],
-      deadliftElements: [DeadliftElement]? = [],
       workoutResult: WorkoutResult? = nil,
       videoURL: String? = nil,
       jointAnglesList: [String]? = []) {
@@ -32,8 +28,6 @@ public struct WorkoutSessionModel: Model {
       self.workoutType = workoutType
       self.startTimestamp = startTimestamp
       self.endTimestamp = endTimestamp
-      self.squatElements = squatElements
-      self.deadliftElements = deadliftElements
       self.workoutResult = workoutResult
       self.videoURL = videoURL
       self.jointAnglesList = jointAnglesList
