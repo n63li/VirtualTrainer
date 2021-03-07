@@ -79,7 +79,7 @@ class WorkoutSession {
       print("Hey we have a score of: \(score)")
     }
     self.workoutResult = WorkoutResult(
-      score: score,
+      score: Double(round(100 * score) / 100),
       incorrectJoints: [0],
       incorrectAccelerations: [0]
     )

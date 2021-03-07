@@ -28,7 +28,7 @@ class FeedbackViewController: UIViewController {
           print("did not calculate score")
         }
       
-        scoreLabel?.text = "You have achieved a score of \(workoutSession?.workoutResult.score)"
+        scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
