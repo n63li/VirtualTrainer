@@ -359,7 +359,7 @@
         <!--Trends-->
         <scene sceneID="LFS-4r-XxG">
             <objects>
-                <viewController id="bx0-BJ-guY" sceneMemberID="viewController">
+                <viewController id="bx0-BJ-guY" customClass="TrendsViewController" customModule="VirtualTrainer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lse-ME-Qcn"/>
                         <viewControllerLayoutGuide type="bottom" id="6Rs-4U-pbB"/>
@@ -367,9 +367,24 @@
                     <view key="view" contentMode="scaleToFill" id="VGG-Qv-qzp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-tK-LCD" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bzi-tK-LCD" secondAttribute="trailing" id="EXo-3V-NWj"/>
+                            <constraint firstItem="6Rs-4U-pbB" firstAttribute="top" secondItem="bzi-tK-LCD" secondAttribute="bottom" id="Ty5-Ib-PPc"/>
+                            <constraint firstItem="bzi-tK-LCD" firstAttribute="top" secondItem="Lse-ME-Qcn" secondAttribute="bottom" id="dbn-oy-z0a"/>
+                            <constraint firstItem="bzi-tK-LCD" firstAttribute="leading" secondItem="VGG-Qv-qzp" secondAttribute="leading" id="ywh-qa-wFI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Trends" id="kMj-Ks-CU4"/>
+                    <connections>
+                        <outlet property="lineChartView" destination="bzi-tK-LCD" id="hz6-Qi-cMD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qo-kx-rRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

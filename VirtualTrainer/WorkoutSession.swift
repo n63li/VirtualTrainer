@@ -117,4 +117,41 @@ class WorkoutSession {
             }
         }
     }
+    
+    
+    static func convertWorkoutSessionModelsToWorkoutSessions(workoutSessionModels: [WorkoutSessionModel]) -> [WorkoutSession]{
+        var workoutSessionsList = [] as [WorkoutSession]
+        
+        for model in workoutSessionModels {
+            let workoutSession = WorkoutSession(workoutType: model.workoutType, cameraAngle: WorkoutOrientation(rawValue: model.cameraAngle) ?? WorkoutOrientation.left)
+            
+            workoutSession.id = model.id
+            workoutSession.imuData = model.imuData
+            workoutSession.workoutResult = model.workoutResult ?? WorkoutResult(
+                score: 0,
+                incorrectJoints: [0],
+                incorrectAccelerations: [0]
+            )
+            workoutSession.startTimestamp = Double(model.startTimestamp)
+            workoutSession.endTimestamp = Double(model.endTimestamp)
+            workoutSession.videoURL = model.videoURL
+            
+            let decoder = JSONDecoder()
+            var decodedAnglesList: [[String: CGFloat]] = []
+            
+            for encodedAngles in model.jointAnglesList! {
+                do {
+                    let decoded = try decoder.decode([String: CGFloat].self, from: Data(encodedAngles.utf8))
+                    decodedAnglesList.append(decoded)
+                } catch {
+                    print("Unable to decode joint angles")
+                }
+            }
+            workoutSession.jointAnglesList = decodedAnglesList
+            
+            workoutSessionsList.append(workoutSession)
+        }
+        
+        return workoutSessionsList
+    }
 }

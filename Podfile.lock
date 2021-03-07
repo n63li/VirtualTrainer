@@ -16,6 +16,9 @@ PODS:
   - AWSPluginsCore (1.6.0):
     - Amplify (= 1.6.0)
     - AWSCore (~> 2.22.0)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - GoogleDataTransport (8.2.0):
     - nanopb (~> 2.30907.0)
   - GoogleMLKit/MLKitCore (2.0.0):
@@ -92,6 +95,7 @@ DEPENDENCIES:
   - Amplify
   - AmplifyPlugins/AWSAPIPlugin
   - AmplifyPlugins/AWSDataStorePlugin
+  - Charts
   - GoogleMLKit/PoseDetection
   - GoogleMLKit/PoseDetectionAccurate
 
@@ -102,6 +106,7 @@ SPEC REPOS:
     - AppSyncRealTimeClient
     - AWSCore
     - AWSPluginsCore
+    - Charts
     - GoogleDataTransport
     - GoogleMLKit
     - GoogleToolboxForMac
@@ -126,6 +131,7 @@ SPEC CHECKSUMS:
   AppSyncRealTimeClient: 04df4dffe57cfbd06da336d0bfcd5641ba9adcb5
   AWSCore: c86b71ff60747c4058769af64ed871ebfae16ddb
   AWSPluginsCore: d21990b54729e2a95620922ea83e123adaa678cd
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleMLKit: 2a9032170872c4464d516700a04661d6e5b98a77
   GoogleToolboxForMac: 471e0c05d39506e50e6398f46fa9a12ae0efeff9
@@ -144,6 +150,6 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 4742ed2b608ca352e1f52fd3f8eb8d3b2f42e368
+PODFILE CHECKSUM: 9c628896f54989a6a9eb3a549ce3675120dc4058
 
 COCOAPODS: 1.10.1
