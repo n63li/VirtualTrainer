@@ -4,12 +4,6 @@
 //
 //  Created by Nathan Li on 2021-02-16.
 //
-public let idealSquatRight = [
-  SquatElement(orientation: "right", KneeAngle: 179.7561044347451, HipAngle: 177.23966649398434, AnkleAngle: 128.48408243711748, TrunkAngle: 0.0),
-  SquatElement(orientation: "right", KneeAngle: 90.86861052318542, HipAngle: 100.48350676788714, AnkleAngle: 106.3977112137546, TrunkAngle: 0.0),
-  SquatElement(orientation: "right", KneeAngle: 178.21735024388704, HipAngle: 177.7292506491383, AnkleAngle: 119.23408719256155, TrunkAngle: 0.0)
-]
-
 protocol IdealWorkout {
   var jointAngles: [WorkoutOrientation: [[String: Double]]] { get }
 }
