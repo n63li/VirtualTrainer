@@ -28,7 +28,7 @@ class WorkoutResultViewController: UIViewController {
         let strDate = dateFormatter.string(from: date)
         
         self.title = strDate
-        scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+        scoreLabel?.text = "You achieved a score of \(workoutSession!.workoutResult.score!)"
 
         let videoURL = URL(string: (workoutSession?.videoURL)!)
         
