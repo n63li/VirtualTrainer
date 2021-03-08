@@ -12,7 +12,7 @@ import AVKit
 @objc(WorkoutResultViewController)
 class WorkoutResultViewController: UIViewController {
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
     
     var workoutSession: WorkoutSession?
@@ -27,8 +27,9 @@ class WorkoutResultViewController: UIViewController {
         dateFormatter.dateFormat = "EEEE, MMM d" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
         
-        dateLabel?.text = strDate
-        
+        self.title = strDate
+        scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+
         let videoURL = URL(string: (workoutSession?.videoURL)!)
         
         let player = AVPlayer(url: videoURL!)

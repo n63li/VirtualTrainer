@@ -233,7 +233,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QET-Vy-SuW">
                                         <rect key="frame" x="16" y="8" width="343" height="33.5"/>
@@ -248,7 +248,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-L6-8hs">
-                                        <rect key="frame" x="16" y="78" width="343" height="537"/>
+                                        <rect key="frame" x="16" y="78" width="343" height="485"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </view>
                                 </subviews>
@@ -390,19 +390,22 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b8j-Vp-Bf1">
                                 <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Lh-Cv8">
-                                        <rect key="frame" x="16" y="8" width="343" height="33.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Lh-Cv8">
+                                        <rect key="frame" x="16" y="8" width="343" height="29"/>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-y6-k6q">
-                                        <rect key="frame" x="16" y="49.5" width="343" height="464.5"/>
+                                        <rect key="frame" x="16" y="45" width="343" height="469"/>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="xEk-Lh-Cv8" firstAttribute="leading" secondItem="b8j-Vp-Bf1" secondAttribute="leading" constant="20" id="O9S-fb-NRi"/>
+                                </constraints>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                             </stackView>
                         </subviews>
@@ -416,17 +419,17 @@
                     </view>
                     <navigationItem key="navigationItem" title="Workout Result" id="TKY-QL-bmB"/>
                     <connections>
-                        <outlet property="dateLabel" destination="xEk-Lh-Cv8" id="bPd-mp-gll"/>
+                        <outlet property="scoreLabel" destination="xEk-Lh-Cv8" id="RCu-05-8fw"/>
                         <outlet property="videoView" destination="ZtX-y6-k6q" id="Ze2-hN-gQx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRU-g1-JFM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1391.2" y="26.53673163418291"/>
+            <point key="canvasLocation" x="-1210" y="887"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vic-MG-SnD"/>
+        <segue reference="oML-Om-WaV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="94"/>
