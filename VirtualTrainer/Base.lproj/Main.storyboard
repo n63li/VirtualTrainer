@@ -368,7 +368,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-tK-LCD" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-tK-LCD" customClass="ScatterChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -381,9 +381,15 @@
                             <constraint firstItem="bzi-tK-LCD" firstAttribute="leading" secondItem="VGG-Qv-qzp" secondAttribute="leading" id="ywh-qa-wFI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Trends" id="kMj-Ks-CU4"/>
+                    <navigationItem key="navigationItem" title="Trends" id="kMj-Ks-CU4">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="5cE-kL-4H2">
+                            <connections>
+                                <action selector="refresh:" destination="bx0-BJ-guY" id="1F3-9d-G2I"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="lineChartView" destination="bzi-tK-LCD" id="hz6-Qi-cMD"/>
+                        <outlet property="scatterChartView" destination="bzi-tK-LCD" id="LGe-Kf-4PJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qo-kx-rRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -444,6 +450,7 @@
         <segue reference="vic-MG-SnD"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="94"/>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
