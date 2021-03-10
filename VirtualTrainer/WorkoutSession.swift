@@ -62,7 +62,12 @@ class WorkoutSession {
                 
                 if isUserJointAngleGood {
                     print("We found frame \(currentIdealJointAngleListIndex)")
-                    matchedFrames.append(jointAngles)
+                    do {
+                        let jsonData = try JSONEncoder().encode(jointAngles)
+                        matchedFrames.append(String(data: jsonData, encoding: .utf8)!)
+                    } catch {
+                        print("Unable to encode data... try again")
+                    }
                     currentIdealJointAngleListIndex += 1
                     score -= Double(scoreDeduction)
                 }
@@ -88,19 +93,16 @@ class WorkoutSession {
     func save() {
         let encoder = JSONEncoder()
         var encodedJointAnglesList: [String] = []
-        
-        for jointAngles in self.jointAnglesList {
-            var encodedJointAngles = ""
-            do {
+
+        do {
+            for jointAngles in self.jointAnglesList {
                 let jsonData = try encoder.encode(jointAngles)
-                encodedJointAngles = String(data: jsonData, encoding: .utf8)!
-            } catch {
-                print("Unable to encode joint angles")
+                encodedJointAnglesList.append(String(data: jsonData, encoding: .utf8)!)
             }
-            
-            encodedJointAnglesList.append(encodedJointAngles)
+        } catch {
+            print("Unable to encode data... try again")
         }
-        
+
         let workoutSessionItem = WorkoutSessionModel(
             imuData: self.imuData,
             cameraAngle: self.cameraAngle.rawValue,
@@ -118,5 +120,21 @@ class WorkoutSession {
                 print("Could not save workout session to DataStore: \(error)")
             }
         }
+    }
+
+    func getIncorrectJointAngles() {
+        let decoder = JSONDecoder()
+        var decodedJoints = [[String: CGFloat]] = []
+        let incorrectJointsString = self.workoutResult.incorrectJoints
+        do {
+            for jointString in incorrectJointsString {
+                let decoded = try decoder.decode([String: CGFloat].self, from: Data(jointString.utf8))
+                decodedJoints.append(decoded)
+            }
+        } catch {
+            print("Unable to decode the incorrect joint angles")
+        }
+
+        return decodedJoints
     }
 }

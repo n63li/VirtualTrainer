@@ -183,7 +183,7 @@ class HistoryViewController: UIViewController, UINavigationControllerDelegate, U
             
             workoutSessionsList.append(workoutSession)
         }
-        
+
         return workoutSessionsList
     }
     
