@@ -12,7 +12,6 @@ import AVKit
 @objc(FeedbackViewController)
 class FeedbackViewController: UIViewController {
     var workoutSession: WorkoutSession? = nil
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var videoView: UIView!
@@ -28,7 +27,7 @@ class FeedbackViewController: UIViewController {
             print("did not calculate score")
         }
         
-        scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+        scoreLabel?.text = "You have a score of \(workoutSession!.workoutResult.score!)"
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
@@ -37,7 +36,7 @@ class FeedbackViewController: UIViewController {
         dateFormatter.dateFormat = "EEEE, MMM d" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
         
-        dateLabel?.text = strDate
+        self.title = strDate
         let videoURL = URL(string: (workoutSession?.videoURL)!)
         
         print("Playing from URL: \(videoURL?.absoluteString)")
