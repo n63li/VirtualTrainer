@@ -68,7 +68,7 @@ class WorkoutSession {
             iterations += 1
         }
         
-        if currentIdealJointAngleListIndex < idealJointAnglesList!.count {
+        if currentIdealJointAngleListIndex < idealJointAnglesList!.count || score < 0 {
             // means that we couldn't find any user poses that resembles the ideal poses
             // user has bad pose, might need to ask them to try again
             print("User has bad pose, cannot match user poses to ideal poses")
