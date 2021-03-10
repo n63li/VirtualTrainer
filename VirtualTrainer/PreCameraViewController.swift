@@ -81,9 +81,40 @@ class PreCameraViewController: UIViewController, CBPeripheralDelegate, CBCentral
                 } else if characteristic.uuid == IMUPeripheral.ZAccelCharacteristicUUID {
                     print("Z Accel characteristic found");
                 }
+                peripheral.setNotifyValue(true, for: characteristic)
             }
         }
     }
+    
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        switch characteristic.uuid {
+            case IMUPeripheral.XAccelCharacteristicUUID:
+                if let value = characteristic.value {
+                    print("X: \((String(bytes: value, encoding: String.Encoding.utf8) as NSString?)?.floatValue)")
+                }
+                else {
+                    print("Bad data for X-Accel")
+                }
+            case IMUPeripheral.YAccelCharacteristicUUID:
+                if let value = characteristic.value {
+                    print("Y: \((String(bytes: value, encoding: String.Encoding.utf8) as NSString?)?.floatValue)")
+                }
+                else {
+                    print("Bad data for Y-Accel")
+                }
+            case IMUPeripheral.ZAccelCharacteristicUUID:
+                if let value = characteristic.value {
+                    print("Z: \((String(bytes: value, encoding: String.Encoding.utf8) as NSString?)?.floatValue)")
+                }
+                else {
+                    print("Bad data for Z-Accel")
+                }
+        default:
+          print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+      }
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "startWorkoutSegue") {
