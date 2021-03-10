@@ -36,6 +36,7 @@ class WorkoutSession {
         var tolerance = 4.0
         var score = 100.0
         var iterations = 1
+        let matchedFrames = []
         while currentIdealJointAngleListIndex < idealJointAnglesList!.count {
             tolerance += Double(iterations) * 2
             for jointAngles in self.jointAnglesList {
@@ -61,6 +62,7 @@ class WorkoutSession {
                 
                 if isUserJointAngleGood {
                     print("We found frame \(currentIdealJointAngleListIndex)")
+                    matchedFrames.append(jointAngles)
                     currentIdealJointAngleListIndex += 1
                     score -= Double(scoreDeduction)
                 }
@@ -78,7 +80,7 @@ class WorkoutSession {
         }
         self.workoutResult = WorkoutResult(
             score: Double(round(100 * score) / 100),
-            incorrectJoints: [0],
+            incorrectJoints: matchedFrames,
             incorrectAccelerations: [0]
         )
     }
