@@ -233,7 +233,7 @@ class WorkoutSession {
             workoutSession.imuData = model.imuData
             workoutSession.workoutResult = model.workoutResult ?? WorkoutResult(
                 score: 0,
-                incorrectJoints: [0],
+                incorrectJoints: [],
                 incorrectAccelerations: [0]
             )
             workoutSession.startTimestamp = Double(model.startTimestamp)
