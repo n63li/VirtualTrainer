@@ -262,6 +262,61 @@ public class PoseUtilities {
             UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
         }
     }
+  
+    public static func displayOverlay2(pose: Pose, to view: UIView, jointAngles: [String: CGFloat], orientation: WorkoutOrientation, width: CGFloat, height: CGFloat, rect: CGRect) {
+        let xOffset = (view.frame.width - rect.width) / 2
+        let yOffset = (view.frame.height - rect.height) / 2
+      
+      
+        let leftKnee = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftHip = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftAnkle = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftShoulder = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftElbow = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftElbow).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        
+        let rightKnee = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightKnee).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightHip = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightHip).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightAnkle = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightAnkle).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightShoulder = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightElbow = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightElbow).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        
+        switch orientation {
+        case .left:
+            UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(jointAngles["LeftKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(jointAngles["LeftHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(jointAngles["LeftAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(jointAngles["LeftTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(jointAngles["LeftElbowAngle"]!)))
+        case .right:
+            UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(jointAngles["RightKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(jointAngles["RightHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(jointAngles["RightAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(jointAngles["RightTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
+        case .front:
+            UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(jointAngles["LeftKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(jointAngles["LeftHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(jointAngles["LeftAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(jointAngles["LeftTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(jointAngles["LeftElbowAngle"]!)))
+            
+            UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(jointAngles["RightKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(jointAngles["RightHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(jointAngles["RightAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(jointAngles["RightTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
+        }
+    }
     
     public static func normalizedPoint2(
         fromVisionPoint point: VisionPoint,
