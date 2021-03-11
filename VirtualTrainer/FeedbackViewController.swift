@@ -15,9 +15,9 @@ class FeedbackViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var feedbackLabel: UILabel!
     
     override func viewDidLoad() {
-        print(workoutSession?.jointAnglesList)
         super.viewDidLoad()
         
         do {
@@ -32,6 +32,16 @@ class FeedbackViewController: UIViewController {
             textLabel = "Could not detect proper postures at all - are you sure you uploaded the correct video for the selected exercise and camera angle?"
         }
         scoreLabel?.text = textLabel
+        
+        let feedback = workoutSession?.generateFeedback()
+        var feedbackParagraph = feedback?[0]
+        
+        for sentence in feedback![1...] {
+            feedbackParagraph! += " " + sentence
+        }
+        
+        feedbackLabel.text = feedbackParagraph!    
+        
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
