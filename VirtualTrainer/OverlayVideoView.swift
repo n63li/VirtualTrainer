@@ -19,15 +19,15 @@ class OverlayVideoView: UIView {
             playerLayer.player = newValue
         }
     }
-
+    
     var playerLayer: AVPlayerLayer {
         return layer as! AVPlayerLayer
     }
-
+    
     override static var layerClass: AnyClass {
         return AVPlayerLayer.self
     }
-
+    
     private var output: AVPlayerItemVideoOutput!
     private var displayLink: CADisplayLink!
     private var context: CIContext = CIContext(options: [CIContextOption.workingColorSpace : NSNull()])
@@ -39,32 +39,32 @@ class OverlayVideoView: UIView {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     func load(video: URL) {
         print("Playing video from \(video.absoluteString)")
         layer.isOpaque = true
         self.backgroundColor = .systemBackground
         poseDetectorHelper.resetManagedLifecycleDetectors()
-
+        
         let item = AVPlayerItem(url: video)
         output = AVPlayerItemVideoOutput(outputSettings: nil)
-
+    
         item.add(output)
-
+        
         player = AVPlayer(playerItem: item)
         playerLayer.frame = self.bounds
         setupDisplayLink()
-
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         addGestureRecognizer(gesture)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
-
+    
     @objc func playerDidFinishPlaying() {
         player?.seek(to: CMTime.zero)
     }
-
+    
     @objc func displayLinkUpdated(link: CADisplayLink) {
         let time = output.itemTime(forHostTime: CACurrentMediaTime())
         guard output.hasNewPixelBuffer(forItemTime: time),

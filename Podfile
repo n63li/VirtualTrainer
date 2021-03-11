@@ -8,6 +8,7 @@ pod 'AmplifyPlugins/AWSAPIPlugin'
 pod 'AmplifyPlugins/AWSDataStorePlugin'
 pod 'GoogleMLKit/PoseDetection'
 pod 'GoogleMLKit/PoseDetectionAccurate'
+pod 'Charts'
 
 target 'VirtualTrainer' do
 end

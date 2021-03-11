@@ -247,7 +247,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="05z-vK-0qD">
-                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWs-Kg-Gvj">
                                         <rect key="frame" x="16" y="8" width="343" height="27.5"/>
@@ -378,7 +378,7 @@
         <!--Trends-->
         <scene sceneID="LFS-4r-XxG">
             <objects>
-                <viewController id="bx0-BJ-guY" sceneMemberID="viewController">
+                <viewController id="bx0-BJ-guY" customClass="TrendsViewController" customModule="VirtualTrainer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lse-ME-Qcn"/>
                         <viewControllerLayoutGuide type="bottom" id="6Rs-4U-pbB"/>
@@ -386,9 +386,30 @@
                     <view key="view" contentMode="scaleToFill" id="VGG-Qv-qzp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-tK-LCD" customClass="ScatterChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bzi-tK-LCD" secondAttribute="trailing" id="EXo-3V-NWj"/>
+                            <constraint firstItem="6Rs-4U-pbB" firstAttribute="top" secondItem="bzi-tK-LCD" secondAttribute="bottom" id="Ty5-Ib-PPc"/>
+                            <constraint firstItem="bzi-tK-LCD" firstAttribute="top" secondItem="Lse-ME-Qcn" secondAttribute="bottom" id="dbn-oy-z0a"/>
+                            <constraint firstItem="bzi-tK-LCD" firstAttribute="leading" secondItem="VGG-Qv-qzp" secondAttribute="leading" id="ywh-qa-wFI"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Trends" id="kMj-Ks-CU4"/>
+                    <navigationItem key="navigationItem" title="Trends" id="kMj-Ks-CU4">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="5cE-kL-4H2">
+                            <connections>
+                                <action selector="refresh:" destination="bx0-BJ-guY" id="1F3-9d-G2I"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="scatterChartView" destination="bzi-tK-LCD" id="LGe-Kf-4PJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qo-kx-rRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -455,6 +476,7 @@
         <segue reference="pZ8-l6-rvj"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="arrow.triangle.2.circlepath.camera.fill" catalog="system" width="128" height="94"/>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>

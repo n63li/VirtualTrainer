@@ -18,6 +18,7 @@ class FeedbackViewController: UIViewController {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var videoView: OverlayVideoView!
     @IBOutlet weak var feedbackTextView: UITextView!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,9 +69,7 @@ class FeedbackViewController: UIViewController {
 
         self.title = strDate
         let videoURL = URL(string: (workoutSession?.videoURL)!)
-
         videoView.workoutSession = workoutSession
-
         videoView.load(video: videoURL!)
 //        let player = AVPlayer(url: videoURL!)
 //        let playerViewController = AVPlayerViewController()
