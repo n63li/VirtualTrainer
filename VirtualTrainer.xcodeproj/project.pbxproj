@@ -21,8 +21,8 @@
 		914F84EC25E37640005BB3DE /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */; };
 		914F84EF25E3813E005BB3DE /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */; };
 		914F851825E7355F005BB3DE /* PoseDetectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */; };
-		914F873725F94770005BB3DE /* OverlayVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F873625F9476F005BB3DE /* OverlayVideoView.swift */; };
 		914F86F225F4690F005BB3DE /* TrendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F86F125F4690F005BB3DE /* TrendsViewController.swift */; };
+		914F873725F94770005BB3DE /* OverlayVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F873625F9476F005BB3DE /* OverlayVideoView.swift */; };
 		91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
@@ -61,8 +61,8 @@
 		914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
 		914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseDetectorHelper.swift; sourceTree = "<group>"; };
-		914F873625F9476F005BB3DE /* OverlayVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVideoView.swift; sourceTree = "<group>"; };
 		914F86F125F4690F005BB3DE /* TrendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewController.swift; sourceTree = "<group>"; };
+		914F873625F9476F005BB3DE /* OverlayVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVideoView.swift; sourceTree = "<group>"; };
 		91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualTrainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8E2C9FA1709AB4D6E13D79 /* Pods-VirtualTrainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualTrainer.debug.xcconfig"; path = "Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,7 +166,6 @@
 				D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */,
 				914F873625F9476F005BB3DE /* OverlayVideoView.swift */,
 				914F86F125F4690F005BB3DE /* TrendsViewController.swift */,
-				FBACAE2325EFFCE20000174A /* IMUPeripheral.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -622,12 +621,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4F868BD8W;
+				DEVELOPMENT_TEAM = DW4Z72S9X9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainerjeremy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -644,12 +643,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4F868BD8W;
+				DEVELOPMENT_TEAM = DW4Z72S9X9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainerjeremy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -21,26 +21,31 @@ class WorkoutResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let feedback = workoutSession?.generateFeedback()
-        var feedbackParagraph = feedback?[0]
-
-        for sentence in feedback![1...] {
-            feedbackParagraph! += " " + sentence
+        if workoutSession!.workoutResult.score! <= Double(0) {
+            scoreLabel?.text = "Could not detect proper postures - are you sure you uploaded the correct video for the selected exercise and camera angle?"
+            feedbackLabel.isHidden = true
+        }
+        else {
+            scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+            let feedback = workoutSession?.generateFeedback()
+            var feedbackParagraph = feedback?[0]
+            
+            for sentence in feedback![1...] {
+                feedbackParagraph! += " " + sentence
+            }
+            
+            feedbackLabel.text = feedbackParagraph!
         }
         
-        feedbackLabel.text = feedbackParagraph!        
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "EEEE, MMM d" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
-        
         self.title = strDate
-        scoreLabel?.text = "You achieved a score of \(workoutSession!.workoutResult.score!)"
 
         let videoURL = URL(string: (workoutSession?.videoURL)!)
-        
         let player = AVPlayer(url: videoURL!)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player

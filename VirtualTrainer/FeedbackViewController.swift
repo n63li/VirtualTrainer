@@ -28,37 +28,43 @@ class FeedbackViewController: UIViewController {
         catch {
             print("Did not calculate score")
         }
-
+    
         if (fromHistoryViewController) {
             self.doneButton.isEnabled = false
             self.doneButton.tintColor = .clear
         }
 
-        if !fromHistoryViewController  && workoutSession!.workoutResult.score! <= Double(0) {
-            let alert = UIAlertController(title: "Workout Warning", message: "Could not detect proper postures at all - are you sure you uploaded the correct video for the selected exercise and camera angle?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Ignore", comment: "Cancel action"), style: .cancel, handler: { _ in
-
-            }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Restart", comment: "Default action"), style: .destructive, handler: { _ in
-                self.navigationController?.popToRootViewController(animated: true)
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-
         let textLabel = "Score: \(workoutSession!.workoutResult.score!)"
         scoreLabel?.text = textLabel
 
-        let feedback = workoutSession!.generateFeedback()
-        if (feedback.count > 0) {
-            var feedbackParagraph = feedback[0]
+        if workoutSession!.workoutResult.score! <= Double(0) {
+            feedbackTextView.isHidden = true
 
-            for sentence in feedback[1...] {
-                feedbackParagraph += "\n" + sentence
+            if !fromHistoryViewController {
+                let alert = UIAlertController(title: "Workout Warning", message: "Could not detect proper postures at all - are you sure you uploaded the correct video for the selected exercise and camera angle?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Ignore", comment: "Cancel action"), style: .cancel, handler: { _ in
+
+                }))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Restart", comment: "Default action"), style: .destructive, handler: { _ in
+                    self.navigationController?.popToRootViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
-
-            feedbackTextView.text = feedbackParagraph
+            else {
+                scoreLabel?.text = "Could not detect proper postures - are you sure you uploaded the correct video for the selected exercise and camera angle?"
+            }
         }
-
+        else {
+            let feedback = workoutSession?.generateFeedback()
+            var feedbackParagraph = feedback?[0]
+            
+            for sentence in feedback![1...] {
+                feedbackParagraph! += "\n" + sentence
+            }
+            
+            feedbackTextView.text = feedbackParagraph!
+        }
+        
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
