@@ -612,7 +612,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -634,7 +634,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -14,6 +14,9 @@ extension WorkoutSessionModel {
     case workoutResult
     case videoURL
     case jointAnglesList
+    case imuAccelX
+    case imuAccelY
+    case imuAccelZ
   }
   
   public static let keys = CodingKeys.self
@@ -33,7 +36,10 @@ extension WorkoutSessionModel {
       .field(workoutSessionModel.endTimestamp, is: .required, ofType: .int),
       .field(workoutSessionModel.workoutResult, is: .optional, ofType: .embedded(type: WorkoutResult.self)),
       .field(workoutSessionModel.videoURL, is: .optional, ofType: .string),
-      .field(workoutSessionModel.jointAnglesList, is: .optional, ofType: .embeddedCollection(of: String.self))
+      .field(workoutSessionModel.jointAnglesList, is: .optional, ofType: .embeddedCollection(of: String.self)),
+      .field(workoutSessionModel.imuAccelX, is: .optional, ofType: .embeddedCollection(of: Double.self)),
+      .field(workoutSessionModel.imuAccelY, is: .optional, ofType: .embeddedCollection(of: Double.self)),
+      .field(workoutSessionModel.imuAccelZ, is: .optional, ofType: .double)
     )
     }
 }

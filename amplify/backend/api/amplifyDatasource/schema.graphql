@@ -1,6 +1,6 @@
 type WorkoutResult {
   score: Int!
-  incorrectJoints: [Float]
+  incorrectJoints: [String]
   incorrectAccelerations: [Float]
 }
 
@@ -14,4 +14,7 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   workoutResult: WorkoutResult
   videoURL: String
   jointAnglesList: [String]
+  imuAccelX: [Float]
+  imuAccelY: [Float]
+  imuAccelZ: Float
 }

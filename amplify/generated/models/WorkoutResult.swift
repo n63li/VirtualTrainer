@@ -4,6 +4,6 @@ import Foundation
 
 public struct WorkoutResult: Embeddable {
   var score: Int
-  var incorrectJoints: [Double]?
+  var incorrectJoints: [String]?
   var incorrectAccelerations: [Double]?
 }
