@@ -27,20 +27,21 @@ class FeedbackViewController: UIViewController {
             print("Did not calculate score")
         }
         
-        var textLabel = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
         if workoutSession!.workoutResult.score! <= Double(0) {
-            textLabel = "Could not detect proper postures at all - are you sure you uploaded the correct video for the selected exercise and camera angle?"
+            scoreLabel?.text = "Could not detect proper postures - are you sure you uploaded the correct video for the selected exercise and camera angle?"
+            feedbackLabel.isHidden = true
         }
-        scoreLabel?.text = textLabel
-        
-        let feedback = workoutSession?.generateFeedback()
-        var feedbackParagraph = feedback?[0]
-        
-        for sentence in feedback![1...] {
-            feedbackParagraph! += " " + sentence
+        else {
+            scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+            let feedback = workoutSession?.generateFeedback()
+            var feedbackParagraph = feedback?[0]
+            
+            for sentence in feedback![1...] {
+                feedbackParagraph! += " " + sentence
+            }
+            
+            feedbackLabel.text = feedbackParagraph!
         }
-        
-        feedbackLabel.text = feedbackParagraph!    
         
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
