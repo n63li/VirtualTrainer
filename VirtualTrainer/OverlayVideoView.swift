@@ -33,7 +33,14 @@ class OverlayVideoView: UIView {
 
     private var poseDetectorHelper = PoseDetectorHelper()
     
+    private var isRecordedByApp = false
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func load(video: URL) {
+        print("Playing video from \(video.absoluteString)")
         layer.isOpaque = true
         self.backgroundColor = .systemBackground
         poseDetectorHelper.resetManagedLifecycleDetectors()
@@ -49,6 +56,12 @@ class OverlayVideoView: UIView {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         addGestureRecognizer(gesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+    }
+    
+    @objc func playerDidFinishPlaying() {
+        player?.seek(to: CMTime.zero)
     }
     
     @objc func displayLinkUpdated(link: CADisplayLink) {
@@ -58,7 +71,14 @@ class OverlayVideoView: UIView {
         let baseImg = CIImage(cvImageBuffer: pixbuf)
         
         guard let cgImg = context.createCGImage(baseImg, from: baseImg.extent) else { return }
-        let img = UIImage(cgImage: cgImg).rotate(radians: .pi / 2)!
+        var img = UIImage(cgImage: cgImg)
+        
+        let imgRatio = Double(round(1000 * img.size.width / img.size.height) / 1000)
+        let videoRatio = Double(round(1000 * playerLayer.videoRect.width / playerLayer.videoRect.height) / 1000)
+        
+        if (imgRatio != videoRatio) {
+            img = img.rotate(radians: .pi / 2)!
+        }
         
         self.subviews.forEach { view in
             view.removeFromSuperview()
