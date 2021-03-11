@@ -253,13 +253,19 @@
                                 <rect key="frame" x="0.0" y="96" width="375" height="571"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWs-Kg-Gvj">
-                                        <rect key="frame" x="16" y="8" width="343" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <rect key="frame" x="16" y="8" width="343" height="27.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83o-Ng-Fz4">
+                                        <rect key="frame" x="16" y="43.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-L6-8hs">
-                                        <rect key="frame" x="16" y="52" width="343" height="511"/>
+                                        <rect key="frame" x="16" y="72" width="343" height="491"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </view>
                                 </subviews>
@@ -286,6 +292,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="5et-gO-2KR" id="7xQ-b5-79t"/>
+                        <outlet property="feedbackLabel" destination="83o-Ng-Fz4" id="Bbk-se-LDu"/>
                         <outlet property="scoreLabel" destination="oWs-Kg-Gvj" id="San-MQ-atG"/>
                         <outlet property="videoView" destination="Ped-L6-8hs" id="SmS-wX-tRA"/>
                     </connections>
@@ -411,13 +418,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGP-Kt-gvX">
-                                        <rect key="frame" x="16" y="51" width="343" height="20.5"/>
+                                        <rect key="frame" x="16" y="46" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-y6-k6q">
-                                        <rect key="frame" x="16" y="79.5" width="343" height="434.5"/>
+                                        <rect key="frame" x="16" y="74.5" width="343" height="439.5"/>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                     </view>
