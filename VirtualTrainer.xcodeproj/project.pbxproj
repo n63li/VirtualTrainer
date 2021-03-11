@@ -43,6 +43,7 @@
 		D83BA63425DF295E003F5562 /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62625DF295E003F5562 /* schema.graphql */; };
 		D83BA63525DF295E003F5562 /* transform.conf.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62725DF295E003F5562 /* transform.conf.json */; };
 		D8C6932325E8A0E10012C5F6 /* WorkoutResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */; };
+		FBACAE2425EFFCE20000174A /* IMUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBACAE2325EFFCE20000174A /* IMUPeripheral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		D83BA62625DF295E003F5562 /* schema.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
 		D83BA62725DF295E003F5562 /* transform.conf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transform.conf.json; sourceTree = "<group>"; };
 		D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutResultViewController.swift; sourceTree = "<group>"; };
+		FBACAE2325EFFCE20000174A /* IMUPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMUPeripheral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */,
 				D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */,
 				914F86F125F4690F005BB3DE /* TrendsViewController.swift */,
+				FBACAE2325EFFCE20000174A /* IMUPeripheral.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D83BA62A25DF295E003F5562 /* IdealWorkoutModel+Schema.swift in Sources */,
+				FBACAE2425EFFCE20000174A /* IMUPeripheral.swift in Sources */,
 				D83BA62825DF295E003F5562 /* WorkoutSessionModel.swift in Sources */,
 				D8000FB825DC578B00ED2C0C /* WorkoutSession.swift in Sources */,
 				10224B582087E43100A77316 /* HistoryViewController.swift in Sources */,
@@ -618,7 +622,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -640,7 +644,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/VirtualTrainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fydp.virtualtrainernli2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

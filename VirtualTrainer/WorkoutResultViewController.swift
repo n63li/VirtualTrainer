@@ -12,14 +12,23 @@ import AVKit
 @objc(WorkoutResultViewController)
 class WorkoutResultViewController: UIViewController {
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var feedbackLabel: UILabel!
     
     var workoutSession: WorkoutSession?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let feedback = workoutSession?.generateFeedback()
+        var feedbackParagraph = feedback?[0]
+
+        for sentence in feedback![1...] {
+            feedbackParagraph! += " " + sentence
+        }
+        
+        feedbackLabel.text = feedbackParagraph!        
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "EST") //Set timezone that you want
@@ -27,8 +36,9 @@ class WorkoutResultViewController: UIViewController {
         dateFormatter.dateFormat = "EEEE, MMM d" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
         
-        dateLabel?.text = strDate
-        
+        self.title = strDate
+        scoreLabel?.text = "You achieved a score of \(workoutSession!.workoutResult.score!)"
+
         let videoURL = URL(string: (workoutSession?.videoURL)!)
         
         let player = AVPlayer(url: videoURL!)

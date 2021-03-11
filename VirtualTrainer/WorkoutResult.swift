@@ -8,9 +8,9 @@
 
 public struct WorkoutResult: Codable {
     var score: Double?
-    var incorrectJoints: [Double]?
+    var incorrectJoints: [String]?
     var incorrectAccelerations: [Double]?
-    init(score: Double? = 0.0, incorrectJoints: [Double]? = [0], incorrectAccelerations: [Double]? = [0]) {
+    init(score: Double? = 0.0, incorrectJoints: [String]? = [], incorrectAccelerations: [Double]? = [0]) {
         self.score = score
         self.incorrectJoints = incorrectJoints
         self.incorrectAccelerations = incorrectAccelerations

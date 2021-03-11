@@ -20,7 +20,7 @@ extension WorkoutResult {
     
     model.fields(
       .field(workoutResult.score, is: .required, ofType: .int),
-      .field(workoutResult.incorrectJoints, is: .optional, ofType: .embeddedCollection(of: Double.self)),
+      .field(workoutResult.incorrectJoints, is: .optional, ofType: .embeddedCollection(of: String.self)),
       .field(workoutResult.incorrectAccelerations, is: .optional, ofType: .embeddedCollection(of: Double.self))
     )
     }

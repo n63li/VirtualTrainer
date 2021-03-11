@@ -12,23 +12,36 @@ import AVKit
 @objc(FeedbackViewController)
 class FeedbackViewController: UIViewController {
     var workoutSession: WorkoutSession? = nil
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var feedbackLabel: UILabel!
     
     override func viewDidLoad() {
-        print(workoutSession?.jointAnglesList)
         super.viewDidLoad()
         
         do {
             try workoutSession?.calculateScore()
         }
         catch {
-            print("did not calculate score")
+            print("Did not calculate score")
         }
         
-        scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+        var textLabel = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+        if workoutSession!.workoutResult.score! <= Double(0) {
+            textLabel = "Could not detect proper postures at all - are you sure you uploaded the correct video for the selected exercise and camera angle?"
+        }
+        scoreLabel?.text = textLabel
+        
+        let feedback = workoutSession?.generateFeedback()
+        var feedbackParagraph = feedback?[0]
+        
+        for sentence in feedback![1...] {
+            feedbackParagraph! += " " + sentence
+        }
+        
+        feedbackLabel.text = feedbackParagraph!    
+        
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
@@ -37,7 +50,7 @@ class FeedbackViewController: UIViewController {
         dateFormatter.dateFormat = "EEEE, MMM d" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
         
-        dateLabel?.text = strDate
+        self.title = strDate
         let videoURL = URL(string: (workoutSession?.videoURL)!)
         
         print("Playing from URL: \(videoURL?.absoluteString)")
