@@ -262,4 +262,108 @@ public class PoseUtilities {
             UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
         }
     }
+    
+    public static func normalizedPoint2(
+        fromVisionPoint point: VisionPoint,
+        width: CGFloat,
+        height: CGFloat,
+        xOffset: CGFloat,
+        yOffset: CGFloat,
+        rect: CGRect
+    ) -> CGPoint {
+        return CGPoint(x: (point.x * rect.width / width) + xOffset, y: (point.y * rect.height / height) + yOffset)
+    }
+    
+    public static func displaySkeleton2(pose: Pose, width: CGFloat, height: CGFloat, rect: CGRect, view: UIView) {
+        let xOffset = (view.frame.width - rect.width) / 2
+        let yOffset = (view.frame.height - rect.height) / 2
+        
+        for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
+            let startLandmark = pose.landmark(ofType: startLandmarkType)
+            if (startLandmark.inFrameLikelihood > 0.6) {
+                for endLandmarkType in endLandmarkTypesArray {
+                    let endLandmark = pose.landmark(ofType: endLandmarkType)
+                    let startLandmarkPoint = normalizedPoint2(
+                        fromVisionPoint: startLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+                    let endLandmarkPoint = normalizedPoint2(
+                        fromVisionPoint: endLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+                    UIUtilities.addLineSegment(
+                        fromPoint: startLandmarkPoint,
+                        toPoint: endLandmarkPoint,
+                        inView: view,
+                        color: UIColor.green,
+                        width: 3.0
+                    )
+                }
+            }
+        }
+        
+        for landmark in pose.landmarks {
+            let landmarkPoint = normalizedPoint2(
+                fromVisionPoint: landmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+            // print("drawing circle at: (\(landmarkPoint.x), \(landmarkPoint.y))")
+            UIUtilities.addCircle(
+                atPoint: landmarkPoint,
+                to: view,
+                color: UIColor.blue,
+                radius: 4.0
+            )
+        }
+    }
+    
+    public static func normalizedPoint3(
+        fromVisionPoint point: VisionPoint,
+        width: CGFloat,
+        height: CGFloat,
+        xOffset: CGFloat,
+        yOffset: CGFloat,
+        rect: CGRect,
+        transform: CGAffineTransform
+    ) -> CGPoint {
+        let point = CGPoint(x: (point.x * rect.width / width), y: (point.y * rect.height / height)).applying(transform)
+        return CGPoint(x: point.x - xOffset, y: point.y - xOffset)
+    }
+    
+    public static func displaySkeleton3(pose: Pose, width: CGFloat, height: CGFloat, rect: CGRect, view: UIView) {
+        let xOffset = CGFloat(0)
+        let yOffset = height / 2
+        
+        let translateTransform = CGAffineTransform(translationX: rect.midX, y: rect.midY);
+        let rotationTransform = CGAffineTransform(rotationAngle: .pi / 2);
+
+        let customRotation = translateTransform.inverted().concatenating( rotationTransform).concatenating(translateTransform);
+        
+        for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
+            let startLandmark = pose.landmark(ofType: startLandmarkType)
+            if (startLandmark.inFrameLikelihood > 0.6) {
+                for endLandmarkType in endLandmarkTypesArray {
+                    let endLandmark = pose.landmark(ofType: endLandmarkType)
+                    let startLandmarkPoint = normalizedPoint3(
+                        fromVisionPoint: startLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect, transform: customRotation)
+                    let endLandmarkPoint = normalizedPoint3(
+                        fromVisionPoint: endLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect, transform: customRotation)
+                    UIUtilities.addLineSegment(
+                        fromPoint: startLandmarkPoint,
+                        toPoint: endLandmarkPoint,
+                        inView: view,
+                        color: UIColor.blue,
+                        width: 3.0
+                    )
+                }
+            }
+        }
+        
+        for landmark in pose.landmarks {
+            let landmarkPoint = normalizedPoint3(
+                fromVisionPoint: landmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect, transform: customRotation)
+            // print("drawing circle at: (\(landmarkPoint.x), \(landmarkPoint.y))")
+            UIUtilities.addCircle(
+                atPoint: landmarkPoint,
+                to: view,
+                color: UIColor.red,
+                radius: 4.0
+            )
+        }
+    }
 }
+

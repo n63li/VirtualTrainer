@@ -31,7 +31,7 @@ class CameraViewController: UIViewController {
     
     private var isRecording: Bool = false
     
-    private var isUsingFrontCamera = true
+    private var isUsingFrontCamera = false
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private lazy var captureSession = AVCaptureSession()
     private lazy var sessionQueue = DispatchQueue(label: Constant.sessionQueueLabel)
@@ -40,7 +40,6 @@ class CameraViewController: UIViewController {
     private var poseDetectorHelper: PoseDetectorHelper = PoseDetectorHelper()
     
     private lazy var previewOverlayView: UIImageView = {
-        
         precondition(isViewLoaded)
         let previewOverlayView = UIImageView(frame: .zero)
         previewOverlayView.contentMode = UIView.ContentMode.scaleAspectFill
@@ -103,7 +102,6 @@ class CameraViewController: UIViewController {
             
             PHPhotoLibrary.shared().performChanges({
                 let request = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputURL!)
-                let placeholder = request?.placeholderForCreatedAsset
             }) { saved, error in
                 print("Successfully saved \(saved), outputURL \(outputURL!.absoluteString)")
                 let fetchOptions = PHFetchOptions()
@@ -170,10 +168,7 @@ class CameraViewController: UIViewController {
     private func setUpCaptureSessionOutput() {
         sessionQueue.async {
             self.captureSession.beginConfiguration()
-            // When performing latency tests to determine ideal capture settings,
-            // run the app in 'release' mode to get accurate performance metrics
             self.captureSession.sessionPreset = AVCaptureSession.Preset.medium
-            
             let output = AVCaptureVideoDataOutput()
             output.videoSettings = [
                 (kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA,
@@ -197,12 +192,28 @@ class CameraViewController: UIViewController {
             self.avAssetWriterInput = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: settings)
             self.avAssetWriterInput?.mediaTimeScale = CMTimeScale(bitPattern: 600)
             self.avAssetWriterInput?.expectsMediaDataInRealTime = true
-            self.avAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi/2)
+            // self.avAssetWriterInput?.transform = CGAffineTransform(rotationAngle: .pi/2)
+            self.avAssetWriterInput?.transform = self.getVideoTransform()
             self.avAssetWriterAdapter = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: self.avAssetWriterInput!, sourcePixelBufferAttributes: nil)
             self.avAssetWriter?.add(self.avAssetWriterInput!)
             
         }
     }
+    
+    private func getVideoTransform() -> CGAffineTransform {
+        switch UIDevice.current.orientation {
+            case .portrait:
+                return .identity
+            case .portraitUpsideDown:
+                return CGAffineTransform(rotationAngle: .pi)
+            case .landscapeLeft:
+                return CGAffineTransform(rotationAngle: .pi/2)
+            case .landscapeRight:
+                return CGAffineTransform(rotationAngle: -.pi/2)
+            default:
+                return .identity
+            }
+        }
     
     private func setUpCaptureSessionInput() {
         sessionQueue.async {
@@ -234,6 +245,12 @@ class CameraViewController: UIViewController {
     private func startSession() {
         sessionQueue.async {
             self.captureSession.startRunning()
+            self.captureSession.connections.forEach { connection in
+                print("Capture Session connection: \(connection.output)")
+            }
+            let connection = self.captureSession.outputs.first?.connection(with: .video)
+            print("Orientation supported: \(connection?.isVideoOrientationSupported)")
+            connection?.videoOrientation = .portrait
         }
     }
     
@@ -294,42 +311,19 @@ class CameraViewController: UIViewController {
         guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
             return
         }
-        let rotatedImage = UIImage(cgImage: cgImage, scale: Constant.originalScale, orientation: .right)
-        if isUsingFrontCamera {
-            guard let rotatedCGImage = rotatedImage.cgImage else {
-                return
-            }
-            let mirroredImage = UIImage(
-                cgImage: rotatedCGImage, scale: Constant.originalScale, orientation: .leftMirrored)
-            previewOverlayView.image = mirroredImage
-        } else {
-            previewOverlayView.image = rotatedImage
-        }
-    }
-    
-    private func convertedPoints(
-        from points: [NSValue]?,
-        width: CGFloat,
-        height: CGFloat
-    ) -> [NSValue]? {
-        return points?.map {
-            let cgPointValue = $0.cgPointValue
-            let normalizedPoint = CGPoint(x: cgPointValue.x / width, y: cgPointValue.y / height)
-            let cgPoint = previewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
-            let value = NSValue(cgPoint: cgPoint)
-            return value
-        }
-    }
-    
-    private func normalizedPoint(
-        fromVisionPoint point: VisionPoint,
-        width: CGFloat,
-        height: CGFloat
-    ) -> CGPoint {
-        let cgPoint = CGPoint(x: point.x, y: point.y)
-        var normalizedPoint = CGPoint(x: cgPoint.x / width, y: cgPoint.y / height)
-        normalizedPoint = previewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
-        return normalizedPoint
+        let image = UIImage(cgImage: cgImage)
+        previewOverlayView.image = image
+//        let rotatedImage = UIImage(cgImage: cgImage, scale: Constant.originalScale, orientation: .right)
+//        if isUsingFrontCamera {
+//            guard let rotatedCGImage = rotatedImage.cgImage else {
+//                return
+//            }
+//            let mirroredImage = UIImage(
+//                cgImage: rotatedCGImage, scale: Constant.originalScale, orientation: .leftMirrored)
+//            previewOverlayView.image = mirroredImage
+//        } else {
+//            previewOverlayView.image = rotatedImage
+//        }
     }
 }
 
@@ -342,6 +336,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         didOutput sampleBuffer: CMSampleBuffer,
         from connection: AVCaptureConnection
     ) {
+        // connection.videoOrientation = .portrait
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             print("Failed to get image buffer from sample buffer.")
             return
@@ -353,7 +348,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let orientation = UIUtilities.imageOrientation(
             fromDevicePosition: isUsingFrontCamera ? .front : .back
         )
-        
+
         visionImage.orientation = orientation
         let imageWidth = CGFloat(CVPixelBufferGetWidth(imageBuffer))
         let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))

@@ -15,17 +15,6 @@ class PoseDetectorHelper {
     private var poseDetector: PoseDetector? = nil
     var poseData: [Pose] = []
     
-    // Deprecated
-    init(frames: [UIImage], setProgress: (Float)->()) {
-        resetManagedLifecycleDetectors()
-        let totalFrames = Float(frames.count)
-        print("About to process \(totalFrames) frames")
-        for (index, frame) in frames.enumerated() {
-            self.poseData.append(contentsOf: detectPose(in: VisionImage(image: frame)))
-            setProgress(Float(index) / totalFrames)
-        }
-    }
-    
     init(buffers: [CMSampleBuffer], setProgress: (Float)->()) {
         resetManagedLifecycleDetectors()
         let totalBuffers = Float(buffers.count)
@@ -34,7 +23,6 @@ class PoseDetectorHelper {
             self.poseData.append(contentsOf: detectPose(in: VisionImage(buffer: buffer)))
             setProgress(Float(index) / totalBuffers)
         }
-        
     }
     
     init() {

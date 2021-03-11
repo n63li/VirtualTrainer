@@ -15,7 +15,7 @@ class FeedbackViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var videoView: OverlayVideoView!
     
     override func viewDidLoad() {
         print(workoutSession?.jointAnglesList)
@@ -41,14 +41,15 @@ class FeedbackViewController: UIViewController {
         let videoURL = URL(string: (workoutSession?.videoURL)!)
         
         print("Playing from URL: \(videoURL?.absoluteString)")
-        
-        let player = AVPlayer(url: videoURL!)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        playerViewController.view.frame = videoView.bounds
-        playerViewController.showsPlaybackControls = true
-        videoView.addSubview(playerViewController.view)
-        self.addChild(playerViewController)
+        videoView.load(video: videoURL!)
+//        let player = AVPlayer(url: videoURL!)
+//        let playerViewController = AVPlayerViewController()
+//        playerViewController.player = player
+//        playerViewController.delegate = self
+//        playerViewController.view.frame = videoView.bounds
+//        playerViewController.showsPlaybackControls = true
+//        videoView.addSubview(playerViewController.view)
+//        self.addChild(playerViewController)
     }
     
     @IBAction func finish(_ sender: Any) {

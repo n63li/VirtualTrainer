@@ -40,31 +40,6 @@ public class UIUtilities {
         return frames
     }
     
-    // MARK: - Image Utils
-    public static func getAllFrames2(videoURL: URL) -> [UIImage] {
-        let asset: AVAsset = AVAsset(url: videoURL)
-        let duration: Float64 = CMTimeGetSeconds(asset.duration)
-        var generator: AVAssetImageGenerator! = AVAssetImageGenerator(asset:asset)
-        generator.appliesPreferredTrackTransform = true
-        var frames: [UIImage] = []
-        for index: Int in 0 ..< Int(duration) {
-            frames.append(getFrame(generator: generator, fromTime: Float64(index)))
-        }
-        generator = nil
-        return frames
-    }
-    
-    static func getFrame(generator: AVAssetImageGenerator, fromTime:Float64) -> UIImage! {
-        let time: CMTime = CMTimeMakeWithSeconds(fromTime, preferredTimescale:600)
-        let image: CGImage
-        do {
-            try image = generator.copyCGImage(at:time, actualTime:nil)
-        } catch {
-            return nil
-        }
-        return UIImage(cgImage:image)
-    }
-    
     // MARK: - Public
     
     public static func addCircle(
