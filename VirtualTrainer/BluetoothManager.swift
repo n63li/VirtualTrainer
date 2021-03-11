@@ -16,6 +16,7 @@ class BluetoothManager: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate
     private var imuAccelXOffset: Double = 0
     private var imuAccelYOffset: Double = 0.8
     private var imuAccelZOffset: Double = -0.4
+    
     var workoutSession: WorkoutSession? = nil
     // MARK: - Properties
 

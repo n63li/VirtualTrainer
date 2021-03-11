@@ -140,15 +140,17 @@ class WorkoutSession {
         let averageY: Double = Double(self.imuAccelY.reduce(0, +)) / Double(self.imuAccelY.count)
         let averageZ: Double = Double(self.imuAccelZ.reduce(0, +)) / Double(self.imuAccelZ.count)
         
-        if ( averageZ > imuTolerance ){
-            feedback.append("Good positioning but you moved too fast vertically.")
+        if (self.imuAccelX.count > 10) {
+            print("IMU Feedback")
+            if ( averageZ > imuTolerance ){
+                feedback.append("Good positioning but you moved too fast vertically.")
+            }
+            else if ( averageX > imuTolerance ){
+                feedback.append("Good speed but try to stay balanced as you go down.")
+            } else if ( averageY > imuTolerance ) {
+                feedback.append("Good speed but try to keep good posture as you lower yourself.")
+            }
         }
-        else if ( averageX > imuTolerance ){
-            feedback.append("Good speed but try to stay balanced as you go down.")
-        } else if ( averageY > imuTolerance ) {
-            feedback.append("Good speed but try to keep good posture as you lower yourself.")
-        }
-        
         
         for (i, angles) in userJointAngles.enumerated() {
             var diff = 0.0

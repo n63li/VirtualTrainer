@@ -118,7 +118,6 @@ class PreCameraViewController: UIViewController, UIImagePickerControllerDelegate
             sender.setTitle("Disconnect IMU", for: .normal)
             sender.setTitleColor(.red, for: .normal)
             print("IMU connected")
-            BluetoothManager.shared.setup()
         } else {
             sender.setTitle("Connect IMU", for: .normal)
             sender.setTitleColor(.systemBlue, for: .normal)
