@@ -16,5 +16,5 @@ type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
   jointAnglesList: [String]
   imuAccelX: [Float]
   imuAccelY: [Float]
-  imuAccelZ: Float
+  imuAccelZ: [Float]
 }

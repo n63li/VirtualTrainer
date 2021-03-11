@@ -14,7 +14,7 @@ public struct WorkoutSessionModel: Model {
   public var jointAnglesList: [String]?
   public var imuAccelX: [Double]?
   public var imuAccelY: [Double]?
-  public var imuAccelZ: Double?
+  public var imuAccelZ: [Double]?
   
   public init(id: String = UUID().uuidString,
       imuData: [Double] = [],
@@ -27,7 +27,7 @@ public struct WorkoutSessionModel: Model {
       jointAnglesList: [String]? = [],
       imuAccelX: [Double]? = [],
       imuAccelY: [Double]? = [],
-      imuAccelZ: Double? = nil) {
+      imuAccelZ: [Double]? = []) {
       self.id = id
       self.imuData = imuData
       self.cameraAngle = cameraAngle

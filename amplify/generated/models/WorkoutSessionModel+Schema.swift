@@ -39,7 +39,7 @@ extension WorkoutSessionModel {
       .field(workoutSessionModel.jointAnglesList, is: .optional, ofType: .embeddedCollection(of: String.self)),
       .field(workoutSessionModel.imuAccelX, is: .optional, ofType: .embeddedCollection(of: Double.self)),
       .field(workoutSessionModel.imuAccelY, is: .optional, ofType: .embeddedCollection(of: Double.self)),
-      .field(workoutSessionModel.imuAccelZ, is: .optional, ofType: .double)
+      .field(workoutSessionModel.imuAccelZ, is: .optional, ofType: .embeddedCollection(of: Double.self))
     )
     }
 }
