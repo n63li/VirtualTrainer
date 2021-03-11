@@ -397,8 +397,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGP-Kt-gvX">
+                                        <rect key="frame" x="16" y="51" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-y6-k6q">
-                                        <rect key="frame" x="16" y="51" width="343" height="463"/>
+                                        <rect key="frame" x="16" y="79.5" width="343" height="434.5"/>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                     </view>
@@ -419,13 +425,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Workout Result" id="TKY-QL-bmB"/>
                     <connections>
+                        <outlet property="feedbackLabel" destination="EGP-Kt-gvX" id="Npm-S4-dDD"/>
                         <outlet property="scoreLabel" destination="xEk-Lh-Cv8" id="RCu-05-8fw"/>
                         <outlet property="videoView" destination="ZtX-y6-k6q" id="Ze2-hN-gQx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRU-g1-JFM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1210" y="887"/>
+            <point key="canvasLocation" x="-1210.4000000000001" y="886.50674662668678"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

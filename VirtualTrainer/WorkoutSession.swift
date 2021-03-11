@@ -90,6 +90,107 @@ class WorkoutSession {
         )
     }
     
+    func generateFeedback() -> [String] {
+        let idealJointAngles = idealWorkouts[self.workoutType]!.jointAngles[self.cameraAngle]
+        let userJointAngles = self.getIncorrectJointAngles()
+        
+        var feedback: [String] = []
+        
+        for (i, angles) in userJointAngles.enumerated() {
+            var diff = 0.0
+            if (i == 1) {
+                for (key, value) in angles {
+                    diff = idealJointAngles?[i][key]! ?? 0.0 - Double(value)
+                    switch self.workoutType {
+                        case "deadlift":
+                            if diff < 0 {
+                                if key.contains("Knee") {
+                                    feedback.append("Your knee position is good. You have reached full knee extension.")
+                                }
+                                else if key.contains("Ankle") {
+                                    feedback.append("Your ankle position is good")
+                                }
+                                else if key.contains("Hip") {
+                                    feedback.append("Your hip position is good. You have reached full hip extension.")
+                                }
+                                else if key.contains("Trunk") {
+                                    feedback.append("Your torso flexion is good. Keep bracing your core.")
+                                }
+                                else if key.contains("Elbow") {
+                                    feedback.append("Keep a more neutral elbow position. Don't flare them in.")
+                                }
+                                else {
+                                    feedback.append("Keep your shoulders in a neutral position.")
+                                }
+                            }
+                            else {
+                                if key.contains("Knee") {
+                                    feedback.append("Your knee position is too low. Try pulling the bar to full knee extension.")
+                                }
+                                else if key.contains("Ankle") {
+                                    feedback.append("Your ankles are too far forward. Keep going to full hip extension")
+                                }
+                                else if key.contains("Hip") {
+                                    feedback.append("Your hip is still too angled. Go to full hip extension.")
+                                }
+                                else if key.contains("Trunk") {
+                                    feedback.append("Your torso is in too much flexion. Bracing your core.")
+                                }
+                                else if key.contains("Elbow") {
+                                    feedback.append("Keep a more neutral elbow position. Don't flare them out.")
+                                }
+                                else {
+                                    feedback.append("Keep your shoulders in a neutral position.")
+                                }
+                            }
+                        default:
+                            if diff < 0 {
+                                if key.contains("Knee") {
+                                    feedback.append("Your squat is too deep. Maintain a 90 degree knee angle for conventional squats.")
+                                }
+                                else if key.contains("Ankle") {
+                                    feedback.append("Your ankles are too far forward. Try keeping a more upright knee.")
+                                }
+                                else if key.contains("Hip") {
+                                    feedback.append("Your hip is hinging too much. Please try and keep a more posterior tilt.")
+                                }
+                                else if key.contains("Trunk") {
+                                    feedback.append("Your torso is bending too much. Brace your core and keep a straighter back.")
+                                }
+                                else if key.contains("Elbow") {
+                                    feedback.append("Your elbows are flaring out too much. Rest the barbell on your neck.")
+                                }
+                                else {
+                                    feedback.append("Your shoulder angle is too large. Retract your scapula for better upper back engagement.")
+                                }
+                            }
+                            else {
+                                if key.contains("Knee") {
+                                    feedback.append("Your squat depth is too high. Try reaching 90 degrees knee angle for depth.")
+                                }
+                                else if key.contains("Ankle") {
+                                    feedback.append("Your ankles are too far back. Try going down a bit more.")
+                                }
+                                else if key.contains("Hip") {
+                                    feedback.append("Your hip is hinging too little. Please try and keep a more anterior tilt.")
+                                }
+                                else if key.contains("Trunk") {
+                                    feedback.append("Your torso is position is good. Keep bracing your core.")
+                                }
+                                else if key.contains("Elbow") {
+                                    feedback.append("Your elbow position is good. Rest the barbell on your neck.")
+                                }
+                                else {
+                                    feedback.append("Your shoulder position is good.")
+                                }
+                            }
+                    }
+                }
+            }
+        }
+        return feedback
+    }
+    
     func save() {
         let encoder = JSONEncoder()
         var encodedJointAnglesList: [String] = []
