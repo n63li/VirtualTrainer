@@ -59,7 +59,7 @@ class FeedbackViewController: UIViewController {
             var feedbackParagraph = feedback?[0]
             
             for sentence in feedback![1...] {
-                feedbackParagraph! += " " + sentence
+                feedbackParagraph! += "\n" + sentence
             }
             
             feedbackTextView.text = feedbackParagraph!
