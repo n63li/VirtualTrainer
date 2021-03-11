@@ -262,4 +262,163 @@ public class PoseUtilities {
             UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
         }
     }
+  
+    public static func displayOverlay2(pose: Pose, to view: UIView, jointAngles: [String: CGFloat], orientation: WorkoutOrientation, width: CGFloat, height: CGFloat, rect: CGRect) {
+        let xOffset = (view.frame.width - rect.width) / 2
+        let yOffset = (view.frame.height - rect.height) / 2
+      
+      
+        let leftKnee = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftKnee).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftHip = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftHip).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftAnkle = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftAnkle).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftShoulder = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftShoulder).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let leftElbow = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .leftElbow).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        
+        let rightKnee = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightKnee).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightHip = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightHip).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightAnkle = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightAnkle).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightShoulder = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightShoulder).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        let rightElbow = normalizedPoint2(
+          fromVisionPoint: pose.landmark(ofType: .rightElbow).position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+        
+        switch orientation {
+        case .left:
+            UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(jointAngles["LeftKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(jointAngles["LeftHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(jointAngles["LeftAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(jointAngles["LeftTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(jointAngles["LeftElbowAngle"]!)))
+        case .right:
+            UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(jointAngles["RightKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(jointAngles["RightHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(jointAngles["RightAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(jointAngles["RightTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
+        case .front:
+            UIUtilities.addLabel(atPoint: leftKnee, to: view, label: String(Int(jointAngles["LeftKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftHip, to: view, label: String(Int(jointAngles["LeftHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftAnkle, to: view, label: String(Int(jointAngles["LeftAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftShoulder, to: view, label: String(Int(jointAngles["LeftTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: leftElbow, to: view, label: String(Int(jointAngles["LeftElbowAngle"]!)))
+            
+            UIUtilities.addLabel(atPoint: rightKnee, to: view, label: String(Int(jointAngles["RightKneeAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightHip, to: view, label: String(Int(jointAngles["RightHipAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightAnkle, to: view, label: String(Int(jointAngles["RightAnkleAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightShoulder, to: view, label: String(Int(jointAngles["RightTrunkAngle"]!)))
+            UIUtilities.addLabel(atPoint: rightElbow, to: view, label: String(Int(jointAngles["RightElbowAngle"]!)))
+        }
+    }
+    
+    public static func normalizedPoint2(
+        fromVisionPoint point: VisionPoint,
+        width: CGFloat,
+        height: CGFloat,
+        xOffset: CGFloat,
+        yOffset: CGFloat,
+        rect: CGRect
+    ) -> CGPoint {
+        return CGPoint(x: (point.x * rect.width / width) + xOffset, y: (point.y * rect.height / height) + yOffset)
+    }
+    
+    public static func displaySkeleton2(pose: Pose, width: CGFloat, height: CGFloat, rect: CGRect, view: UIView) {
+        let xOffset = (view.frame.width - rect.width) / 2
+        let yOffset = (view.frame.height - rect.height) / 2
+        
+        for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
+            let startLandmark = pose.landmark(ofType: startLandmarkType)
+            if (startLandmark.inFrameLikelihood > 0.6) {
+                for endLandmarkType in endLandmarkTypesArray {
+                    let endLandmark = pose.landmark(ofType: endLandmarkType)
+                    let startLandmarkPoint = normalizedPoint2(
+                        fromVisionPoint: startLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+                    let endLandmarkPoint = normalizedPoint2(
+                        fromVisionPoint: endLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+                    UIUtilities.addLineSegment(
+                        fromPoint: startLandmarkPoint,
+                        toPoint: endLandmarkPoint,
+                        inView: view,
+                        color: UIColor.green,
+                        width: 3.0
+                    )
+                }
+            }
+        }
+        
+        for landmark in pose.landmarks {
+            let landmarkPoint = normalizedPoint2(
+                fromVisionPoint: landmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect)
+            // print("drawing circle at: (\(landmarkPoint.x), \(landmarkPoint.y))")
+            UIUtilities.addCircle(
+                atPoint: landmarkPoint,
+                to: view,
+                color: UIColor.blue,
+                radius: 4.0
+            )
+        }
+    }
+    
+    public static func normalizedPoint3(
+        fromVisionPoint point: VisionPoint,
+        width: CGFloat,
+        height: CGFloat,
+        xOffset: CGFloat,
+        yOffset: CGFloat,
+        rect: CGRect,
+        transform: CGAffineTransform
+    ) -> CGPoint {
+        let point = CGPoint(x: (point.x * rect.width / width), y: (point.y * rect.height / height)).applying(transform)
+        return CGPoint(x: point.x - xOffset, y: point.y - xOffset)
+    }
+    
+    public static func displaySkeleton3(pose: Pose, width: CGFloat, height: CGFloat, rect: CGRect, view: UIView) {
+        let xOffset = CGFloat(0)
+        let yOffset = height / 2
+        
+        let translateTransform = CGAffineTransform(translationX: rect.midX, y: rect.midY);
+        let rotationTransform = CGAffineTransform(rotationAngle: .pi / 2);
+
+        let customRotation = translateTransform.inverted().concatenating( rotationTransform).concatenating(translateTransform);
+        
+        for (startLandmarkType, endLandmarkTypesArray) in UIUtilities.poseConnections() {
+            let startLandmark = pose.landmark(ofType: startLandmarkType)
+            if (startLandmark.inFrameLikelihood > 0.6) {
+                for endLandmarkType in endLandmarkTypesArray {
+                    let endLandmark = pose.landmark(ofType: endLandmarkType)
+                    let startLandmarkPoint = normalizedPoint3(
+                        fromVisionPoint: startLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect, transform: customRotation)
+                    let endLandmarkPoint = normalizedPoint3(
+                        fromVisionPoint: endLandmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect, transform: customRotation)
+                    UIUtilities.addLineSegment(
+                        fromPoint: startLandmarkPoint,
+                        toPoint: endLandmarkPoint,
+                        inView: view,
+                        color: UIColor.blue,
+                        width: 3.0
+                    )
+                }
+            }
+        }
+        
+        for landmark in pose.landmarks {
+            let landmarkPoint = normalizedPoint3(
+                fromVisionPoint: landmark.position, width: width, height: height, xOffset: xOffset, yOffset: yOffset, rect: rect, transform: customRotation)
+            // print("drawing circle at: (\(landmarkPoint.x), \(landmarkPoint.y))")
+            UIUtilities.addCircle(
+                atPoint: landmarkPoint,
+                to: view,
+                color: UIColor.red,
+                radius: 4.0
+            )
+        }
+    }
 }
+

@@ -12,27 +12,46 @@ import AVKit
 @objc(FeedbackViewController)
 class FeedbackViewController: UIViewController {
     var workoutSession: WorkoutSession? = nil
+    var fromHistoryViewController: Bool = false
+
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    @IBOutlet weak var videoView: UIView!
-    @IBOutlet weak var feedbackLabel: UILabel!
-    
+    @IBOutlet weak var videoView: OverlayVideoView!
+    @IBOutlet weak var feedbackTextView: UITextView!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         do {
             try workoutSession?.calculateScore()
         }
         catch {
             print("Did not calculate score")
         }
-        
+    
+        if (fromHistoryViewController) {
+            self.doneButton.isEnabled = false
+            self.doneButton.tintColor = .clear
+        }
+
+        if !fromHistoryViewController  && workoutSession!.workoutResult.score! <= Double(0) {
+            let alert = UIAlertController(title: "Workout Warning", message: "Could not detect proper postures at all - are you sure you uploaded the correct video for the selected exercise and camera angle?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Ignore", comment: "Cancel action"), style: .cancel, handler: { _ in
+
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Restart", comment: "Default action"), style: .destructive, handler: { _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+
+        let textLabel = "Score: \(workoutSession!.workoutResult.score!)"
+        scoreLabel?.text = textLabel
+
         if workoutSession!.workoutResult.score! <= Double(0) {
-            scoreLabel?.text = "Could not detect proper postures - are you sure you uploaded the correct video for the selected exercise and camera angle?"
             feedbackLabel.isHidden = true
         }
         else {
-            scoreLabel?.text = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
             let feedback = workoutSession?.generateFeedback()
             var feedbackParagraph = feedback?[0]
             
@@ -50,21 +69,21 @@ class FeedbackViewController: UIViewController {
         dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "EEEE, MMM d" //Specify your format that you want
         let strDate = dateFormatter.string(from: date)
-        
+
         self.title = strDate
         let videoURL = URL(string: (workoutSession?.videoURL)!)
-        
-        print("Playing from URL: \(videoURL?.absoluteString)")
-        
-        let player = AVPlayer(url: videoURL!)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        playerViewController.view.frame = videoView.bounds
-        playerViewController.showsPlaybackControls = true
-        videoView.addSubview(playerViewController.view)
-        self.addChild(playerViewController)
+        videoView.workoutSession = workoutSession
+        videoView.load(video: videoURL!)
+//        let player = AVPlayer(url: videoURL!)
+//        let playerViewController = AVPlayerViewController()
+//        playerViewController.player = player
+//        playerViewController.delegate = self
+//        playerViewController.view.frame = videoView.bounds
+//        playerViewController.showsPlaybackControls = true
+//        videoView.addSubview(playerViewController.view)
+//        self.addChild(playerViewController)
     }
-    
+
     @IBAction func finish(_ sender: Any) {
         _ = navigationController?.popToRootViewController(animated: true)
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
