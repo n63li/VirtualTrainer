@@ -16,10 +16,13 @@
 		48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA26BD25DFDE7700970748 /* PoseUtilities.swift */; };
 		4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10224B5B2087E49F00A77316 /* MLKitExtensions.swift */; };
 		5A95090677934162B119E72C /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = C9F7A6D4127342458DB4AD53 /* awsconfiguration.json */; };
+		9130FB8925FA046500C336E8 /* IMUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130FB8825FA046500C336E8 /* IMUPeripheral.swift */; };
 		914F84E925E375F2005BB3DE /* PreCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84E825E375F2005BB3DE /* PreCameraViewController.swift */; };
 		914F84EC25E37640005BB3DE /* WorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */; };
 		914F84EF25E3813E005BB3DE /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */; };
 		914F851825E7355F005BB3DE /* PoseDetectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */; };
+		914F86F225F4690F005BB3DE /* TrendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F86F125F4690F005BB3DE /* TrendsViewController.swift */; };
+		914F873725F94770005BB3DE /* OverlayVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914F873625F9476F005BB3DE /* OverlayVideoView.swift */; };
 		91B1FE3925CB2B8500B20F11 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */; };
 		BB287B3920729CE90069707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB287B3820729CE90069707A /* AppDelegate.swift */; };
 		BB287B3E20729CE90069707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB287B3C20729CE90069707A /* Main.storyboard */; };
@@ -42,7 +45,6 @@
 		D83BA63425DF295E003F5562 /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62625DF295E003F5562 /* schema.graphql */; };
 		D83BA63525DF295E003F5562 /* transform.conf.json in Resources */ = {isa = PBXBuildFile; fileRef = D83BA62725DF295E003F5562 /* transform.conf.json */; };
 		D8C6932325E8A0E10012C5F6 /* WorkoutResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */; };
-		FBACAE2425EFFCE20000174A /* IMUPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBACAE2325EFFCE20000174A /* IMUPeripheral.swift */; };
 		FBCEF5FA25F9F45F008C73AA /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCEF5F925F9F45F008C73AA /* BluetoothManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,10 +57,13 @@
 		48BA26BD25DFDE7700970748 /* PoseUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseUtilities.swift; sourceTree = "<group>"; };
 		4FE4951DA0BB402986AAD265 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		8E98A936E78D4C51810B1750 /* schema.graphql */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text; name = schema.graphql; path = amplify/backend/api/amplifyDatasource/schema.graphql; sourceTree = "<group>"; };
+		9130FB8825FA046500C336E8 /* IMUPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMUPeripheral.swift; sourceTree = "<group>"; };
 		914F84E825E375F2005BB3DE /* PreCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreCameraViewController.swift; sourceTree = "<group>"; };
 		914F84EB25E37640005BB3DE /* WorkoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutTableViewCell.xib; sourceTree = "<group>"; };
 		914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseDetectorHelper.swift; sourceTree = "<group>"; };
+		914F86F125F4690F005BB3DE /* TrendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewController.swift; sourceTree = "<group>"; };
+		914F873625F9476F005BB3DE /* OverlayVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVideoView.swift; sourceTree = "<group>"; };
 		91B1FE3825CB2B8500B20F11 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		93DD195B5A2567116D694A3D /* Pods_VirtualTrainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualTrainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E8E2C9FA1709AB4D6E13D79 /* Pods-VirtualTrainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualTrainer.debug.xcconfig"; path = "Target Support Files/Pods-VirtualTrainer/Pods-VirtualTrainer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,7 +93,6 @@
 		D83BA62625DF295E003F5562 /* schema.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
 		D83BA62725DF295E003F5562 /* transform.conf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = transform.conf.json; sourceTree = "<group>"; };
 		D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutResultViewController.swift; sourceTree = "<group>"; };
-		FBACAE2325EFFCE20000174A /* IMUPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMUPeripheral.swift; sourceTree = "<group>"; };
 		FBCEF5F925F9F45F008C73AA /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,10 +163,12 @@
 				D8000FB725DC578B00ED2C0C /* WorkoutSession.swift */,
 				D8000FBB25DC5EFD00ED2C0C /* WorkoutResult.swift */,
 				914F84E825E375F2005BB3DE /* PreCameraViewController.swift */,
+				9130FB8825FA046500C336E8 /* IMUPeripheral.swift */,
 				914F84EE25E3813E005BB3DE /* WorkoutTableViewCell.swift */,
 				914F851725E7355F005BB3DE /* PoseDetectorHelper.swift */,
 				D8C6932225E8A0E10012C5F6 /* WorkoutResultViewController.swift */,
-				FBACAE2325EFFCE20000174A /* IMUPeripheral.swift */,
+				914F873625F9476F005BB3DE /* OverlayVideoView.swift */,
+				914F86F125F4690F005BB3DE /* TrendsViewController.swift */,
 			);
 			path = VirtualTrainer;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				"${BUILT_PRODUCTS_DIR}/Amplify/Amplify.framework",
 				"${BUILT_PRODUCTS_DIR}/AmplifyPlugins/AmplifyPlugins.framework",
 				"${BUILT_PRODUCTS_DIR}/AppSyncRealTimeClient/AppSyncRealTimeClient.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -385,6 +392,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Amplify.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AmplifyPlugins.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppSyncRealTimeClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -454,7 +462,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D83BA62A25DF295E003F5562 /* IdealWorkoutModel+Schema.swift in Sources */,
-				FBACAE2425EFFCE20000174A /* IMUPeripheral.swift in Sources */,
 				D83BA62825DF295E003F5562 /* WorkoutSessionModel.swift in Sources */,
 				D8000FB825DC578B00ED2C0C /* WorkoutSession.swift in Sources */,
 				10224B582087E43100A77316 /* HistoryViewController.swift in Sources */,
@@ -467,14 +474,17 @@
 				FBCEF5FA25F9F45F008C73AA /* BluetoothManager.swift in Sources */,
 				D83BA62B25DF295E003F5562 /* WorkoutResultModel+Schema.swift in Sources */,
 				BB287B3920729CE90069707A /* AppDelegate.swift in Sources */,
+				9130FB8925FA046500C336E8 /* IMUPeripheral.swift in Sources */,
 				48BA26BE25DFDE7700970748 /* PoseUtilities.swift in Sources */,
 				D8C6932325E8A0E10012C5F6 /* WorkoutResultViewController.swift in Sources */,
 				D83BA62925DF295E003F5562 /* AmplifyModels.swift in Sources */,
 				914F84E925E375F2005BB3DE /* PreCameraViewController.swift in Sources */,
 				D8000FBC25DC5EFD00ED2C0C /* WorkoutResult.swift in Sources */,
+				914F873725F94770005BB3DE /* OverlayVideoView.swift in Sources */,
 				D83BA62E25DF295E003F5562 /* IdealWorkoutModel.swift in Sources */,
 				914F84EF25E3813E005BB3DE /* WorkoutTableViewCell.swift in Sources */,
 				4ADD356323BAC29A001277A7 /* MLKitExtensions.swift in Sources */,
+				914F86F225F4690F005BB3DE /* TrendsViewController.swift in Sources */,
 				1001E6F720CEE0DD00445CB3 /* UIUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
