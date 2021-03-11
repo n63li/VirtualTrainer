@@ -33,12 +33,7 @@ class OverlayVideoView: UIView {
 
     private var poseDetectorHelper = PoseDetectorHelper()
     
-    private var actionView: UIImageView? = nil
-    
-    private var isLive: Bool = false
-    
-    func load(video: URL, live: Bool = false) {
-        isLive = live
+    func load(video: URL) {
         layer.isOpaque = true
         self.backgroundColor = .systemBackground
         poseDetectorHelper.resetManagedLifecycleDetectors()
@@ -50,18 +45,10 @@ class OverlayVideoView: UIView {
         
         player = AVPlayer(playerItem: item)
         playerLayer.frame = self.bounds
-        if (isLive) {
-            playerLayer.setAffineTransform(CGAffineTransform(rotationAngle: .pi / 2))
-        }
         setupDisplayLink()
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         addGestureRecognizer(gesture)
-        
-        actionView = UIImageView(frame: CGRect(x: self.frame.midX - 25, y: self.frame.midY - 25, width: 50, height: 50))
-        actionView?.image = UIImage(named: "play-button")
-        actionView?.backgroundColor = .green
-        self.addSubview(actionView!)
     }
     
     @objc func displayLinkUpdated(link: CADisplayLink) {
@@ -69,11 +56,9 @@ class OverlayVideoView: UIView {
         guard output.hasNewPixelBuffer(forItemTime: time),
               let pixbuf = output.copyPixelBuffer(forItemTime: time, itemTimeForDisplay: nil) else { return }
         let baseImg = CIImage(cvImageBuffer: pixbuf)
-        let imageWidth = CGFloat(CVPixelBufferGetWidth(pixbuf))
-        let imageHeight = CGFloat(CVPixelBufferGetHeight(pixbuf))
         
         guard let cgImg = context.createCGImage(baseImg, from: baseImg.extent) else { return }
-        let img = UIImage(cgImage: cgImg)
+        let img = UIImage(cgImage: cgImg).rotate(radians: .pi / 2)!
         
         self.subviews.forEach { view in
             view.removeFromSuperview()
@@ -81,22 +66,11 @@ class OverlayVideoView: UIView {
         
         DispatchQueue.global(qos: .background).async {
             let visionImg = VisionImage(image: img)
-            if (self.isLive) {
-                visionImg.orientation = .right
-            }
             let poses = self.poseDetectorHelper.detectPose(in: visionImg)
         
             poses.forEach { pose in
                 DispatchQueue.main.sync {
-                    if (self.isLive) {
-                        PoseUtilities.displaySkeleton3(pose: pose, width: imageWidth, height: imageHeight, rect: self.playerLayer.videoRect, view: self)
-                    } else {
-                        PoseUtilities.displaySkeleton2(pose: pose, width: imageWidth, height: imageHeight, rect: self.playerLayer.videoRect, view: self)
-                    }
-
-                    print("frame: \(self.frame.width), \(self.frame.height)")
-                    print("img: \(imageWidth), \(imageHeight)")
-                    print("Video Rect: \(self.playerLayer.videoRect.width), \(self.playerLayer.videoRect.height)")
+                    PoseUtilities.displaySkeleton2(pose: pose, width: img.size.width, height: img.size.height, rect: self.playerLayer.videoRect, view: self)
                 }
             }
         }
@@ -124,10 +98,34 @@ class OverlayVideoView: UIView {
     private func updateStatus() {
         if isPlaying {
             player?.pause()
-            self.actionView?.isHidden = false
+            // self.actionView?.isHidden = false
         } else {
             player?.play()
-            self.actionView?.isHidden = true
+            // self.actionView?.isHidden = true
         }
+    }
+}
+
+extension UIImage {
+    func rotate(radians: Float) -> UIImage? {
+        var newSize = CGRect(origin: CGPoint.zero, size: self.size).applying(CGAffineTransform(rotationAngle: CGFloat(radians))).size
+        // Trim off the extremely small float value to prevent core graphics from rounding it up
+        newSize.width = floor(newSize.width)
+        newSize.height = floor(newSize.height)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, self.scale)
+        let context = UIGraphicsGetCurrentContext()!
+
+        // Move origin to middle
+        context.translateBy(x: newSize.width/2, y: newSize.height/2)
+        // Rotate around middle
+        context.rotate(by: CGFloat(radians))
+        // Draw the image at its center
+        self.draw(in: CGRect(x: -self.size.width/2, y: -self.size.height/2, width: self.size.width, height: self.size.height))
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage
     }
 }
