@@ -31,9 +31,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="f2P-rS-Tb3" kind="show" identifier="workoutDetailsSegue" id="55z-Tj-Q3u"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -49,6 +46,7 @@
                     <navigationItem key="navigationItem" title="History" id="xYg-VP-pps"/>
                     <connections>
                         <outlet property="tableView" destination="OSH-tg-cZr" id="DDu-Dp-pUA"/>
+                        <segue destination="jry-iJ-a0X" kind="show" identifier="workoutHistorySegue" id="pZ8-l6-rvj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -258,14 +256,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83o-Ng-Fz4">
-                                        <rect key="frame" x="16" y="43.5" width="343" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-JF-uac">
+                                        <rect key="frame" x="16" y="43.5" width="343" height="128"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="GMp-T9-FxZ"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-L6-8hs" customClass="OverlayVideoView" customModule="VirtualTrainer" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="72" width="343" height="543"/>
+                                        <rect key="frame" x="16" y="179.5" width="343" height="435.5"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                     </view>
                                 </subviews>
@@ -289,7 +292,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="5et-gO-2KR" id="7xQ-b5-79t"/>
-                        <outlet property="feedbackLabel" destination="83o-Ng-Fz4" id="Bbk-se-LDu"/>
+                        <outlet property="feedbackTextView" destination="dtL-JF-uac" id="snb-NM-kXA"/>
                         <outlet property="scoreLabel" destination="oWs-Kg-Gvj" id="San-MQ-atG"/>
                         <outlet property="videoView" destination="Ped-L6-8hs" id="SmS-wX-tRA"/>
                     </connections>
@@ -405,7 +408,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b8j-Vp-Bf1">
-                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Lh-Cv8">
                                         <rect key="frame" x="16" y="8" width="343" height="30"/>
@@ -421,7 +424,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-y6-k6q">
-                                        <rect key="frame" x="16" y="74.5" width="343" height="439.5"/>
+                                        <rect key="frame" x="16" y="74.5" width="343" height="584.5"/>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                     </view>
@@ -457,6 +460,9 @@
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="chart.bar.fill" catalog="system" width="128" height="92"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
