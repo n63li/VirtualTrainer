@@ -24,10 +24,14 @@ class FeedbackViewController: UIViewController {
             try workoutSession?.calculateScore()
         }
         catch {
-            print("did not calculate score")
+            print("Did not calculate score")
         }
         
-        scoreLabel?.text = "You have a score of \(workoutSession!.workoutResult.score!)"
+        var textLabel = "You have achieved a score of \(workoutSession!.workoutResult.score!)"
+        if workoutSession!.workoutResult.score! <= Double(0) {
+            textLabel = "Could not detect proper postures at all - are you sure you uploaded the correct video for the selected exercise and camera angle?"
+        }
+        scoreLabel?.text = textLabel
         workoutSession?.endTimestamp = NSDate().timeIntervalSince1970
         let date =  Date(timeIntervalSince1970: workoutSession?.startTimestamp ?? 0)
         let dateFormatter = DateFormatter()
