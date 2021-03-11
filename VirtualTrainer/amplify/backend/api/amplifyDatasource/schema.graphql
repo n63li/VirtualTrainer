@@ -1,0 +1,20 @@
+type WorkoutResult {
+  score: Int!
+  incorrectJoints: [String]
+  incorrectAccelerations: [Float]
+}
+
+type WorkoutSessionModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  imuData: [Float!]
+  cameraAngle: String!
+  workoutType: String!
+  startTimestamp: AWSTimestamp!
+  endTimestamp: AWSTimestamp!
+  workoutResult: WorkoutResult
+  videoURL: String
+  jointAnglesList: [String]
+  imuAccelX: [Float]
+  imuAccelY: [Float]
+  imuAccelZ: Float
+}
