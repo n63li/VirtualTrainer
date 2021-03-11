@@ -20,7 +20,7 @@ class WorkoutSession {
     init(workoutType: String, cameraAngle: WorkoutOrientation) {
         self.workoutType = workoutType
         self.cameraAngle = cameraAngle
-        self.workoutResult = WorkoutResult(score: 0, incorrectJoints: [0], incorrectAccelerations: [0])
+        self.workoutResult = WorkoutResult(score: 0, incorrectJoints: [], incorrectAccelerations: [0])
         self.startTimestamp = NSDate().timeIntervalSince1970
     }
     
@@ -36,7 +36,7 @@ class WorkoutSession {
         var tolerance = 4.0
         var score = 100.0
         var iterations = 1
-        let matchedFrames = []
+        var matchedFrames: [String] = []
         while currentIdealJointAngleListIndex < idealJointAnglesList!.count {
             tolerance += Double(iterations) * 2
             for jointAngles in self.jointAnglesList {
@@ -122,19 +122,18 @@ class WorkoutSession {
         }
     }
 
-    func getIncorrectJointAngles() {
+    func getIncorrectJointAngles() -> [[String: CGFloat]]{
         let decoder = JSONDecoder()
-        var decodedJoints = [[String: CGFloat]] = []
-        let incorrectJointsString = self.workoutResult.incorrectJoints
+        var decodedAnglesList: [[String: CGFloat]] = []
         do {
-            for jointString in incorrectJointsString {
+            for jointString in self.workoutResult.incorrectJoints ?? [] {
                 let decoded = try decoder.decode([String: CGFloat].self, from: Data(jointString.utf8))
-                decodedJoints.append(decoded)
+                decodedAnglesList.append(decoded)
             }
         } catch {
             print("Unable to decode the incorrect joint angles")
         }
 
-        return decodedJoints
+        return decodedAnglesList
     }
 }
