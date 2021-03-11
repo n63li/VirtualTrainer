@@ -103,7 +103,7 @@ class WorkoutSession {
                     diff = idealJointAngles?[i][key]! ?? 0.0 - Double(value)
                     switch self.workoutType {
                         case "deadlift":
-                            if diff < 0 {
+                            if diff > 0 {
                                 if key.contains("Knee") {
                                     feedback.append("Your knee position is good. You have reached full knee extension.")
                                 }
@@ -144,7 +144,7 @@ class WorkoutSession {
                                 }
                             }
                         default:
-                            if diff < 0 {
+                            if diff > 0 {
                                 if key.contains("Knee") {
                                     feedback.append("Your squat is too deep. Maintain a 90 degree knee angle for conventional squats.")
                                 }

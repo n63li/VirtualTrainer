@@ -24,7 +24,7 @@ class WorkoutResultViewController: UIViewController {
         let feedback = workoutSession?.generateFeedback()
         var feedbackParagraph = feedback?[0]
 
-        for sentence in feedback! {
+        for sentence in feedback![1...] {
             feedbackParagraph! += " " + sentence
         }
         
