@@ -69,6 +69,7 @@ class CameraViewController: UIViewController {
         setUpAnnotationOverlayView()
         setUpCaptureSessionOutput()
         setUpCaptureSessionInput()
+        BluetoothManager.shared.workoutSession = self.workoutSession
     }
     
     override func viewDidAppear(_ animated: Bool) {

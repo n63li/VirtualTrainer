@@ -7,15 +7,18 @@
 import Amplify
 
 class WorkoutSession {
+    var imuData: [Double] = []
     var id: String = ""
     var workoutType: String = ""
-    var imuData: [Double] = []
     var cameraAngle: WorkoutOrientation
     var workoutResult: WorkoutResult
     var startTimestamp: Double = 0
     var endTimestamp: Double = 0
     var videoURL: String? = ""
     var jointAnglesList: [[String: CGFloat]] = []
+    var imuAccelX: [Double] = [0]
+    var imuAccelY: [Double] = [0]
+    var imuAccelZ: [Double] = [0]
     
     init(workoutType: String, cameraAngle: WorkoutOrientation) {
         self.workoutType = workoutType
@@ -90,11 +93,62 @@ class WorkoutSession {
         )
     }
     
+    func IMUQueueAppend(value: Double, direction: String) {
+            let sampleSize = 20
+            switch direction {
+            case "x":
+                if self.imuAccelX.count < sampleSize {
+                    self.imuAccelX.append(abs(value))
+                }
+                else {
+                    self.imuAccelX.append(abs(value))
+                    self.imuAccelX = self.imuAccelX.sorted()
+                    self.imuAccelX.removeFirst()
+                }
+            case "y":
+                if self.imuAccelY.count < sampleSize {
+                    self.imuAccelY.append(abs(value))
+                }
+                else {
+                    self.imuAccelY.append(abs(value))
+                    self.imuAccelY = self.imuAccelY.sorted()
+                    self.imuAccelY.removeFirst()
+                }
+            case "z":
+                if self.imuAccelZ.count < sampleSize {
+                    self.imuAccelZ.append(abs(value))
+                }
+                else {
+                    self.imuAccelZ.append(abs(value))
+                    self.imuAccelZ = self.imuAccelZ.sorted()
+                    self.imuAccelZ.removeFirst()
+                }
+            default:
+                break
+        }
+    }
+        
+    
     func generateFeedback() -> [String] {
         let idealJointAngles = idealWorkouts[self.workoutType]!.jointAngles[self.cameraAngle]
         let userJointAngles = self.getIncorrectJointAngles()
+        let imuTolerance = 1.5
         
         var feedback: [String] = []
+        
+        let averageX: Double = Double(self.imuAccelX.reduce(0, +)) / Double(self.imuAccelX.count)
+        let averageY: Double = Double(self.imuAccelY.reduce(0, +)) / Double(self.imuAccelY.count)
+        let averageZ: Double = Double(self.imuAccelZ.reduce(0, +)) / Double(self.imuAccelZ.count)
+        
+        if ( averageZ > imuTolerance ){
+            feedback.append("Good positioning but you moved too fast vertically.")
+        }
+        else if ( averageX > imuTolerance ){
+            feedback.append("Good speed but try to stay balanced as you go down.")
+        } else if ( averageY > imuTolerance ) {
+            feedback.append("Good speed but try to keep good posture as you lower yourself.")
+        }
+        
         
         for (i, angles) in userJointAngles.enumerated() {
             var diff = 0.0
@@ -188,6 +242,7 @@ class WorkoutSession {
                 }
             }
         }
+        
         return feedback
     }
     
@@ -212,7 +267,11 @@ class WorkoutSession {
             endTimestamp: Int(self.endTimestamp),
             workoutResult: self.workoutResult,
             videoURL: self.videoURL,
-            jointAnglesList: encodedJointAnglesList)
+            jointAnglesList: encodedJointAnglesList,
+            imuAccelX: self.imuAccelX,
+            imuAccelY: self.imuAccelY,
+            imuAccelZ: self.imuAccelZ
+        )
         Amplify.DataStore.save(workoutSessionItem) { result in
             switch(result) {
             case .success(let savedItem):
